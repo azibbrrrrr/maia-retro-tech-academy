@@ -9,10 +9,20 @@ async function position(page: Page) {
 }
 async function walk(page: Page, key: string, ms: number) {
   await page.locator("canvas").focus();
-  await page.keyboard.down(key);
-  await page.waitForTimeout(ms);
-  await page.keyboard.up(key);
-  await page.waitForTimeout(120);
+  // Keep press/release timing inside the browser so automation IPC latency
+  // cannot hold a direction longer than requested at a narrow threshold.
+  await page.evaluate(
+    async ({ key, ms }) => {
+      const canvas = document.querySelector("canvas")!;
+      canvas.dispatchEvent(
+        new KeyboardEvent("keydown", { key, bubbles: true }),
+      );
+      await new Promise((resolve) => setTimeout(resolve, ms));
+      canvas.dispatchEvent(new KeyboardEvent("keyup", { key, bubbles: true }));
+      await new Promise((resolve) => setTimeout(resolve, 150));
+    },
+    { key, ms },
+  );
 }
 async function room(page: Page, name: string) {
   await page.getByRole("button", { name: "Room directory" }).click();
@@ -31,12 +41,22 @@ test("explorer walks, collides with the Tiled wall and opens the actual whiteboa
   await expect(page.locator("canvas")).toBeVisible();
   await expect(page.locator("[data-explorer]")).toHaveAttribute("cx", /\d+/);
   const initial = await position(page);
-  await walk(page, "ArrowLeft", 350);
-  expect((await position(page)).x).toBeLessThan(initial.x - 30);
+  await page.locator("canvas").focus();
+  await page.keyboard.down("ArrowLeft");
+  await expect
+    .poll(async () => (await position(page)).x, { timeout: 15000 })
+    .toBeLessThan(initial.x - 30);
+  await page.keyboard.up("ArrowLeft");
   await room(page, "High Council");
-  await walk(page, "ArrowLeft", 2000);
-  expect((await position(page)).x).toBeGreaterThan(144);
-  expect((await position(page)).x).toBeLessThan(170);
+  await page.locator("canvas").focus();
+  await page.keyboard.down("ArrowUp");
+  await expect
+    .poll(async () => (await position(page)).y, { timeout: 15000 })
+    .toBeLessThan(218);
+  await page.waitForTimeout(400);
+  await page.keyboard.up("ArrowUp");
+  expect((await position(page)).y).toBeGreaterThan(205);
+  expect((await position(page)).y).toBeLessThan(218);
   await room(page, "High Council");
   await walk(page, "ArrowUp", 1000);
   await page.keyboard.press("e");
@@ -66,8 +86,6 @@ test("teacher remains stationary, offers Malay dialogue and restores gameplay fo
     page.getByRole("button", { name: "Interact", exact: true }),
   ).toBeEnabled();
   await room(page, "Bilik Cikgu");
-  await walk(page, "ArrowUp", 700);
-  await walk(page, "ArrowRight", 350);
   await page.keyboard.press("e");
   await expect(page.getByRole("dialog")).toContainText("Ustazah Juliana");
   await expect(page.getByRole("dialog")).toContainText("Awak dah makan belum?");
@@ -142,7 +160,7 @@ test("mobile touch controls move the explorer and tap interaction opens a modal"
 test("visitor walks from gate to both classrooms and back without quick navigation", async ({
   page,
 }) => {
-  test.setTimeout(90_000);
+  test.setTimeout(180_000);
   await page.goto("/");
   await expect(
     page.getByRole("button", { name: "Interact", exact: true }),
@@ -155,41 +173,90 @@ test("visitor walks from gate to both classrooms and back without quick navigati
     fullPage: true,
   });
   const axis = async (coordinate: "x" | "y", target: number) => {
-    for (let attempt = 0; attempt < 40; attempt++) {
-      const current = (await position(page))[coordinate];
-      const remaining = target - current;
-      if (Math.abs(remaining) <= 15) return;
-      const key =
-        coordinate === "x"
-          ? remaining > 0
-            ? "ArrowRight"
-            : "ArrowLeft"
-          : remaining > 0
-            ? "ArrowDown"
-            : "ArrowUp";
-      await walk(page, key, Math.min(450, (Math.abs(remaining) / 190) * 1000));
-    }
-    expect(
-      Math.abs((await position(page))[coordinate] - target),
-    ).toBeLessThanOrEqual(15);
+    await page.locator("canvas").focus();
+    await page.evaluate(
+      async ({ coordinate, target }) => {
+        const canvas = document.querySelector("canvas")!;
+        const delay = (ms: number) =>
+          new Promise((resolve) => setTimeout(resolve, ms));
+        const read = () =>
+          Number(
+            document
+              .querySelector("[data-explorer]")!
+              .getAttribute(coordinate === "x" ? "cx" : "cy"),
+          );
+        for (let attempt = 0; attempt < 80; attempt++) {
+          const remaining = target - read();
+          if (Math.abs(remaining) <= 4) return;
+          const key =
+            coordinate === "x"
+              ? remaining > 0
+                ? "ArrowRight"
+                : "ArrowLeft"
+              : remaining > 0
+                ? "ArrowDown"
+                : "ArrowUp";
+          canvas.dispatchEvent(
+            new KeyboardEvent("keydown", { key, bubbles: true }),
+          );
+          await delay(
+            Math.min(450, Math.max(40, (Math.abs(remaining) / 190) * 1000)),
+          );
+          canvas.dispatchEvent(
+            new KeyboardEvent("keyup", { key, bubbles: true }),
+          );
+          // Let physics postUpdate and the minimap report finish after release.
+          // Wall-clock timers alone can fire before a frame on a busy renderer.
+          for (let frame = 0; frame < 6; frame++) {
+            await new Promise<void>((resolve) =>
+              requestAnimationFrame(() => resolve()),
+            );
+          }
+          await delay(100);
+        }
+        throw new Error(
+          `Walking route blocked at ${coordinate}=${read()}, target=${target}`,
+        );
+      },
+      { coordinate, target },
+    );
   };
-  await axis("y", 576);
-  await axis("x", 384);
-  await axis("y", 240);
+  for (const [coordinate, target] of [
+    ["x", 620],
+    ["y", 475],
+    ["x", 475],
+    ["y", 312],
+    ["x", 660],
+    ["y", 250],
+  ] as const)
+    await axis(coordinate, target);
   await page.keyboard.press("e");
   await expect(page.getByRole("dialog")).toContainText("DEMO DATA");
   await page.keyboard.press("Escape");
-  await axis("y", 576);
-  await axis("x", 1104);
-  await axis("y", 300);
-  await axis("x", 1170);
+  for (const [coordinate, target] of [
+    ["y", 312],
+    ["x", 475],
+    ["y", 475],
+    ["x", 620],
+    ["y", 660],
+    ["x", 1040],
+    ["y", 475],
+    ["x", 1200],
+    ["y", 312],
+    ["x", 1380],
+  ] as const)
+    await axis(coordinate, target);
   await page.keyboard.press("e");
   await expect(page.getByRole("dialog")).toContainText("Ustazah Juliana");
   await page.keyboard.press("Escape");
-  await axis("x", 1104);
-  await axis("y", 576);
-  await axis("x", 768);
-  await axis("y", 888);
+  for (const [coordinate, target] of [
+    ["x", 1200],
+    ["y", 475],
+    ["x", 1040],
+    ["y", 660],
+    ["x", 836],
+  ] as const)
+    await axis(coordinate, target);
   await expect(
     page.getByRole("button", { name: "Interact", exact: true }),
   ).toBeEnabled();

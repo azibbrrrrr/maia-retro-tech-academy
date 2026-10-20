@@ -1,128 +1,104 @@
 import { mkdir, writeFile } from "node:fs/promises";
 
-// Original blockout. All geometry is expressed in 48 px Tiled coordinates.
-const width = 32,
-  height = 22,
-  tile = 48;
-const layer = (name: string, id: number) => ({
-  id,
+// Pixel coordinates traced against the approved 1672 × 941 campus illustration.
+// Keep the 48 px editing grid; precise collision uses Tiled rectangle objects.
+const tile = 48,
+  width = 35,
+  height = 20;
+let nextObject = 1;
+const point = (name: string, x: number, y: number, type = "point") => ({
+  id: nextObject++,
   name,
-  type: "tilelayer",
-  x: 0,
-  y: 0,
-  width,
-  height,
-  opacity: 1,
-  visible: true,
-  data: Array<number>(width * height).fill(0),
-});
-const ground = layer("ground", 1);
-ground.data.fill(1);
-const floors = layer("floors", 2),
-  walls = layer("walls", 3),
-  collision = layer("collision", 4);
-collision.visible = false;
-function fill(
-  target: typeof ground,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  gid: number,
-) {
-  for (let row = y; row < y + h; row++)
-    for (let col = x; col < x + w; col++) target.data[row * width + col] = gid;
-}
-fill(floors, 2, 10, 28, 4, 3);
-fill(floors, 14, 14, 4, 8, 3);
-for (const [left, right, door] of [
-  [2, 14, 7],
-  [17, 29, 22],
-]) {
-  fill(floors, left, 2, right - left + 1, 9, 2);
-  for (let x = left; x <= right; x++) {
-    fill(walls, x, 2, 1, 1, 4);
-    if (x !== door && x !== door + 1) fill(walls, x, 10, 1, 1, 4);
-  }
-  fill(walls, left, 2, 1, 9, 4);
-  fill(walls, right, 2, 1, 9, 4);
-}
-collision.data = walls.data.map((gid) => (gid ? 4 : 0));
-// Desk islands, with routes on all sides.
-for (const [x, y] of [
-  [5, 6],
-  [10, 6],
-  [19, 6],
-  [26, 7],
-]) {
-  fill(collision, x, y, 2, 1, 4);
-}
-for (let x = 0; x < width; x++) {
-  fill(collision, x, 0, 1, 1, 4);
-  fill(collision, x, height - 1, 1, 1, 4);
-}
-for (let y = 0; y < height; y++) {
-  fill(collision, 0, y, 1, 1, 4);
-  fill(collision, width - 1, y, 1, 1, 4);
-}
-
-const object = (
-  id: number,
-  name: string,
-  x: number,
-  y: number,
-  type = "point",
-) => ({
-  id,
-  name,
+  x,
+  y,
   type,
-  x: x * tile,
-  y: y * tile,
   width: 0,
   height: 0,
   rotation: 0,
   visible: true,
   point: true,
 });
-const objects = (
-  id: number,
-  name: string,
-  entries: ReturnType<typeof object>[],
-) => ({
-  id,
+const points = [
+  {
+    name: "interaction_zones",
+    objects: [
+      point("board_pr_high_council", 630, 185, "board"),
+      point("sign_gate", 836, 596, "sign"),
+    ],
+  },
+  {
+    name: "spawn_points",
+    objects: [
+      point("spawn_gate", 836, 660),
+      point("door_council", 660, 285),
+      point("door_teacher", 1380, 310),
+    ],
+  },
+  {
+    name: "npc_spawns",
+    objects: [point("npc_cikgu", 1380, 265, "stationary")],
+  },
+  { name: "agent_seats", objects: [] },
+  {
+    name: "room_labels",
+    objects: [point("High Council", 350, 360), point("Bilik Cikgu", 1320, 360)],
+  },
+  { name: "lights", objects: [] },
+];
+const rectangles: [string, number, number, number, number][] = [
+  ["back walls and shelving", 0, 0, 1672, 205],
+  ["council outer wall", 0, 205, 180, 250],
+  ["teacher outer wall", 1500, 205, 172, 250],
+  ["council corridor partition", 735, 205, 55, 250],
+  ["teacher corridor partition", 880, 205, 55, 250],
+  ["council front west", 180, 325, 235, 130],
+  ["council front east", 540, 325, 195, 130],
+  ["teacher front west", 935, 325, 195, 130],
+  ["teacher front east", 1265, 325, 235, 130],
+  ["council desks and chairs", 350, 210, 210, 90],
+  ["teacher desks and chairs", 1120, 210, 165, 90],
+  ["council side furniture", 180, 205, 70, 120],
+  ["council server cabinet", 690, 205, 45, 35],
+  ["teacher side furniture", 1435, 205, 65, 120],
+  ["welcome noticeboard and planters", 660, 440, 355, 180],
+  ["west trees and benches", 180, 490, 395, 220],
+  ["east trees and benches", 1095, 490, 415, 220],
+  ["southwest flowerbed", 440, 710, 275, 32],
+  ["southeast flowerbed", 953, 710, 267, 32],
+  ["school gate and perimeter", 0, 742, 1672, 199],
+  ["west boundary", 0, 455, 65, 287],
+  ["east boundary", 1600, 455, 72, 287],
+];
+const collision = rectangles.map(([name, x, y, w, h]) => ({
+  id: nextObject++,
   name,
+  type: "solid",
+  x,
+  y,
+  width: w,
+  height: h,
+  rotation: 0,
+  visible: true,
+}));
+const objectLayers = [
+  ...["floors", "walls", "furniture_back", "furniture_front", "overhead"].map(
+    (name) => ({ name, objects: [] }),
+  ),
+  { name: "collision", objects: collision },
+  ...points,
+].map((layer, index) => ({
+  ...layer,
+  id: index + 2,
   type: "objectgroup",
   opacity: 1,
-  visible: true,
+  visible: layer.name !== "collision",
   x: 0,
   y: 0,
   draworder: "topdown",
-  objects: entries,
-});
-const layers = [
-  ground,
-  floors,
-  walls,
-  layer("furniture_back", 5),
-  layer("furniture_front", 6),
-  layer("overhead", 7),
-  collision,
-  objects(8, "interaction_zones", [
-    object(1, "board_pr_high_council", 8, 4, "board"),
-    object(2, "sign_gate", 16, 18, "sign"),
-  ]),
-  objects(9, "spawn_points", [
-    object(3, "spawn_gate", 16, 18.5),
-    object(4, "door_council", 8, 8.5),
-    object(5, "door_teacher", 23, 8.5),
-  ]),
-  objects(10, "npc_spawns", [object(6, "npc_cikgu", 25, 5.5, "stationary")]),
-  objects(11, "agent_seats", []),
-  objects(12, "room_labels", [
-    object(7, "High Council", 8, 2.5),
-    object(8, "Bilik Cikgu", 23, 2.5),
-  ]),
-  objects(13, "lights", []),
+}));
+const properties = [
+  { name: "worldWidth", type: "int", value: 1672 },
+  { name: "worldHeight", type: "int", value: 941 },
 ];
 const map = {
   compressionlevel: -1,
@@ -136,47 +112,38 @@ const map = {
   tileheight: tile,
   type: "map",
   version: "1.10",
-  nextlayerid: 14,
-  nextobjectid: 9,
-  layers,
-  tilesets: [
+  nextlayerid: objectLayers.length + 2,
+  nextobjectid: nextObject,
+  properties,
+  tilesets: [],
+  layers: [
     {
-      firstgid: 1,
-      name: "academy",
-      tilewidth: tile,
-      tileheight: tile,
-      tilecount: 4,
-      columns: 4,
-      image: "../assets/tiles.svg",
-      imagewidth: 192,
-      imageheight: 48,
-      margin: 0,
-      spacing: 0,
+      id: 1,
+      name: "ground",
+      type: "imagelayer",
+      x: 0,
+      y: 0,
+      opacity: 1,
+      visible: true,
+      image: "../assets/campus.png",
     },
+    ...objectLayers,
   ],
 };
-const tiles = `<svg xmlns="http://www.w3.org/2000/svg" width="192" height="48" shape-rendering="crispEdges">
-<path fill="#657451" d="M0 0h48v48H0z"/><path fill="#74825b" d="M8 10h4v4H8zM32 30h6v2h-6zM22 4h2v4h-2z"/>
-<path fill="#aa8960" d="M48 0h48v48H48z"/><path stroke="#95754f" stroke-width="2" d="M48 16h48M48 32h48M72 0v16M60 16v16M80 32v16"/>
-<path fill="#c8bd98" d="M96 0h48v48H96z"/><path fill="#b7ab85" d="M96 46h48v2H96zM142 0h2v48h-2z"/><path fill="#d9cdae" d="M100 4h36v2h-36z"/>
-<path fill="#765438" d="M144 0h48v48h-48z"/><path fill="#e9d9b7" d="M144 0h48v32h-48z"/><path fill="#b8aa88" d="M144 28h48v6h-48z"/><path fill="#473e32" d="M144 43h48v5h-48z"/>
-</svg>`;
-const xmlLayers = layers
-  .map((l) =>
-    "data" in l
-      ? `<layer id="${l.id}" name="${l.name}" width="${width}" height="${height}" visible="${Number(l.visible)}"><data encoding="csv">${l.data.join(",")}</data></layer>`
-      : `<objectgroup id="${l.id}" name="${l.name}">${l.objects.map((o) => `<object id="${o.id}" name="${o.name}" type="${o.type}" x="${o.x}" y="${o.y}"><point/></object>`).join("")}</objectgroup>`,
+const xmlLayers = objectLayers
+  .map(
+    (l) =>
+      `<objectgroup id="${l.id}" name="${l.name}" visible="${Number(l.visible)}">${l.objects.map((o) => `<object id="${o.id}" name="${o.name}" type="${o.type}" x="${o.x}" y="${o.y}" width="${o.width}" height="${o.height}">${"point" in o ? "<point/>" : ""}</object>`).join("")}</objectgroup>`,
   )
   .join("\n");
 const tmx = `<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="${width}" height="${height}" tilewidth="48" tileheight="48" infinite="0" nextlayerid="14" nextobjectid="9">
-<tileset firstgid="1" name="academy" tilewidth="48" tileheight="48" tilecount="4" columns="4"><image source="../public/assets/tiles.svg" width="192" height="48"/></tileset>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="${width}" height="${height}" tilewidth="${tile}" tileheight="${tile}" infinite="0" nextlayerid="${map.nextlayerid}" nextobjectid="${nextObject}">
+<properties>${properties.map((p) => `<property name="${p.name}" type="int" value="${p.value}"/>`).join("")}</properties>
+<imagelayer id="1" name="ground"><image source="../public/assets/campus.png" width="1672" height="941"/></imagelayer>
 ${xmlLayers}
 </map>`;
 await mkdir("maps", { recursive: true });
 await mkdir("public/maps", { recursive: true });
-await mkdir("public/assets", { recursive: true });
 await writeFile("maps/academy.tmx", tmx);
 await writeFile("public/maps/academy.json", JSON.stringify(map));
-await writeFile("public/assets/tiles.svg", tiles);
-console.info("Generated original Tiled blockout and 4-tile SVG.");
+console.info("Generated illustrated Tiled map with 22 precise solid objects.");

@@ -1,7 +1,6 @@
 import Phaser from "phaser";
 import { places, teacher, type Interaction } from "../world/content";
 import type { Bridge } from "./bridge";
-import { characterTextures, decorate } from "./art";
 
 export class Campus extends Phaser.Scene {
   private player!: Phaser.Physics.Arcade.Sprite;
@@ -14,46 +13,83 @@ export class Campus extends Phaser.Scene {
   }[] = [];
   private nearest?: (typeof this.targets)[number];
   private lastReport = 0;
+  private facing: "left" | "right" = "right";
   constructor(private bridge: Bridge) {
     super("Campus");
   }
 
   preload() {
     this.load.tilemapTiledJSON("academy", "/maps/academy.json");
-    this.load.image("tiles", "/assets/tiles.svg");
+    this.load.image("campus", "/assets/campus.png");
+    for (const name of ["sprinter", "medalist"]) {
+      this.load.spritesheet(name, `/assets/${name}.webp`, {
+        frameWidth: 192,
+        frameHeight: 208,
+      });
+    }
   }
   create() {
     const map = this.make.tilemap({ key: "academy" });
-    const tiles = map.addTilesetImage("academy", "tiles")!;
-    for (const name of ["ground", "floors", "walls"])
-      map.createLayer(name, tiles, 0, 0)!;
-    const collision = map.createLayer("collision", tiles, 0, 0)!;
-    collision.setVisible(false).setCollisionByExclusion([-1]);
-    characterTextures(this);
-    decorate(this);
+    const worldWidth = 1672,
+      worldHeight = 941;
+    this.add.image(0, 0, "campus").setOrigin(0).setDepth(-1);
+    for (const name of ["sprinter", "medalist"]) {
+      this.anims.create({
+        key: `${name}-idle`,
+        frames: this.anims.generateFrameNumbers(name, { start: 0, end: 5 }),
+        frameRate: 5,
+        repeat: -1,
+      });
+      for (const [direction, start] of [
+        ["right", 8],
+        ["left", 16],
+      ] as const) {
+        this.anims.create({
+          key: `${name}-${direction}`,
+          frames: this.anims.generateFrameNumbers(name, {
+            start,
+            end: start + 7,
+          }),
+          frameRate: 9,
+          repeat: -1,
+        });
+      }
+    }
+    const collision = this.physics.add.staticGroup();
+    for (const o of map.getObjectLayer("collision")!.objects) {
+      const solid = this.add.zone(o.x!, o.y!, o.width!, o.height!).setOrigin(0);
+      this.physics.add.existing(solid, true);
+      collision.add(solid);
+    }
     const spawns = map.getObjectLayer("spawn_points")!.objects;
     const spawn = spawns.find((o) => o.name === "spawn_gate")!;
     this.player = this.physics.add
-      .sprite(spawn.x!, spawn.y!, "explorer")
-      .setOrigin(0.5, 0.8);
-    this.player.setSize(18, 14).setOffset(15, 30).setCollideWorldBounds(true);
-    this.player.setTint(
-      [0xffffff, 0xe3f1e4, 0xe6e7ff][Math.floor(Math.random() * 3)],
-    );
-    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+      .sprite(spawn.x!, spawn.y!, "sprinter")
+      .setOrigin(0.5, 0.94)
+      .setScale(0.44)
+      .play("sprinter-idle");
+    // Frame-space foot rectangle scales to 14 × 8 world pixels.
+    this.player.setSize(32, 18).setOffset(80, 184).setCollideWorldBounds(true);
+    this.physics.world.setBounds(0, 0, worldWidth, worldHeight);
     this.physics.add.collider(this.player, collision);
     const anchor = map
       .getObjectLayer("npc_spawns")!
       .objects.find((o) => o.name === teacher.id)!;
-    const npc = this.physics.add
-      .staticSprite(anchor.x!, anchor.y!, "teacher")
-      .setOrigin(0.5, 0.8);
-    npc.setSize(22, 18).setOffset(13, 28).setDepth(anchor.y!);
-    this.physics.add.collider(this.player, npc);
+    const npc = this.add
+      .sprite(anchor.x!, anchor.y!, "medalist")
+      .setOrigin(0.5, 0.94)
+      .setScale(0.44)
+      .setDepth(anchor.y!)
+      .play("medalist-idle");
+    // A separate foot zone avoids static-body origin/scale drift during idle animation.
+    const npcFeet = this.add.zone(anchor.x!, anchor.y! - 1, 16, 9);
+    this.physics.add.existing(npcFeet, true);
+    this.physics.add.collider(this.player, npcFeet);
+    npc.setName("Ustazah Juliana");
     this.add
-      .text(anchor.x!, anchor.y! - 55, "Ustazah Juliana", {
+      .text(anchor.x!, anchor.y! - 103, "Ustazah Juliana", {
         fontFamily: "monospace",
-        fontSize: 12,
+        fontSize: 13,
         color: "#fff4df",
         backgroundColor: "#67434e",
         padding: { x: 8, y: 5 },
@@ -122,10 +158,23 @@ export class Campus extends Phaser.Scene {
     window.addEventListener("keydown", keydown);
     window.addEventListener("keyup", keyup);
     const camera = this.cameras.main;
-    camera
-      .setBounds(0, 0, map.widthInPixels, map.heightInPixels)
-      .startFollow(this.player, true, 1, 1);
-    const resize = () => camera.setZoom(this.scale.width > 700 ? 0.85 : 0.72);
+    camera.setBounds(0, 0, worldWidth, worldHeight);
+    const resize = () => {
+      const desktop = this.scale.width >= 1000;
+      const zoom = desktop
+        ? Math.max(
+            this.scale.width / worldWidth,
+            this.scale.height / worldHeight,
+          )
+        : Math.max(
+            this.scale.width < 700 ? 1.15 : 0.9,
+            this.scale.height / worldHeight,
+          );
+      camera.setZoom(zoom);
+      // Bounds keep the complete 16:9 composition fixed when it fits.
+      // On other aspect ratios follow the explorer into the cropped edges.
+      camera.startFollow(this.player, true, 1, 1);
+    };
     resize();
     this.scale.on("resize", resize);
     this.bridge.visit = (id) => {
@@ -165,6 +214,7 @@ export class Campus extends Phaser.Scene {
       this.bridge.zoom = () => {};
     });
     this.report();
+    this.bridge.focus();
   }
   private report() {
     this.nearest = this.targets
@@ -179,11 +229,13 @@ export class Campus extends Phaser.Scene {
           Phaser.Math.Distance.Between(this.player.x, this.player.y, b.x, b.y),
       )[0];
     const area =
-      this.player.y < 510
-        ? this.player.x < 760
+      this.player.y < 325
+        ? this.player.x < 790
           ? "High Council"
-          : "Bilik Cikgu"
-        : this.player.y < 640
+          : this.player.x > 880
+            ? "Bilik Cikgu"
+            : "Covered corridor"
+        : this.player.y < 490
           ? "Covered corridor"
           : "Dataran Akademi";
     this.bridge.onState({
@@ -214,11 +266,11 @@ export class Campus extends Phaser.Scene {
       : 0;
     const direction = new Phaser.Math.Vector2(x, y).normalize().scale(190);
     this.player.setVelocity(direction.x, direction.y).setDepth(this.player.y);
-    this.player
-      .setTexture(
-        (x || y) && Math.floor(time / 140) % 2 ? "explorer-step" : "explorer",
-      )
-      .setFlipX(x < 0);
+    if (x) this.facing = x < 0 ? "left" : "right";
+    this.player.play(
+      x || y ? `sprinter-${this.facing}` : "sprinter-idle",
+      true,
+    );
     if (time - this.lastReport > 80) {
       this.report();
       this.lastReport = time;

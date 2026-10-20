@@ -15,8 +15,8 @@ import type { BoardTab, DemoBoard } from "../../../packages/contracts/board";
 
 type Panel = Interaction | "directory" | null;
 const initialWorld: WorldState = {
-  x: 768,
-  y: 888,
+  x: 836,
+  y: 660,
   area: "Dataran Akademi",
   nearby: "",
   ready: false,
@@ -188,6 +188,13 @@ export function App() {
   const [world, setWorld] = useState(initialWorld);
   const [panel, setPanel] = useState<Panel>(null);
   const [line, setLine] = useState(0);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [fullscreenPending, setFullscreenPending] = useState(false);
+  const [fullscreenMessage, setFullscreenMessage] = useState("");
+  const fullscreenSupported =
+    typeof document.documentElement.requestFullscreen === "function" &&
+    typeof document.exitFullscreen === "function" &&
+    document.fullscreenEnabled !== false;
   const dialog = useRef<HTMLDialogElement>(null);
   const nextDialogue = useRef<HTMLButtonElement>(null);
   const bridge = useMemo<Bridge>(
@@ -217,219 +224,215 @@ export function App() {
       bridge.focus();
     }
   }, [panel, bridge]);
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+      if (
+        panel !== null ||
+        event.repeat ||
+        event.defaultPrevented ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey ||
+        (target instanceof HTMLElement &&
+          (target.isContentEditable ||
+            target.closest("input, textarea, select, [role='textbox']")))
+      )
+        return;
+      if (event.key.toLowerCase() === "m") {
+        event.preventDefault();
+        setPanel("directory");
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [panel]);
+  useEffect(() => {
+    const syncFullscreen = () =>
+      setFullscreen(Boolean(document.fullscreenElement));
+    syncFullscreen();
+    document.addEventListener("fullscreenchange", syncFullscreen);
+    return () =>
+      document.removeEventListener("fullscreenchange", syncFullscreen);
+  }, []);
+  const toggleFullscreen = async () => {
+    if (!fullscreenSupported || fullscreenPending) return;
+    const exiting = Boolean(document.fullscreenElement);
+    setFullscreenPending(true);
+    setFullscreenMessage("");
+    try {
+      if (exiting) await document.exitFullscreen();
+      else await document.documentElement.requestFullscreen();
+      setFullscreen(Boolean(document.fullscreenElement));
+      bridge.focus();
+    } catch {
+      setFullscreen(Boolean(document.fullscreenElement));
+      setFullscreenMessage(
+        exiting
+          ? "Fullscreen could not be closed. Try your browser’s fullscreen control."
+          : "Fullscreen could not be opened. You can keep exploring here.",
+      );
+    } finally {
+      setFullscreenPending(false);
+    }
+  };
   const close = () => setPanel(null);
   return (
     <div className="app-shell">
-      <header className="site-header">
-        <a className="brand" href="/" aria-label="MAIA academy home">
-          <span className="brand-mark">M</span>
-          <span>
-            MAIA<span className="brand-sub">RETRO-TECH ACADEMY</span>
-          </span>
-        </a>
-        <nav aria-label="Academy">
-          <span className="active-nav">The campus</span>
-          <button onClick={() => setPanel("welcome")}>
-            About the academy ↗
-          </button>
-        </nav>
-        <span className="mode-badge">
-          <i /> DEMO CAMPUS
-        </span>
-      </header>
-      <main>
-        <section className="intro">
-          <div>
-            <p className="eyebrow">
-              SELAMAT DATANG / WELCOME TO YOUR FIRST DAY
-            </p>
-            <h1>
-              Old-school charm.
-              <br className="mobile-break" /> New-school ideas<span>.</span>
-            </h1>
+      <main className="game-stage" aria-label="Interactive campus">
+        <h1 className="sr-only">
+          MAIA Retro-Tech Academy — interactive campus
+        </h1>
+        <Game bridge={bridge} />
+        {!world.ready && (
+          <div className="loading" role="status">
+            Opening the school gates…
           </div>
-          <p>
-            A Malaysian school, a curious little world.
-            <br />
-            Take a walk. Meet Cikgu. Find your next idea.
-          </p>
-        </section>
-        <div className="campus-layout">
-          <section className="world-frame" aria-label="Interactive campus">
-            <div className="world-toolbar">
-              <span>
-                <i className="location-dot" /> {world.area}
-              </span>
-              <span className="toolbar-right">
-                VISITOR MODE <b>01</b>
-              </span>
-            </div>
-            <div className="game-stage">
-              <Game bridge={bridge} />
-              {!world.ready && (
-                <div className="loading">Opening the school gates…</div>
-              )}
-              <div className="world-tag">
-                <span>AKADEMI MAIA</span>
-                <small>A place to learn & build</small>
-              </div>
-              <div className="zoom-controls">
-                <button aria-label="Zoom in" onClick={() => bridge.zoom(0.1)}>
-                  +
-                </button>
-                <button aria-label="Zoom out" onClick={() => bridge.zoom(-0.1)}>
-                  −
-                </button>
-              </div>
-              <div className="interaction-hint" aria-live="polite">
-                {world.nearby ? (
-                  <>
-                    <kbd>E</kbd> {world.nearby}
-                  </>
-                ) : (
-                  "Follow the corridor. There’s something to discover."
-                )}
-              </div>
-            </div>
-            <div className="world-footer">
-              <div className="visitor">
-                <span className="visitor-icon">◆</span>
-                <div>
-                  <strong>Your explorer</strong>
-                  <small>Just visiting. Always curious.</small>
-                </div>
-              </div>
-              <span className="keyboard-help">
-                <kbd>W</kbd>
-                <kbd>A</kbd>
-                <kbd>S</kbd>
-                <kbd>D</kbd> or arrows to walk
-              </span>
-              <button
-                className="directory-shortcut"
-                onClick={() => setPanel("directory")}
-                aria-label="Room directory"
-              >
-                ⌘ <span>Room directory</span>
-              </button>
-            </div>
-          </section>
-          <aside className="visit-sidebar">
-            <div className="side-heading">
-              <span className="eyebrow">YOUR FIELD NOTES</span>
-              <span>✦</span>
-            </div>
-            <h2>Around the academy</h2>
-            <svg
-              className="mini-map"
-              viewBox="0 0 1536 1056"
-              role="img"
-              aria-label={`Campus map. You are in ${world.area}.`}
-            >
-              <rect width="1536" height="1056" fill="#657451" />
-              <path
-                d="M96 480h1344v192H96zM672 672h192v384H672z"
-                fill="#c8bd98"
-              />
-              <path
-                d="M96 96h624v432H96zM816 96h624v432H816z"
-                fill="#e9d9b7"
-                stroke="#765438"
-                strokeWidth="24"
-              />
-              <text x="408" y="330" textAnchor="middle">
-                01
-              </text>
-              <text x="1128" y="330" textAnchor="middle">
-                02
-              </text>
-              <circle cx="270" cy="800" r="105" fill="#354f3c" />
-              <circle cx="1250" cy="800" r="105" fill="#354f3c" />
-              <circle
-                data-explorer
-                cx={world.x}
-                cy={world.y}
-                r="32"
-                fill="#f9da81"
-                stroke="#172e2a"
-                strokeWidth="12"
-              />
-            </svg>
-            <p className="map-caption">
-              <span>●</span> You are here <span>NOT TO SCALE</span>
-            </p>
-            <div className="room-notes">
-              <div>
-                <span className="room-number">01</span>
-                <div>
-                  <h3>High Council</h3>
-                  <p>Big ideas on a small whiteboard.</p>
-                </div>
-                <span>↗</span>
-              </div>
-              <div>
-                <span className="room-number rose">02</span>
-                <div>
-                  <h3>Bilik Cikgu ♡</h3>
-                  <p>A warm hello from Ustazah Juliana.</p>
-                </div>
-                <span>♡</span>
-              </div>
-            </div>
-            <div className="first-day">
-              <p className="eyebrow">A LITTLE FIRST-DAY QUEST</p>
-              <h3>Make yourself at home.</h3>
-              <p>
-                Head north through the courtyard. The covered corridor connects
-                both classrooms.
-              </p>
-              <span>WALK · EXPLORE · SAY HELLO</span>
-            </div>
-            <p className="quiet-note">
-              A quiet campus for now. Agent connections are{" "}
-              <strong>offline</strong>; no live work is shown.
-            </p>
-          </aside>
-        </div>
-        <div className="touch-strip">
-          <div className="dpad" aria-label="Movement controls">
-            {(
-              [
-                ["up", "↑"],
-                ["left", "←"],
-                ["down", "↓"],
-                ["right", "→"],
-              ] as const
-            ).map(([direction, glyph]) => (
-              <DirectionButton
-                key={direction}
-                direction={direction}
-                glyph={glyph}
-                bridge={bridge}
-              />
-            ))}
-          </div>
-          <p>
-            Take your time.
-            <br />
-            <span>The best ideas happen between classes.</span>
-          </p>
+        )}
+        <header className="hud-top">
           <button
-            className="interact-button"
+            className="location-badge hud-surface"
+            onClick={() => setPanel("welcome")}
+            aria-label="About MAIA academy"
+          >
+            <span className="academy-name">MAIA / RETRO-TECH ACADEMY</span>
+            <span className="mode-badge">DEMO</span>
+            <strong>
+              <span className="location-pin" aria-hidden="true">
+                ●
+              </span>{" "}
+              {world.area}
+            </strong>
+          </button>
+          <nav className="hud-actions" aria-label="Academy shortcuts">
+            <button
+              className="hud-button teacher-shortcut"
+              disabled={!world.ready}
+              onClick={() => {
+                bridge.visit("teacher");
+                bridge.focus();
+              }}
+            >
+              Cikgu ♥
+            </button>
+            <button
+              className="hud-button board-shortcut"
+              disabled={!world.ready}
+              onClick={() => {
+                bridge.visit("council");
+                bridge.focus();
+              }}
+            >
+              PR Board
+            </button>
+            <button
+              className="hud-button directory-shortcut"
+              aria-label="Room directory"
+              aria-keyshortcuts="M"
+              onClick={() => setPanel("directory")}
+            >
+              Directory <span className="shortcut-key">[M]</span>
+            </button>
+            <button
+              className="hud-button fullscreen-button"
+              aria-label={fullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+              aria-pressed={fullscreen}
+              title={
+                fullscreenSupported
+                  ? fullscreen
+                    ? "Exit fullscreen"
+                    : "Enter fullscreen"
+                  : "Fullscreen is not supported in this browser"
+              }
+              disabled={!fullscreenSupported || fullscreenPending}
+              onClick={() => {
+                void toggleFullscreen();
+              }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                {fullscreen ? (
+                  <path d="M9 3v6H3m12-6v6h6M9 21v-6H3m12 6v-6h6" />
+                ) : (
+                  <path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6" />
+                )}
+              </svg>
+            </button>
+          </nav>
+        </header>
+        {fullscreenMessage && (
+          <p className="fullscreen-message hud-surface" role="status">
+            {fullscreenMessage}
+          </p>
+        )}
+        <div className="dpad" role="group" aria-label="Movement controls">
+          {(
+            [
+              ["up", "▲"],
+              ["left", "◀"],
+              ["down", "▼"],
+              ["right", "▶"],
+            ] as const
+          ).map(([direction, glyph]) => (
+            <DirectionButton
+              key={direction}
+              direction={direction}
+              glyph={glyph}
+              bridge={bridge}
+            />
+          ))}
+          <span className="dpad-center" aria-hidden="true" />
+        </div>
+        <div className="interaction-hint">
+          <button
+            className="interact-button hud-surface"
             disabled={!world.nearby || !world.ready}
             onClick={() => bridge.interact()}
             aria-label="Interact"
           >
-            <kbd>E</kbd> Interact <span>↗</span>
+            <kbd>E</kbd>
+            <span aria-live="polite">
+              {world.nearby || "Explore the campus"}
+            </span>
           </button>
         </div>
+        <aside
+          className="minimap-panel hud-surface"
+          aria-label="Campus navigation"
+        >
+          <svg
+            className="mini-map"
+            viewBox="0 0 1672 941"
+            role="img"
+            aria-label={`Campus map. You are in ${world.area}.`}
+          >
+            <image href="/assets/campus.png" width="1672" height="941" />
+            <circle
+              data-explorer
+              cx={world.x}
+              cy={world.y}
+              r="32"
+              fill="#f9da81"
+              stroke="#172e2a"
+              strokeWidth="12"
+            />
+          </svg>
+          <div className="map-info">
+            <p>
+              <span className="keyboard-help">
+                WASD / Arrow keys to explore
+              </span>
+              <span className="offline-note">Agent connections offline</span>
+            </p>
+            <span className="mode-badge">DEMO</span>
+          </div>
+        </aside>
       </main>
-      <footer className="site-footer">
-        <span>BUILT WITH CURIOSITY, IN MALAYSIA.</span>
-        <span>
-          Original world · Personal, unofficial showcase <b>SPRINT 0</b>
-        </span>
-      </footer>
       <dialog
         ref={dialog}
         aria-labelledby="panel-title"
@@ -478,7 +481,7 @@ export function App() {
             <p className="eyebrow">FIND YOUR WAY</p>
             <h2 id="panel-title">Room directory</h2>
             <p className="panel-intro">
-              Walk there, or jump to a doorway. Every room leads back to the
+              Walk there, or jump into a room. Every room leads back to the
               courtyard.
             </p>
             {places.map((place) => (
@@ -528,9 +531,8 @@ export function App() {
               </span>
             </div>
             <p className="muted">
-              Sprint 0 · Original placeholder art · Demo board · Agent
-              connections offline. No personal school information or live
-              private data is shown.
+              Illustrated campus · Demo board · Agent connections offline. No
+              personal school information or live private data is shown.
             </p>
           </>
         )}
