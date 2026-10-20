@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 
 const sources = [
   "LICENSE",
+  "docs/ASSET_LICENSES.md",
   "docs/licenses/phaser-template-MIT.txt",
   "node_modules/phaser/LICENSE.md",
   "node_modules/eventemitter3/LICENSE",
