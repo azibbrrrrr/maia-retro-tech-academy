@@ -13,6 +13,7 @@ export class Campus extends Phaser.Scene {
   }[] = [];
   private nearest?: (typeof this.targets)[number];
   private lastReport = 0;
+  private reducedMotion = false;
   private facing: "left" | "right" = "right";
   constructor(private bridge: Bridge) {
     super("Campus");
@@ -86,6 +87,16 @@ export class Campus extends Phaser.Scene {
     this.physics.add.existing(npcFeet, true);
     this.physics.add.collider(this.player, npcFeet);
     npc.setName("Ustazah Juliana");
+    const motionPreference = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+    const syncMotionPreference = () => {
+      this.reducedMotion = motionPreference.matches;
+      if (this.reducedMotion) npc.stop().setFrame(0);
+      else npc.play("medalist-idle", true);
+    };
+    syncMotionPreference();
+    motionPreference.addEventListener("change", syncMotionPreference);
     this.add
       .text(anchor.x!, anchor.y! - 103, "Ustazah Juliana", {
         fontFamily: "monospace",
@@ -115,7 +126,14 @@ export class Campus extends Phaser.Scene {
     }
     for (const target of this.targets) {
       this.add
-        .zone(target.x, target.y, 120, 100)
+        // Keep the foot-based proximity guard and lower hit boundary fixed.
+        // Only the teacher needs extra height for the enlarged sprite's head.
+        .zone(
+          target.x,
+          target.y - (target.kind === "teacher" ? 25 : 0),
+          120,
+          target.kind === "teacher" ? 150 : 100,
+        )
         .setInteractive({ useHandCursor: true })
         .on("pointerdown", () => {
           if (
@@ -209,6 +227,7 @@ export class Campus extends Phaser.Scene {
       window.removeEventListener("keydown", keydown);
       window.removeEventListener("keyup", keyup);
       this.scale.off("resize", resize);
+      motionPreference.removeEventListener("change", syncMotionPreference);
       this.bridge.interact = () => {};
       this.bridge.visit = () => {};
       this.bridge.zoom = () => {};
@@ -267,10 +286,12 @@ export class Campus extends Phaser.Scene {
     const direction = new Phaser.Math.Vector2(x, y).normalize().scale(190);
     this.player.setVelocity(direction.x, direction.y).setDepth(this.player.y);
     if (x) this.facing = x < 0 ? "left" : "right";
-    this.player.play(
-      x || y ? `sprinter-${this.facing}` : "sprinter-idle",
-      true,
-    );
+    if (!x && !y && this.reducedMotion) this.player.stop().setFrame(0);
+    else
+      this.player.play(
+        x || y ? `sprinter-${this.facing}` : "sprinter-idle",
+        true,
+      );
     if (time - this.lastReport > 80) {
       this.report();
       this.lastReport = time;
