@@ -1,0 +1,12 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Installed dependencies and ignored local runtime files; never publish these"
+paths = [
+  '''(^|/)node_modules/''',
+  '''(^|/)\.local/''',
+  '''(^|/)\.superpowers/''',
+  '''(^|/)test-results/''',
+  '''(^|/)playwright-report/'''
+]

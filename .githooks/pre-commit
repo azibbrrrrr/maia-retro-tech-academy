@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+scanner="$(command -v gitleaks || true)"
+if [ -z "$scanner" ] && [ -x .local/bin/gitleaks ]; then
+  scanner=.local/bin/gitleaks
+fi
+if [ -z "$scanner" ]; then
+  echo "Install Gitleaks before committing. See docs/RUNBOOK.md." >&2
+  exit 1
+fi
+exec "$scanner" git --pre-commit --staged --redact
