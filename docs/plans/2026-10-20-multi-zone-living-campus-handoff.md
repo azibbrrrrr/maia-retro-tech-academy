@@ -1,18 +1,18 @@
 # MAIA Retro-Tech Academy — Multi-Zone Living Campus & Developer Operations Handoff
 **Design revision:** 2026-10-20 · **Status:** approved direction / NOT yet implemented  
-**Applies to:** PR #1 (\`feat/sprint-0-playable-campus\`) and subsequent execution milestones  
+**Applies to:** PR #1 (`feat/sprint-0-playable-campus`) and subsequent execution milestones  
 **Product weighting:** developer utility first (~80%); entertainment/ambient life second (~20%)  
-**Personal public project:** \`azibbrrrrr/maia-retro-tech-academy\`; NOT part of MAIA v1.0.1's commercial baseline.
+**Personal public project:** `azibbrrrrr/maia-retro-tech-academy`; NOT part of MAIA v1.0.1's commercial baseline.
 
 > This document is an **execution contract for future work**, not evidence that features below exist. It extends the v2 developer-command-center handoff and supersedes its earlier assumption that the campus requires fully tiled, movable artwork. **The owner confirmed that pre-rendered scene backgrounds are intentional and must be preserved.**
 
 ## 0. Verified PR #1 baseline: preserve the working foundation
 Inspected on 2026-10-20:
-- PR #1 currently adds an illustrated original \`public/assets/campus.png\`, a Phaser \`Campus\` scene, authored Tiled collision objects in \`maps/academy.tmx\`/\`public/maps/academy.json\`, a React HUD, a stationary **Ustazah Juliana / Cikgu** using the authorized Medalist sprite, and a visitor-controlled Sprinter sprite.
+- PR #1 currently adds an illustrated original `public/assets/campus.png`, a Phaser `Campus` scene, authored Tiled collision objects in `maps/academy.tmx`/`public/maps/academy.json`, a React HUD, a stationary **Ustazah Juliana / Cikgu** using the authorized Medalist sprite, and a visitor-controlled Sprinter sprite.
 - The playable scene is ~1672×941. It has the front entrance/courtyard, High Council classroom, and Bilik Cikgu. The current whiteboard is **DEMO**; agent connections are **OFFLINE**.
-- Existing public localhost listener \`127.0.0.1:3000\` and separate authenticated operator listener \`127.0.0.1:3100\` are deliberate security boundaries. No live GitHub collector, Claude/Codex telemetry, Cloudflare deployment, or expanded campus exists yet.
-- Existing tests/verification are recorded in \`docs/REDESIGN.md\`; do not present this new design as tested implementation.
-- Relevant code/docs: \`packages/game/Campus.ts\`, \`packages/game/bridge.ts\`, \`packages/world/content.ts\`, \`apps/public-web/src/App.tsx\`, \`packages/contracts/board.ts\`, \`docs/ARCHITECTURE.md\`, \`docs/SECURITY.md\`, \`docs/ASSET_LICENSES.md\`.
+- Existing public localhost listener `127.0.0.1:3000` and separate authenticated operator listener `127.0.0.1:3100` are deliberate security boundaries. No live GitHub collector, Claude/Codex telemetry, Cloudflare deployment, or expanded campus exists yet.
+- Existing tests/verification are recorded in `docs/REDESIGN.md`; do not present this new design as tested implementation.
+- Relevant code/docs: `packages/game/Campus.ts`, `packages/game/bridge.ts`, `packages/world/content.ts`, `apps/public-web/src/App.tsx`, `packages/contracts/board.ts`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/ASSET_LICENSES.md`.
 - Preserve licenses and provenance. Do not commit employer data, company secrets, private code, raw prompts, tokens, private repository titles, customer names, or unreleased client operational details.
 
 **Non-goal:** Rebuild the current accepted scene with procedural runtime tiles simply to make props movable. This is a pre-rendered-background RPG; physics and interactions remain separately authored.
@@ -43,7 +43,7 @@ These are **render-placement targets**, not provider execution quotas. A 12-stat
 
 ### 2.1 World navigation and spatial semantics
 - Start at entrance. Visitors can walk to physically marked doorways or use an accessible directory shortcut; both lead to the same destination scene/spawn.
-- Plan stable scene IDs and independent Tiled scene metadata (e.g. \`entrance\`, \`high_council\`, \`engineering_lab\`, \`library\`, \`watchtower\`, \`qa_lab\`, \`kantin\`, \`cikgu_room\`). Keep existing \`gate\`/\`council\`/\`teacher\` aliases or migrate them explicitly with tests.
+- Plan stable scene IDs and independent Tiled scene metadata (e.g. `entrance`, `high_council`, `engineering_lab`, `library`, `watchtower`, `qa_lab`, `kantin`, `cikgu_room`). Keep existing `gate`/`council`/`teacher` aliases or migrate them explicitly with tests.
 - Every pre-rendered room plate has a named background asset, matching map dimensions, collision rectangles/polygons, spawn points, interactable anchors, foreground occlusion regions when needed, and camera bounds.
 - Door entries have a reachable walkable threshold and a deterministic destination spawn facing clear floor. Avoid teleporting via unmarked decorative doors. Editor/test scripts should validate navigation reachability.
 - Multi-scene movement should feel continuous via short transition/fade, not an entire-document navigation/reload.
@@ -58,7 +58,7 @@ These are **render-placement targets**, not provider execution quotas. A 12-stat
 - Retain native/pre-rendered lighting and soft shadows; do not force fully dynamic lighting. For depth, author optional selective foreground masks/crops for tree crowns, pillars, room divider walls and roof edges to render above player when necessary.
 - Couple every background revision to geometry review and collision tests. Pre-rendered desks/furniture are fixed environmental art and cannot be dragged without regenerating art + map. Avoid making an editable-world promise.
 - Keep camera scaling and collision anchors consistent at 16:9 and mobile aspects. Prefer full-resolution scene plates with lazy loading for off-screen rooms; avoid a single multi-megabyte all-campus texture.
-- Characters can have a distinct slightly simpler pixel-pet-inspired style if size, ground-plane, lighting, and outline are consistent. Preserve the authorized Sprinter/Medalist sprite IDs and permission notes from \`docs/ASSET_LICENSES.md\`; do not mislabel them as first-party ChatGPT assets.
+- Characters can have a distinct slightly simpler pixel-pet-inspired style if size, ground-plane, lighting, and outline are consistent. Preserve the authorized Sprinter/Medalist sprite IDs and permission notes from `docs/ASSET_LICENSES.md`; do not mislabel them as first-party ChatGPT assets.
 
 ## 3. Character/agent ontology — persistent roles ≠ real sessions
 | Entity | Real source of truth | Lifecycle | Interaction |
@@ -83,7 +83,7 @@ All task status is **OBSERVED**, **DERIVED**, or **AMBIENT**, with provenance an
 - Activity bubbles: prioritize attention/blockers, then observed/derived work, then ambient chit-chat. Clamp length, throttle updates and avoid broadcasting 20 overlapping bubbles.
 
 ### 4.1 Agent lifecycle and motion
-\`discovered -> queued -> working -> waiting_permission/waiting_input -> completed/failed/cancelled\` with \`unknown/disconnected\` as non-terminal observation states. Parent/child relationships have their own lifecycle.
+`discovered -> queued -> working -> waiting_permission/waiting_input -> completed/failed/cancelled` with `unknown/disconnected` as non-terminal observation states. Parent/child relationships have their own lifecycle.
 - Start: assign/reuse a permitted workstation; walk there from last location.
 - Work: animate sitting/typing/reading. **Never traverse the campus on every tool call**; apply a 10–15s provisional phase hysteresis/dwell, then transition to library/QA only for sustained activity. Critical attention updates must be immediate, even if movement waits.
 - Advisor: points to planning board, reads result, watches handoff; does not mimic executor typing if child is doing the work.
@@ -100,7 +100,7 @@ All task status is **OBSERVED**, **DERIVED**, or **AMBIENT**, with provenance an
 
 Suggested internal event contract (illustrative, to be refined after provider verification):
 
-\`\`\`json
+```json
 {
   "event_id": "provider:session:tool-or-event-id",
   "provider": "claude_code",
@@ -115,7 +115,7 @@ Suggested internal event contract (illustrative, to be refined after provider ve
   "observed_at": "ISO-8601",
   "visibility": "operator_only"
 }
-\`\`\`
+```
 
 No file paths, terminal output, prompts, repository secrets, client names or access tokens in public payloads.
 
@@ -123,7 +123,7 @@ No file paths, terminal output, prompts, repository secrets, client names or acc
 Operator view contains:
 1. **Needs my attention**: permission/waiting input, blocked/failed work, requested reviews, failing CI; classify with timestamp and direct destination.
 2. **Active work tree**: provider, parent advisor -> child executor, task summary, last real event, status freshness, optional workstation location.
-3. **GitHub PR queue**: \`review-requested:@me\` (team reviews only when legitimately mapped); authored open PRs; draft/ready/review state; failing CI; blocked; merged history separate. Avoid counting yourself as the requested reviewer on your own PR. No invented priority/owner.
+3. **GitHub PR queue**: `review-requested:@me` (team reviews only when legitimately mapped); authored open PRs; draft/ready/review state; failing CI; blocked; merged history separate. Avoid counting yourself as the requested reviewer on your own PR. No invented priority/owner.
 4. **Since You Were Away**: persisted complete/failed/blocked transitions since last viewed checkpoint, not demo aggregates.
 5. **Deep links**: jump into GitHub PR; focus agent in World Mode; local terminal session links only when safely supported inside operator interface.
 6. **Status confidence**: connected, disconnected, stale, partial support clearly shown. No “100% complete” without verified steps.
@@ -131,7 +131,7 @@ Operator view contains:
 A PR board in the High Council opens the same filtered operational view, not a second independent data store. Current demo board stays clearly **DEMO** until live operator data is functional and authorized.
 
 ## 6. Public visitor / private operator boundary
-- Preserve separate public \`127.0.0.1:3000\` and private \`127.0.0.1:3100\` processes and current deny-by-default routes.
+- Preserve separate public `127.0.0.1:3000` and private `127.0.0.1:3100` processes and current deny-by-default routes.
 - Public visitors may navigate scenes, talk to Juliana, observe **approved/sanitized** activity and public-safe cards if explicitly enabled. No raw private PRs, employer/customer details, prompts, absolute paths, tokens, system logs, internal endpoints, agent launch/stop tools, or permission approvals.
 - The operator-only collector fetches GitHub with least privilege; public projection must be explicit field allowlist, not object spreading/redaction after serialization. Unapproved/private counts must not leak by aggregation.
 - Cloudflare Tunnel later exposes **public app only**, not operator, dev server, local CLI gateways, or internal WebSocket. Test route enumeration, Origin/Host handling, forwarded headers and WebSocket authentication before release.
@@ -211,7 +211,7 @@ Each user story has explicit acceptance and evidence obligations.
 5. **Ambient/visual polish:** kantin, chit-chat, social routines, detailed pre-rendered backgrounds, responsive polish.
 6. **Public launch:** complete independent privacy review before any Cloudflare exposure.
 
-Each milestone requires tests, screenshot evidence and exact implementation/provenance claims. Run existing \`npm run check\`, audit and secret scan and add multi-scene and provider-specific coverage. Do not mark PR #1 as production-ready simply because its illustrated Sprint 0 demo passes.
+Each milestone requires tests, screenshot evidence and exact implementation/provenance claims. Run existing `npm run check`, audit and secret scan and add multi-scene and provider-specific coverage. Do not mark PR #1 as production-ready simply because its illustrated Sprint 0 demo passes.
 
 ## 10. Visual design acceptance: final direction
 Produce an **original illustrated multi-zone campus concept** compatible with the existing scene: wide Malaysian school courtyard hub with red-tile roofs, cream plaster, turquoise louvres, vibrant trees and golden afternoon light. Show physically distinct, generously sized **engineering lab**, **High Council/PR room**, **Bilik Cikgu ♡**, **library**, **Watchtower**, **QA lab**, and **Kantin** connected by corridors and walkable doors. Character proportions should match scene props. Modern monitors are integrated into old-school wood classrooms. Show a few agent pet characters at desks and idle social mascots in the kantin, plus the visitor explorer and the static teacher NPC. Treat example overlay counts as **DEMO**, never live data.
