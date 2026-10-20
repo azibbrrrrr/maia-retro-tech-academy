@@ -4,7 +4,7 @@
 **Product weighting:** developer utility first (~80%); entertainment/ambient life second (~20%)  
 **Personal public project:** `azibbrrrrr/maia-retro-tech-academy`; NOT part of MAIA v1.0.1's commercial baseline.
 
-> This document is an **execution contract for future work**, not evidence that features below exist. It extends the v2 developer-command-center handoff and supersedes its earlier assumption that the campus requires fully tiled, movable artwork. **The owner confirmed that pre-rendered scene backgrounds are intentional and must be preserved.**
+> This document is an **execution contract for future work**, not evidence that features below exist. It extends the v2 developer-command-center handoff and supersedes its earlier assumption that the campus requires fully tiled, movable artwork. **The owner confirmed that pre-rendered scene backgrounds are intentional and must be preserved.** The next delivery gate is **navigation-first grayboxing with verified walkable paths** before any new HD environment art is accepted; merely upscaling a concept image does not satisfy gameplay requirements.
 
 ## 0. Verified PR #1 baseline: preserve the working foundation
 Inspected on 2026-10-20:
@@ -204,7 +204,7 @@ Each user story has explicit acceptance and evidence obligations.
 
 ## 9. Build sequence and release gates
 **This handoff is planning/docs only. Do not imply that these tickets were implemented by the commit.**
-1. **Design spike:** verify pre-rendered multi-scene switching while preserving current room, player, dialogue, collision and existing tests. Make rough backgrounds to prove scale and movement before expensive final art.
+1. **Navigation-first design spike (hard gate):** build playable graybox scenes, draw fixed circulation lanes and unobstructed portals, then test traversability and character-foot clearances. Verify multi-scene switching while preserving the current player, dialogue, collision, access controls and existing tests. **Do not create or accept new final HD backgrounds before graybox reachability is proven.**
 2. **Command Mode / trustworthy model:** status/event storage, attention queue, review queries, session tree using fixtures; prove utility with game toggled off.
 3. **Real instrumentation:** Claude hooks then Codex capability-led adapter. Add last-updated/unknown semantics and unit tests.
 4. **World linkage:** 12–16 lab stations, advisor-child separation, camera free pan/agent focus, bubbles and new rooms.
@@ -221,5 +221,162 @@ Produce an **original illustrated multi-zone campus concept** compatible with th
 - Kantin is a distinct social room, not merely a decorative stall.
 - High Council visibly accommodates planning/advisors and an interactable PR board.
 - Bilik Cikgu is a modern primary-school teacher corner and Juliana remains scripted/stationary.
-- The accepted entrance environment is not discarded; **pre-rendered plates stay the canonical visual pipeline**.
+- The accepted entrance environment is not discarded; **pre-rendered plates stay the canonical visual pipeline**. Produce HD backgrounds **per scene** from approved collision-accurate grayboxes, not as a single enlarged campus JPEG or an unverified 4K upscale.
 - Public World Mode retains clear origin/privacy semantics and visible Demo/Offline labels until actual safe event projection ships.
+
+---
+
+## 11. Navigation-first HD scene production — owner-approved execution direction (2026-10-20)
+
+> **Priority:** walking paths and player usability **above** scenic density, resolution, animation, and atmospheric props. **Status: planning only.** No new scene artwork or navigation implementation is created by this documentation commit.
+
+### 11.1 Decision: hybrid pre-rendered visual pipeline
+
+Retain **pre-rendered 2.5D environments**, real Phaser actors and overlays, Tiled geometry, and React UI. The current approved entrance is a valid proof of concept; it is **not** a plan to turn the entire academy into one extremely large image. Do not replace the world with generic procedural tiled visuals solely for editability. Fixed background props may remain fixed, but collisions must always match what the player sees.
+
+The final layering contract for every playable scene:
+
+1. **Environment plate:** detailed static walls, doors, floors, fixed desks, sunlight/shadows, foliage and non-interactive furniture. No characters, UI, labels attached to dynamic state, work bubbles, or real company content baked in.
+2. **Navigation/physics data:** precisely authored Tiled floor/walkable regions, solid geometry, door portals, spawn anchors, workstation approach points, NPC interaction anchors, and reachability metadata.
+3. **Actors / dynamic scene effects:** visitor, stationary teacher, advisor/session workers, agent bubbles, effects and interaction prompts, with foot-based position and depth sorting.
+4. **Foreground occlusion and interface:** authored cutout masks/transparent overlays for tree crowns, roof edges, columns/door frames when needed, plus accessible React status/HUD overlays.
+
+A dynamic object cannot convincingly pass behind a painted tree or pillar unless its image occlusion is handled independently; document intentional visible limitations in simpler scenes.
+
+### 11.2 Graybox first: exact work order
+
+**Do not commission/generate the final high-resolution artwork until every relevant walking route passes geometry checks.**
+
+1. Inventory current main entrance map, backdrop world dimensions, Tiled object layers, player collider, camera zoom, existing e2e walk tests, and accepted character scale.
+2. Draft separate **top-down circulation plans** for `engineering_lab`, `high_council`, `cikgu_room`, `kantin`, `library`, `watchtower`, and `qa_lab`; keep current `entrance` and validate existing connections.
+3. Lay down primary routes **first**: gate -> courtyard -> connecting corridor -> doorways -> room central aisle -> interaction points. Use a door/portal graph with stable IDs and return paths. Place furniture only after those clearances are reserved.
+4. Build real Phaser-loadable **low-detail grayboxes** and Tiled object layers (rectangles/polygons as needed), with temporary colors for walkable/blocked regions; playable transitions should succeed before visual polish.
+5. Test reachable endpoints including all room transitions, supervisor desk, PR board, 16 lab desks, Cikgu interaction spot, library tables, QA/Watchtower screens, kantin serving counter and social seating.
+6. Only after passing the gate: create environment-only HD room plates consistent with the graybox camera, object anchors, and clearances; re-run tests after integrating art. If artwork visually closes a verified door or introduces a table over a corridor, correct the **art and/or approved geometry together**, never quietly create invisible fake walkways.
+
+### 11.3 Traversal dimensions and movement requirements
+
+Current project has a **48px logical Tiled grid** with authored object-based collision and a foot collider; preserve that convention for preliminary planning, but validate everything against actual sprite dimensions and world units. The existing background size is not assumed to be evenly divisible by 48.
+
+| Circulation element | Initial geometric target | Test |
+| --- | --- | --- |
+| Primary covered corridor / scene spine | **4–5 logical tiles** clear (~192–240 world px if 1 tile = 48 px) | Player + traversing NPCs do not permanently block each other |
+| Secondary corridor | **3 tiles** clear (~144 world px) | Unobstructed from either direction |
+| Main engineering lab entrance | **3 tiles** (~144 world px) | Avatar enters/exits without clipping furniture |
+| Small room doorway | **>=2 tiles** (~96 world px) | Player collider + tolerance can pass |
+| Desk-to-desk access aisle | **2–3 tiles** clear (~96–144 world px) | Every workstation can be approached |
+| Portal spawn landing zone | Clear in front of door; not embedded in props, seats or wall | Landing tile valid, reverse portal reachable |
+
+These are **design targets, not physical code-enforced thresholds until measurement**. If sprite collision, perspective, or scene scale shows they are too narrow, increase the targets. A visible empty gap is not enough: physics shapes and scripted paths must agree.
+
+**Critical acceptance:** every visual doorway truly connects; no one-way stuck spawn; no decorative passage falsely presented as open; no impossible desk interaction; no invisible walls across the visible aisle; no emergency controls hidden behind camera crops. Where a room plate is intentionally closed-off, communicate that clearly through art and interaction.
+
+### 11.4 Dynamic pathfinding and congestion
+
+For live agent motion, use a validated walkability graph or navigation grid derived from authoritative collision. Treat desk access points, scene portals, social seating, and the PR board as explicit destination anchors. Actor foot colliders determine final positioning and depth, not their full sprite bounding boxes.
+
+- Validate both **player continuous collision** and **AI actor route planning**; a navigable player path may still be unreachable by a worker if an actor's occupancy reservation is mishandled.
+- Keep distinct **static obstacles** (walls, desks, trees) versus **dynamic occupancy** (agents seated/standing, visitor crossing). Do not permanently block a major corridor because one agent has stopped there.
+- On collision with an occupied workstation, route to waiting/overflow position without fabricating task failure. Backend work must continue regardless of visual seat availability.
+- Pathfinding need not run for every tool call. Give each worker an activity zone, maintain a **10–15 second provisional dwell/hysteresis** before moving between zones, and update urgent work/permission statuses immediately.
+- Agent interruptions must cancel planned kantin/social movement; path changes need to be bounded and not cause oscillation.
+- For multi-scene visualization, world state persists while scenes are unloaded. Use active-room actors plus optional summary/count badges elsewhere; do not load every HD plate to simulate off-screen work.
+
+### 11.5 Image resolution and sharpness: sample targets, not guaranteed quality
+
+The accepted PR #1 artwork is a **~1672 x 941 px** scene plate. The latest full-campus concept also needs more **designed detail per playable room**, not merely higher pixel counts. Scaling or an AI upscaler to 4K cannot create reliable doorway geometry, legible props, logical room layouts or collision fidelity.
+
+For new per-room master artwork, use these **starting candidates**, adjusted by room bounds and target zoom:
+
+| Intended asset | Planning resolution | Notes |
+| --- | --- | --- |
+| Typical individual room | **2048 x 1152** | Good minimum for a 16:9 room, if playable framing permits |
+| Large Engineering Lab / prominent rooms | **2560 x 1440** or **3072 x 1728** | Larger camera-scrolling world with readable 12–16 workstations |
+| High-detail master *only where justified* | **3840 x 2160** | Provide optimized derivatives; not a blanket runtime default |
+| Small foreground cutouts | Tight alpha-cropped regions | Reduce texture overhead rather than duplicating a full room |
+
+Do **not** lock all rooms to 16:9. Prefer scene-appropriate aspect ratios and mapping so camera movement, reachable space and architectural layout determine asset dimensions. The dimensions above are reference sizes for planning, not a mandate.
+
+Rendering and camera contracts:
+
+- Keep **world coordinates, rendered image pixel dimensions, and CSS/display pixels conceptually separate**. Calibrate asset scale so a visible doorway's width matches its Tiled collider and actor-foot dimensions; do not assume high-resolution images imply enormous movement coordinates.
+- Show a **useful close-up** of each room at default desktop zoom; the entire 3K room need not fit on a single 1440px-wide window. Player-follow, free-pan and minimap expose the rest.
+- Author the environment at sufficient *native detail*: distinct desks, chairs, legible circulation and meaningful architectural edges. Preserve visual coherence (warm baked lighting, Malaysian school architecture, turquoise louvres and terracotta roofs).
+- Choose filtering **per texture**: pre-rendered painterly/illustrated background can use smooth/linear scaling; intentionally hard-edged low-resolution pixel sprite sheets generally need nearest-neighbor filtering and integer-aligned scale where practical. Review mixed-style character/background proportions at gameplay zoom.
+- Optimize delivery (WebP/PNG where justified, lazy-loaded scene plates, proper prefetch before room transitions, release unused textures), measure GPU memory and check WebGL maximum texture compatibility on target devices.
+- A 3840 x 2160 RGBA texture has ~31.6 MiB of raw 4-channel texel data before mipmaps/overhead. Do not ship numerous resident 4K plates simultaneously, especially on mobile.
+
+### 11.6 Required scene art handoff package
+
+For **each** approved room, deliver artifacts that can be audited without trusting an image model's geometry:
+
+| Artifact | Requirement |
+| --- | --- |
+| Navigable graybox | Scene with room bounds, floor, fixed obstacles, reserved walking lanes |
+| Tiled source | Editable collision and portal data with named interaction/approach/spawn anchors |
+| Route graph report | List of intended start -> goal pairs, clearance constraints, pass/fail reachability |
+| Pre-rendered plate | No UI or dynamic characters; must retain agreed graybox doorway and furnishing coordinates |
+| Alignment/occlusion evidence | Overlay background with collision paths/spawn points; separate alpha crops for relevant occluders |
+| Gameplay evidence | Desktop + narrow mobile screenshots, avatar walking in/out, interaction reach |
+| Performance profile | Resolution/texture format, memory cost, scene-load time, frame-time on specified device |
+| Provenance note | Original/generated/user-authorized source, permissions and restrictions |
+
+**Do not accept** concept art alone as a production-ready scene. Re-generating a scene may affect alignment; regression checks are mandatory.
+
+### 11.7 Acceptance gate: observable walking success
+
+**Must pass before visual finalization of a scene:**
+- Spawn at the main gate and reach every room and return using game movement, not directory teleportation.
+- Reach every currently advertised interactable from a valid foot-collider position without violating collisions.
+- Enter/exit all room doors on desktop and touch control with no clipped or blocked transition.
+- Move along a primary circulation route while mock idle agents occupy typical desks and kantin seats; use clear diversion/wait if path temporarily blocked.
+- Walk to 12–16 Engineering Lab desk approach anchors; dense furniture must not create unreachable desks.
+- Move through corridors with stable animations; no automatic long-distance room hopping on every tool event.
+- Free-pan and player-follow cameras cannot strand the player outside bounds. The minimap shows real room connections and selected agent position.
+- Each scene's background plate and collision overlay visibly align after export; photo-pretty image composition does not override geometry.
+- Repeat critical path tests at 1440x900, 1280x720, 390x844, 844x390 and 320x568 simulated viewports. Real device/Safari validation remains an additional release gate, not claimed complete.
+
+Suggested test strategy: (1) static connected-component / graph reachability for portals and anchors, (2) Phaser + Playwright traversal through **real collision**, (3) deterministic seeded congestion/idle simulations, (4) screenshot overlays reviewed against backgrounds. Keep the current Sprint 0 route tests green.
+
+### 11.8 Implementation task breakdown
+
+**ST-NAV-01 — Graybox and circulation audit (P0, blocker)**  
+**[User Story]** As a visitor, I want to walk from the academy entrance to each room without getting stuck.
+- Inventory existing portal/collision/foot-anchor semantics, produce route diagram and per-room grayboxes with path overlays.
+- **AC:** all intended room doors/spawns interactable and test-reachable; no final new art commissioned before this passes.
+
+**ST-NAV-02 — Multi-scene collision and portal graph (P0)**  
+**[User Story]** As a player, I want reliable doorway transitions while retaining my gameplay context.
+- Typed scene manifest, bidirectional portals, spawn coordinates and scene transition handling.
+- **AC:** game state preserved through scene switches, deterministic portal return, keyboard/touch movement and tests across all rooms.
+
+**ST-NAV-03 — 16-station engineering circulation (P0)**  
+**[User Story]** As a developer, I want active execution agents visible without blocking my access to any lab station.
+- Reserve primary aisles, desk approach anchors and worker parking/overflow rules.
+- **AC:** >=16 visual desk anchors, all reachable, and 20 mocked running tasks remain trackable across zones without hard UI quota.
+
+**ST-ART-01 — HD room production from locked grayboxes (P1, gated by NAV)**  
+**[User Story]** As a player, I want detailed school rooms that look physically walkable at gameplay zoom.
+- Render/generate each room plate individually, align environmental shapes to path geometry, audit provenance.
+- **AC:** approved background/collider debug overlay match, usable default zoom, no invisible walls or fake doors, per-device scene load/performance measured.
+
+**ST-ART-02 — Occlusion, texture and responsive render quality (P1)**  
+**[User Story]** As a player, I want smooth movement under trees and through doorframes on desktop and mobile.
+- Optional selective foreground masks, scene-specific filtering, lazy loading and camera tuning.
+- **AC:** correct draw order for character feet, no transparent cutout artifacts, stable viewport screenshots/performance evidence.
+
+**ST-NAV-04 — Social and worker navigation simulation (P2)**  
+**[User Story]** As a developer, I want workers to move naturally without their animations disrupting actual job visibility.
+- Dynamic occupancy, dwell thresholds, deterministic kantin idle routines and instant override on true work.
+- **AC:** no spurious work states, no corridor lockups, no idle activity delaying urgent status updates, seeded stress tests.
+
+### 11.9 Execution-agent prompt — run this before generating final art
+
+> You are the senior Phaser 3 RPG engineer and pixel-environment technical artist for `azibbrrrrr/maia-retro-tech-academy`. Read PR #1, `docs/REDESIGN.md`, the existing multi-zone campus handoff and **Section 11 (this navigation-first HD addendum)**. Preserve the existing pre-rendered, warm Malaysian retro-school aesthetic, Sprinter visitor avatar, permanent scripted Ustazah Juliana, separate demo/public and authenticated operator processes, and code/asset licenses.
+>
+> **First deliverable:** a navigable, measurable graybox for the connected academy, not an illustration. Produce the scene/portal graph, 48px logical reference and actor-foot clearance plan, 12–16 desk anchor map, walkable-lane overlays, collision/door/spawn schema, and tests proving room-to-room and interaction reachability. Keep existing tests passing.
+>
+> Once graybox tests pass, design **independent HD pre-rendered environment-only scene plates** (starting near 2048×1152 for rooms, or 2560×1440 / 3072×1728 for the lab when justified). Do not assume higher resolution alone improves usable detail. Generate from confirmed object geometry and camera view; keep original doors, desk spacing, aisles, scale and lighting coherent. Use foreground masks selectively, dynamic sprites separately, and ship optimized lazy-loaded derivatives.
+>
+> **Work in transparent milestones:** report what you actually verified, what you could not observe, and whether each scene meets walking, collision, interaction, resolution and performance acceptance. Never misstate new work as already existing in PR #1. Never expose live private sessions/PR metadata via the public server.
+
