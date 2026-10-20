@@ -86,3 +86,11 @@ unimplemented. No external HTTPS acceptance or tunnel security gate has passed.
 Safari, physical mobile performance, 60 fps targets, memory endurance and load
 behavior are unverified. The Phaser vendor chunk is 1.20 MB minified / 319 kB gzip;
 the build emits its normal >500 kB warning. No claim of final release readiness.
+
+## Subsequent approved artwork milestone
+
+Sprint 0 evidence above records the original spike. The owner subsequently
+approved an illustrated full-screen campus and use of their Sprinter and Medalist
+custom sprites. See [redesign evidence](REDESIGN.md) for current acceptance. The
+previous static teacher collider offset is replaced with an explicitly anchored
+foot collider. Live GitHub, agent feeds and Cloudflare remain unimplemented.

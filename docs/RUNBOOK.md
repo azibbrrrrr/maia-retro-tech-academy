@@ -10,7 +10,7 @@ npm start
 ```
 
 Open http://127.0.0.1:3000. Use WASD/arrows to move, E to interact, Escape to close.
-The on-screen D-pad supports held touches. Room directory jumps to safe entrances.
+The on-screen D-pad supports held touches. Room directory jumps to safe room positions. M opens the directory.
 The teacher dialogue advances with its button, Enter or Space.
 
 `npm run dev` is a loopback-only frontend development server. Its board API is
@@ -65,8 +65,11 @@ The execution checkout already has this guard configured and an ignored local
 Gitleaks binary in `.local/bin`. CI scans the full git history independently.
 
 Map source: `maps/academy.tmx`; runtime export: `public/maps/academy.json`.
-`npm run map:generate` rebuilds the original blockout and tiles from
-`scripts/map.ts`; do not run it over later hand-edited Tiled work without review.
+`npm run map:generate` rebuilds the image-aligned collision objects and named
+interaction/spawn layers from `scripts/map.ts`. The 48 px editing grid is retained;
+rectangle objects provide precise foot clearance. Do not overwrite hand-edited
+Tiled work without review. The scene fills the viewport; a portrait screen follows
+the player while a 16:9 desktop shows the campus composition.
 
 ## Stop / recover
 
