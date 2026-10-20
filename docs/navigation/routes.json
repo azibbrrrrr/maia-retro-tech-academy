@@ -1,0 +1,2543 @@
+{
+  "issues": [],
+  "reachableScenes": [
+    "entrance",
+    "high_council",
+    "engineering_lab",
+    "library",
+    "watchtower",
+    "qa_lab",
+    "kantin",
+    "cikgu_room"
+  ],
+  "routes": [
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 836,
+          "y": 660
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "from_high_council",
+      "reachable": true,
+      "distance": 713.8071218448015,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 528,
+          "y": 468
+        },
+        {
+          "x": 528,
+          "y": 312
+        },
+        {
+          "x": 630,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "from_engineering_lab",
+      "reachable": true,
+      "distance": 98.08159868191383,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 744,
+          "y": 694
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "from_library",
+      "reachable": true,
+      "distance": 809.8320784733327,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 432,
+          "y": 432
+        },
+        {
+          "x": 432,
+          "y": 312
+        },
+        {
+          "x": 300,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "from_watchtower",
+      "reachable": true,
+      "distance": 518.2901352906911,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 480,
+          "y": 444
+        },
+        {
+          "x": 476,
+          "y": 435
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "from_qa_lab",
+      "reachable": true,
+      "distance": 727.8463398240214,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1140,
+          "y": 468
+        },
+        {
+          "x": 1140,
+          "y": 312
+        },
+        {
+          "x": 1020,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "from_kantin",
+      "reachable": true,
+      "distance": 524.9251182584145,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1200,
+          "y": 444
+        },
+        {
+          "x": 1200,
+          "y": 435
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "from_cikgu_room",
+      "reachable": true,
+      "distance": 807.3804698355775,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1248,
+          "y": 432
+        },
+        {
+          "x": 1248,
+          "y": 312
+        },
+        {
+          "x": 1370,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "welcome",
+      "reachable": true,
+      "distance": 12,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 836,
+          "y": 672
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-high_council",
+      "reachable": true,
+      "distance": 713.8071218448015,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 528,
+          "y": 468
+        },
+        {
+          "x": 528,
+          "y": 312
+        },
+        {
+          "x": 630,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-high_council:threshold",
+      "reachable": true,
+      "distance": 755.9626993527252,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 528,
+          "y": 468
+        },
+        {
+          "x": 528,
+          "y": 312
+        },
+        {
+          "x": 636,
+          "y": 300
+        },
+        {
+          "x": 630,
+          "y": 265
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-engineering_lab",
+      "reachable": true,
+      "distance": 98.08159868191383,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 744,
+          "y": 694
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-engineering_lab:threshold",
+      "reachable": true,
+      "distance": 174.1034175425629,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 662,
+          "y": 654
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-library",
+      "reachable": true,
+      "distance": 809.8320784733327,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 432,
+          "y": 432
+        },
+        {
+          "x": 432,
+          "y": 312
+        },
+        {
+          "x": 300,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-library:threshold",
+      "reachable": true,
+      "distance": 856.8169278276587,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 432,
+          "y": 432
+        },
+        {
+          "x": 432,
+          "y": 312
+        },
+        {
+          "x": 300,
+          "y": 312
+        },
+        {
+          "x": 300,
+          "y": 265
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-watchtower",
+      "reachable": true,
+      "distance": 518.2901352906911,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 480,
+          "y": 444
+        },
+        {
+          "x": 476,
+          "y": 435
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-watchtower:threshold",
+      "reachable": true,
+      "distance": 567.5767152567851,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 588,
+          "y": 624
+        },
+        {
+          "x": 588,
+          "y": 480
+        },
+        {
+          "x": 480,
+          "y": 444
+        },
+        {
+          "x": 476,
+          "y": 385
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-qa_lab",
+      "reachable": true,
+      "distance": 727.8463398240214,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1140,
+          "y": 468
+        },
+        {
+          "x": 1140,
+          "y": 312
+        },
+        {
+          "x": 1020,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-qa_lab:threshold",
+      "reachable": true,
+      "distance": 753.2061426408281,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1140,
+          "y": 468
+        },
+        {
+          "x": 1140,
+          "y": 312
+        },
+        {
+          "x": 1020,
+          "y": 288
+        },
+        {
+          "x": 1020,
+          "y": 265
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-kantin",
+      "reachable": true,
+      "distance": 524.9251182584145,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1200,
+          "y": 444
+        },
+        {
+          "x": 1200,
+          "y": 435
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-kantin:threshold",
+      "reachable": true,
+      "distance": 574.9251182584145,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1200,
+          "y": 444
+        },
+        {
+          "x": 1200,
+          "y": 385
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-cikgu_room",
+      "reachable": true,
+      "distance": 807.3804698355775,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1248,
+          "y": 432
+        },
+        {
+          "x": 1248,
+          "y": 312
+        },
+        {
+          "x": 1370,
+          "y": 310
+        }
+      ]
+    },
+    {
+      "scene": "entrance",
+      "start": "entry",
+      "goal": "entrance-to-cikgu_room:threshold",
+      "reachable": true,
+      "distance": 841.0196812335873,
+      "waypoints": [
+        {
+          "x": 836,
+          "y": 660
+        },
+        {
+          "x": 1080,
+          "y": 624
+        },
+        {
+          "x": 1080,
+          "y": 480
+        },
+        {
+          "x": 1248,
+          "y": 432
+        },
+        {
+          "x": 1248,
+          "y": 312
+        },
+        {
+          "x": 1368,
+          "y": 300
+        },
+        {
+          "x": 1370,
+          "y": 265
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "position-1",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 276
+        },
+        {
+          "x": 240,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "position-2",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 276
+        },
+        {
+          "x": 912,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "position-3",
+      "reachable": true,
+      "distance": 483.735464897913,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 240,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "position-4",
+      "reachable": true,
+      "distance": 483.735464897913,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 912,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "pr-board",
+      "reachable": true,
+      "distance": 600,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "overflow-1",
+      "reachable": true,
+      "distance": 467.99999999999994,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 144,
+          "y": 540
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "overflow-2",
+      "reachable": true,
+      "distance": 467.99999999999994,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 1008,
+          "y": 540
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "supervisor-desk",
+      "reachable": true,
+      "distance": 483.735464897913,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 240,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "high_council-to-entrance",
+      "reachable": true,
+      "distance": 48,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 768
+        }
+      ]
+    },
+    {
+      "scene": "high_council",
+      "start": "entry",
+      "goal": "high_council-to-entrance:threshold",
+      "reachable": true,
+      "distance": 90,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 810
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 768,
+          "y": 1008
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-01",
+      "reachable": true,
+      "distance": 1084.6419565640485,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 276,
+          "y": 756
+        },
+        {
+          "x": 276,
+          "y": 324
+        },
+        {
+          "x": 192,
+          "y": 270
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-01:seat",
+      "reachable": true,
+      "distance": 1103.575993940829,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 276,
+          "y": 756
+        },
+        {
+          "x": 276,
+          "y": 324
+        },
+        {
+          "x": 192,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-02",
+      "reachable": true,
+      "distance": 820.85920838095,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 540,
+          "y": 324
+        },
+        {
+          "x": 456,
+          "y": 270
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-02:seat",
+      "reachable": true,
+      "distance": 839.7932457577306,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 540,
+          "y": 324
+        },
+        {
+          "x": 456,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-03",
+      "reachable": true,
+      "distance": 807.1476792205455,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 948,
+          "y": 324
+        },
+        {
+          "x": 1032,
+          "y": 270
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-03:seat",
+      "reachable": true,
+      "distance": 826.081716597326,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 948,
+          "y": 324
+        },
+        {
+          "x": 1032,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-04",
+      "reachable": true,
+      "distance": 1036.4177398633008,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1212,
+          "y": 744
+        },
+        {
+          "x": 1212,
+          "y": 324
+        },
+        {
+          "x": 1296,
+          "y": 270
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-04:seat",
+      "reachable": true,
+      "distance": 1055.3517772400812,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1212,
+          "y": 744
+        },
+        {
+          "x": 1212,
+          "y": 324
+        },
+        {
+          "x": 1296,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-05",
+      "reachable": true,
+      "distance": 892.6419565640485,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 276,
+          "y": 756
+        },
+        {
+          "x": 276,
+          "y": 516
+        },
+        {
+          "x": 192,
+          "y": 462
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-05:seat",
+      "reachable": true,
+      "distance": 911.5759939408291,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 276,
+          "y": 756
+        },
+        {
+          "x": 276,
+          "y": 516
+        },
+        {
+          "x": 192,
+          "y": 432
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-06",
+      "reachable": true,
+      "distance": 642.1218311919197,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 540,
+          "y": 516
+        },
+        {
+          "x": 456,
+          "y": 462
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-06:seat",
+      "reachable": true,
+      "distance": 661.0558685687002,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 540,
+          "y": 516
+        },
+        {
+          "x": 456,
+          "y": 432
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-07",
+      "reachable": true,
+      "distance": 623.7530207331931,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 948,
+          "y": 516
+        },
+        {
+          "x": 1032,
+          "y": 462
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-07:seat",
+      "reachable": true,
+      "distance": 642.6870581099737,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 948,
+          "y": 516
+        },
+        {
+          "x": 1032,
+          "y": 432
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-08",
+      "reachable": true,
+      "distance": 844.4177398633008,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1212,
+          "y": 744
+        },
+        {
+          "x": 1212,
+          "y": 516
+        },
+        {
+          "x": 1296,
+          "y": 462
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-08:seat",
+      "reachable": true,
+      "distance": 863.3517772400813,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1212,
+          "y": 744
+        },
+        {
+          "x": 1212,
+          "y": 516
+        },
+        {
+          "x": 1296,
+          "y": 432
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-09",
+      "reachable": true,
+      "distance": 700.6419565640485,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 276,
+          "y": 756
+        },
+        {
+          "x": 276,
+          "y": 708
+        },
+        {
+          "x": 192,
+          "y": 654
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-09:seat",
+      "reachable": true,
+      "distance": 719.5759939408291,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 276,
+          "y": 756
+        },
+        {
+          "x": 276,
+          "y": 708
+        },
+        {
+          "x": 192,
+          "y": 624
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-10",
+      "reachable": true,
+      "distance": 476.66754509714144,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 540,
+          "y": 708
+        },
+        {
+          "x": 456,
+          "y": 654
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-10:seat",
+      "reachable": true,
+      "distance": 495.60158247392195,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 540,
+          "y": 708
+        },
+        {
+          "x": 456,
+          "y": 624
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-11",
+      "reachable": true,
+      "distance": 449.7170155532774,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 948,
+          "y": 708
+        },
+        {
+          "x": 1032,
+          "y": 654
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-11:seat",
+      "reachable": true,
+      "distance": 468.651052930058,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 948,
+          "y": 708
+        },
+        {
+          "x": 1032,
+          "y": 624
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-12",
+      "reachable": true,
+      "distance": 652.4177398633008,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1212,
+          "y": 744
+        },
+        {
+          "x": 1212,
+          "y": 708
+        },
+        {
+          "x": 1296,
+          "y": 654
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-12:seat",
+      "reachable": true,
+      "distance": 671.3517772400813,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1212,
+          "y": 744
+        },
+        {
+          "x": 1212,
+          "y": 708
+        },
+        {
+          "x": 1296,
+          "y": 624
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-13",
+      "reachable": true,
+      "distance": 598.3477249894078,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 192,
+          "y": 846
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-13:seat",
+      "reachable": true,
+      "distance": 607.1573107523288,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 192,
+          "y": 816
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-14",
+      "reachable": true,
+      "distance": 351.5508498069661,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 456,
+          "y": 846
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-14:seat",
+      "reachable": true,
+      "distance": 366.34410053936995,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 456,
+          "y": 816
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-15",
+      "reachable": true,
+      "distance": 309.7418279793674,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1032,
+          "y": 846
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-15:seat",
+      "reachable": true,
+      "distance": 326.43529220965064,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1032,
+          "y": 816
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-16",
+      "reachable": true,
+      "distance": 552.2934002864782,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1296,
+          "y": 846
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "station-16:seat",
+      "reachable": true,
+      "distance": 561.825595714542,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1296,
+          "y": 816
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "overflow-1",
+      "reachable": true,
+      "distance": 635.4337101539389,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 144,
+          "y": 888
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "overflow-2",
+      "reachable": true,
+      "distance": 379.47331922020555,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 408,
+          "y": 888
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "overflow-3",
+      "reachable": true,
+      "distance": 379.47331922020555,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1128,
+          "y": 888
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "overflow-4",
+      "reachable": true,
+      "distance": 635.4337101539389,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 1392,
+          "y": 888
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "task-board",
+      "reachable": true,
+      "distance": 888,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 768,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "engineering_lab-to-entrance",
+      "reachable": true,
+      "distance": 48,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 768,
+          "y": 1056
+        }
+      ]
+    },
+    {
+      "scene": "engineering_lab",
+      "start": "entry",
+      "goal": "engineering_lab-to-entrance:threshold",
+      "reachable": true,
+      "distance": 90,
+      "waypoints": [
+        {
+          "x": 768,
+          "y": 1008
+        },
+        {
+          "x": 768,
+          "y": 1098
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "position-1",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 276
+        },
+        {
+          "x": 240,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "position-2",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 276
+        },
+        {
+          "x": 912,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "position-3",
+      "reachable": true,
+      "distance": 483.735464897913,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 240,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "position-4",
+      "reachable": true,
+      "distance": 483.735464897913,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 912,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "room-board",
+      "reachable": true,
+      "distance": 600,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "overflow-1",
+      "reachable": true,
+      "distance": 467.99999999999994,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 144,
+          "y": 540
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "overflow-2",
+      "reachable": true,
+      "distance": 467.99999999999994,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 1008,
+          "y": 540
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "library-to-entrance",
+      "reachable": true,
+      "distance": 48,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 768
+        }
+      ]
+    },
+    {
+      "scene": "library",
+      "start": "entry",
+      "goal": "library-to-entrance:threshold",
+      "reachable": true,
+      "distance": 90,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 810
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "position-1",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 276
+        },
+        {
+          "x": 240,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "position-2",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 276
+        },
+        {
+          "x": 912,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "position-3",
+      "reachable": true,
+      "distance": 483.735464897913,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 240,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "position-4",
+      "reachable": true,
+      "distance": 483.735464897913,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 912,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "room-board",
+      "reachable": true,
+      "distance": 600,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "watchtower-to-entrance",
+      "reachable": true,
+      "distance": 48,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 768
+        }
+      ]
+    },
+    {
+      "scene": "watchtower",
+      "start": "entry",
+      "goal": "watchtower-to-entrance:threshold",
+      "reachable": true,
+      "distance": 90,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 810
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "position-1",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 276
+        },
+        {
+          "x": 240,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "position-2",
+      "reachable": true,
+      "distance": 617.3055178556033,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 276
+        },
+        {
+          "x": 912,
+          "y": 228
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "position-3",
+      "reachable": true,
+      "distance": 494.99393685613524,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 420
+        },
+        {
+          "x": 240,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "position-4",
+      "reachable": true,
+      "distance": 494.99393685613524,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 420
+        },
+        {
+          "x": 912,
+          "y": 372
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "position-5",
+      "reachable": true,
+      "distance": 393.0801444998208,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 240,
+          "y": 516
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "position-6",
+      "reachable": true,
+      "distance": 393.0801444998208,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 912,
+          "y": 516
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "room-board",
+      "reachable": true,
+      "distance": 600,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "qa_lab-to-entrance",
+      "reachable": true,
+      "distance": 48,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 768
+        }
+      ]
+    },
+    {
+      "scene": "qa_lab",
+      "start": "entry",
+      "goal": "qa_lab-to-entrance:threshold",
+      "reachable": true,
+      "distance": 90,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 810
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-1",
+      "reachable": true,
+      "distance": 652.8964628168749,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 228
+        },
+        {
+          "x": 240,
+          "y": 204
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-2",
+      "reachable": true,
+      "distance": 652.8964628168749,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 228
+        },
+        {
+          "x": 912,
+          "y": 204
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-3",
+      "reachable": true,
+      "distance": 546.9463485922629,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 348
+        },
+        {
+          "x": 240,
+          "y": 324
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-4",
+      "reachable": true,
+      "distance": 546.9463485922629,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 348
+        },
+        {
+          "x": 912,
+          "y": 324
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-5",
+      "reachable": true,
+      "distance": 450.4697876916657,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 348,
+          "y": 468
+        },
+        {
+          "x": 240,
+          "y": 444
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-6",
+      "reachable": true,
+      "distance": 450.4697876916657,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 804,
+          "y": 468
+        },
+        {
+          "x": 912,
+          "y": 444
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-7",
+      "reachable": true,
+      "distance": 370.44837697039515,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 240,
+          "y": 564
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "position-8",
+      "reachable": true,
+      "distance": 370.44837697039515,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 912,
+          "y": 564
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "service-counter",
+      "reachable": true,
+      "distance": 600,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "kantin-to-entrance",
+      "reachable": true,
+      "distance": 48,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 768
+        }
+      ]
+    },
+    {
+      "scene": "kantin",
+      "start": "entry",
+      "goal": "kantin-to-entrance:threshold",
+      "reachable": true,
+      "distance": 90,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 810
+        }
+      ]
+    },
+    {
+      "scene": "cikgu_room",
+      "start": "entry",
+      "goal": "entry",
+      "reachable": true,
+      "distance": 0,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 720
+        }
+      ]
+    },
+    {
+      "scene": "cikgu_room",
+      "start": "entry",
+      "goal": "teacher",
+      "reachable": true,
+      "distance": 396,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 324
+        }
+      ]
+    },
+    {
+      "scene": "cikgu_room",
+      "start": "entry",
+      "goal": "visitor-seat",
+      "reachable": true,
+      "distance": 489.65293831447593,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 288,
+          "y": 324
+        }
+      ]
+    },
+    {
+      "scene": "cikgu_room",
+      "start": "entry",
+      "goal": "cikgu_room-to-entrance",
+      "reachable": true,
+      "distance": 48,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 768
+        }
+      ]
+    },
+    {
+      "scene": "cikgu_room",
+      "start": "entry",
+      "goal": "cikgu_room-to-entrance:threshold",
+      "reachable": true,
+      "distance": 90,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 810
+        }
+      ]
+    },
+    {
+      "scene": "cikgu_room",
+      "start": "entry",
+      "goal": "npc_cikgu",
+      "reachable": true,
+      "distance": 456,
+      "waypoints": [
+        {
+          "x": 576,
+          "y": 720
+        },
+        {
+          "x": 576,
+          "y": 264
+        }
+      ]
+    }
+  ]
+}

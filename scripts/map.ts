@@ -21,10 +21,7 @@ const point = (name: string, x: number, y: number, type = "point") => ({
 const points = [
   {
     name: "interaction_zones",
-    objects: [
-      point("board_pr_high_council", 630, 185, "board"),
-      point("sign_gate", 836, 596, "sign"),
-    ],
+    objects: [point("sign_gate", 836, 596, "sign")],
   },
   {
     name: "spawn_points",
@@ -36,12 +33,15 @@ const points = [
   },
   {
     name: "npc_spawns",
-    objects: [point("npc_cikgu", 1380, 265, "stationary")],
+    objects: [],
   },
   { name: "agent_seats", objects: [] },
   {
     name: "room_labels",
-    objects: [point("High Council", 350, 360), point("Bilik Cikgu", 1320, 360)],
+    objects: [
+      point("West transfer vestibule", 350, 360),
+      point("East transfer vestibule", 1320, 360),
+    ],
   },
   { name: "lights", objects: [] },
 ];
@@ -69,6 +69,8 @@ const rectangles: [string, number, number, number, number][] = [
   ["west boundary", 0, 455, 65, 287],
   ["east boundary", 1600, 455, 72, 287],
 ];
+// Preserve the accepted collision object IDs as legacy point anchors migrate.
+nextObject = 9;
 const collision = rectangles.map(([name, x, y, w, h]) => ({
   id: nextObject++,
   name,

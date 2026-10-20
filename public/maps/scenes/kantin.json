@@ -1,0 +1,605 @@
+{
+  "width": 24,
+  "height": 18,
+  "tilewidth": 48,
+  "tileheight": 48,
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "nextlayerid": 8,
+  "nextobjectid": 27,
+  "properties": [
+    {
+      "name": "sceneId",
+      "type": "string",
+      "value": "kantin"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "value": "Kantin Akademi"
+    },
+    {
+      "name": "temporary",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "name": "worldWidth",
+      "type": "int",
+      "value": 1152
+    },
+    {
+      "name": "worldHeight",
+      "type": "int",
+      "value": 864
+    },
+    {
+      "name": "mapX",
+      "type": "int",
+      "value": -1
+    },
+    {
+      "name": "mapY",
+      "type": "int",
+      "value": 2
+    }
+  ],
+  "layers": [
+    {
+      "name": "collision",
+      "objects": [
+        {
+          "id": 1,
+          "name": "north-wall",
+          "type": "solid",
+          "x": 0,
+          "y": 0,
+          "width": 1152,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 2,
+          "name": "west-wall",
+          "type": "solid",
+          "x": 0,
+          "y": 24,
+          "width": 24,
+          "height": 840,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 3,
+          "name": "east-wall",
+          "type": "solid",
+          "x": 1128,
+          "y": 24,
+          "width": 24,
+          "height": 840,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 4,
+          "name": "south-west-wall",
+          "type": "solid",
+          "x": 24,
+          "y": 840,
+          "width": 480,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 5,
+          "name": "south-east-wall",
+          "type": "solid",
+          "x": 648,
+          "y": 840,
+          "width": 480,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 6,
+          "name": "fixture-1",
+          "type": "solid",
+          "x": 144,
+          "y": 120,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 7,
+          "name": "fixture-2",
+          "type": "solid",
+          "x": 816,
+          "y": 120,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 8,
+          "name": "fixture-3",
+          "type": "solid",
+          "x": 144,
+          "y": 240,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 9,
+          "name": "fixture-4",
+          "type": "solid",
+          "x": 816,
+          "y": 240,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 10,
+          "name": "fixture-5",
+          "type": "solid",
+          "x": 144,
+          "y": 360,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 11,
+          "name": "fixture-6",
+          "type": "solid",
+          "x": 816,
+          "y": 360,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 12,
+          "name": "fixture-7",
+          "type": "solid",
+          "x": 144,
+          "y": 480,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 13,
+          "name": "fixture-8",
+          "type": "solid",
+          "x": 816,
+          "y": 480,
+          "width": 192,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        }
+      ],
+      "id": 1,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "portals",
+      "objects": [
+        {
+          "id": 14,
+          "name": "kantin-to-entrance",
+          "type": "portal",
+          "x": 504,
+          "y": 792,
+          "width": 144,
+          "height": 36,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Entrance / return"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "from_kantin"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "entrance-to-kantin"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 576
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 768
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        }
+      ],
+      "id": 2,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "spawn_points",
+      "objects": [
+        {
+          "id": 15,
+          "name": "entry",
+          "type": "spawn",
+          "x": 576,
+          "y": 720,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        }
+      ],
+      "id": 3,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "approaches",
+      "objects": [
+        {
+          "id": 16,
+          "name": "position-1",
+          "type": "seat",
+          "x": 240,
+          "y": 204,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 1"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "position-2",
+          "type": "seat",
+          "x": 912,
+          "y": 204,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 2"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "name": "position-3",
+          "type": "seat",
+          "x": 240,
+          "y": 324,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 3"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "position-4",
+          "type": "seat",
+          "x": 912,
+          "y": 324,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 4"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "name": "position-5",
+          "type": "seat",
+          "x": 240,
+          "y": 444,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 5"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "position-6",
+          "type": "seat",
+          "x": 912,
+          "y": 444,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 6"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "position-7",
+          "type": "seat",
+          "x": 240,
+          "y": 564,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 7"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "position-8",
+          "type": "seat",
+          "x": 912,
+          "y": 564,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Social seat 8"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "service-counter",
+          "type": "interaction",
+          "x": 576,
+          "y": 120,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Serving counter"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        }
+      ],
+      "id": 4,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "agent_seats",
+      "objects": [],
+      "id": 5,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "reserved_lanes",
+      "objects": [
+        {
+          "id": 25,
+          "name": "central-spine",
+          "type": "primary",
+          "x": 456,
+          "y": 96,
+          "width": 240,
+          "height": 744,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "clearance",
+              "type": "int",
+              "value": 240
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "south-cross-aisle",
+          "type": "secondary",
+          "x": 24,
+          "y": 624,
+          "width": 1104,
+          "height": 144,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "clearance",
+              "type": "int",
+              "value": 144
+            }
+          ]
+        }
+      ],
+      "id": 6,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "npc_spawns",
+      "objects": [],
+      "id": 7,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    }
+  ],
+  "tilesets": []
+}

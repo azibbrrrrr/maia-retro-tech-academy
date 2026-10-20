@@ -19,7 +19,8 @@
     "check": "npm run typecheck && npm run lint && npm test && npm run build && npm run audit:bundle && npm run test:e2e",
     "audit:secrets": "gitleaks git --redact && gitleaks dir --redact",
     "map:generate": "tsx scripts/map.ts",
-    "audit:bundle": "tsx scripts/audit-bundle.ts"
+    "audit:bundle": "tsx scripts/audit-bundle.ts",
+    "scenes:generate": "tsx scripts/scenes.ts"
   },
   "dependencies": {
     "@fastify/rate-limit": "^10.3.0",
