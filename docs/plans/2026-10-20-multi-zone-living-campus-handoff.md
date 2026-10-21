@@ -380,3 +380,36 @@ Suggested test strategy: (1) static connected-component / graph reachability for
 >
 > **Work in transparent milestones:** report what you actually verified, what you could not observe, and whether each scene meets walking, collision, interaction, resolution and performance acceptance. Never misstate new work as already existing in PR #1. Never expose live private sessions/PR metadata via the public server.
 
+
+---
+
+## 12. Living-world interaction architecture — next execution track (2026-10-21)
+
+**Approved supplementary handoff:** [Living-World Interaction & Layered Rendering Vertical Slice](2026-10-21-living-world-interaction-vertical-slice.md).
+
+The owner's goal is a believable **simulated workplace**: agents physically approach a chair, sit, type, stand, walk to a kantin counter, collect food, dine at a table, and chat when **off duty**; a player can inspect them and walk past trees and behind desks; foreground masks and ambient effects (leaves, waterfall/pond/fans) create visual depth. These are **not yet implemented**. Existing Sprint 0 only has a single pre-rendered plate, original collision and basic animated Sprinter/Juliana interactions.
+
+### Mandatory implementation split
+- **Work truth:** Claude/Codex event + GitHub states, private adapters, attention queue and history (developer utility). A provider work state is never invented by an animation.
+- **World truth:** Phaser owns pathfinding, position, room transition, interaction reservations, work and food prop animations, ambient routines, and camera; React owns HUD, inspect panels and command dashboard.
+- **Render depth:** Preserve pre-rendered HD backgrounds but separate chair/desk fronts, counters, trees, pillars and roofs into aligned foreground cutouts and/or depth-sorted objects. This is *not* a replacement with a fully tile-painted game.
+- **Interaction protocol:** Each interactive object has a collision reference, walkable approach anchor, seated/use anchor, capacity/reservation, accepted actions, facing, clip/pose, and release/interrupt semantics. Animate both character and object (keyboard/monitor, plate, food, steam), not just a chat bubble.
+- **Idle social life:** Local deterministic routines only for confirmed-off-duty role mascots; never let a stale/disconnected real provider session appear actively eating as if verified idle.
+- **Nav-first hard gate remains:** 48px logical-grid reference, real Phaser/Tiled collision, test from entrance to lab and kantin and all desk/counter/chair anchors before creating detailed art.
+- **Public security remains:** no raw prompts, client/private PR information, agent control actions, tokens, or unrestricted local WebSockets through Cloudflare.
+
+### Vertical-slice acceptance
+One four-desk **Engineering Lab graybox** and one two-table **Kantin graybox** connected via navigable bidirectional portal; seeded test actors complete `walk -> approach -> sit -> type -> stand -> order -> sit -> eat -> chat -> stand`. Desk fascia and tree foreground correctly mask movement, dining seats cannot double-book, and real work instantly supersedes simulated ambient routines. Environment effects run independently of collision and honor reduced motion.
+
+This is an **interaction-engine feasibility track**, not a substitute for the original **Command Mode + trusted provider instrumentation** product goals. Where scheduling conflicts, maintain developer-utility priority and keep the world simulator behind its own tests and fixtures.
+
+### Build order
+1. Source-control interactable, occupancy, Tiled anchor and occlusion metadata; produce playable grayboxes with debug overlays and reachability reports.
+2. Build reusable seated workstation interaction and depth-sorted foreground proof.
+3. Build interruptible kantin food/eating/chat routines; simulated fixtures clearly marked DEMO.
+4. Add 1–2 decorative environment effects with graceful mobile/reduced-motion behavior.
+5. Only after passing fixture tests, attach real local Claude Code events (in isolated operator backend) and separately validate Codex capabilities; do not expose control through public app.
+6. Expand archetypes to the complete campus and 12–16 lab workstations; preserve initial PR #1 behavior and public/operator split.
+
+**No game code or assets are changed by this handoff update.**
+
