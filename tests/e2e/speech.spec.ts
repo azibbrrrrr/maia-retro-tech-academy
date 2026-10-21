@@ -208,6 +208,15 @@ test("320px touch chat keeps movement and interaction controls reachable", async
     name: "Ustazah Juliana speech bubble",
   });
   await expect(bubble).toBeVisible();
+  const graph = page.getByRole("img", {
+    name: "Logical campus connections: entrance links all seven rooms",
+  });
+  const mapToggle = page.getByRole("button", {
+    name: "Show campus connections",
+    exact: true,
+  });
+  await mapToggle.tap();
+  await expect(graph).toBeVisible();
   type Box = NonNullable<Awaited<ReturnType<typeof bubble.boundingBox>>>;
   const overlaps = (a: Box, b: Box) =>
     a.x < b.x + b.width &&
@@ -234,7 +243,36 @@ test("320px touch chat keeps movement and interaction controls reachable", async
         `${name} should remain reachable while ${await activeBubble.getAttribute("aria-label")} is open`,
       ).toBe(false);
     }
+    const mapToggleBox = (await page.locator(".map-toggle").boundingBox())!;
+    expect(
+      overlaps(bubbleBox, mapToggleBox),
+      "the map toggle should remain reachable while speech is open",
+    ).toBe(false);
+    const interaction = (await page
+      .getByRole("button", { name: "Interact", exact: true })
+      .boundingBox())!;
+    const map = (await page
+      .getByRole("complementary", { name: "Campus navigation" })
+      .boundingBox())!;
+    expect(
+      overlaps(interaction, map),
+      "Interact should remain clear of the expanded campus map",
+    ).toBe(false);
+    expect(
+      overlaps(bubbleBox, map),
+      "the open speech bubble should remain clear of the navigation panel",
+    ).toBe(false);
   };
+  await verifyBubbleReachability(bubble);
+  await page.getByRole("button", { name: "Show room map", exact: true }).tap();
+  await expect(graph).not.toBeVisible();
+  await expect(page.locator(".mini-map")).toBeVisible();
+  await verifyBubbleReachability(bubble);
+  await page
+    .getByRole("button", { name: "Show campus connections", exact: true })
+    .tap();
+  await expect(graph).toBeVisible();
+  await verifyBubbleReachability(bubble);
   for (let line = 0; line < teacher.dialogue.length; line++) {
     await expect(bubble).toContainText(teacher.dialogue[line]);
     await verifyBubbleReachability(bubble);

@@ -782,6 +782,13 @@ blockquote {
   .game-stage:has(.campus-graph) .interaction-hint {
     bottom: calc(max(16px, env(safe-area-inset-bottom)) + 290px);
   }
+  .game-stage:has(.campus-graph):has(.speech-bubble) .interaction-hint {
+    bottom: calc(max(16px, env(safe-area-inset-bottom)) + 136px);
+  }
+  .game-stage:has(.speech-bubble) .minimap-panel {
+    max-height: 180px;
+    overflow-y: auto;
+  }
 }
 .speech-tail {
   position: absolute;
