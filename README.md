@@ -4,7 +4,7 @@ An original, playable Malaysian retro-school campus: explore as your own visitor
 meet a scripted teacher and inspect a clearly labeled demonstration PR whiteboard.
 An independent personal, unofficial showcase by Azib. No production integration.
 
-**Playable full-screen campus with custom animated sprites. Local only; no public deployment exists.**
+**Navigation-first campus: approved illustrated entrance plus seven connected temporary room grayboxes. Local DEMO only.**
 
 ![The academy courtyard](docs/evidence/campus-desktop.png)
 
@@ -18,10 +18,14 @@ npm start
 
 Open **http://127.0.0.1:3000**. Walk with WASD/arrows or the touch D-pad.
 Approach the teacher or whiteboard and press E or tap Interact. Escape closes
-panels; M opens the room directory for quick navigation. The fullscreen button
+panels; M opens the room directory for quick navigation. Gold floor transfers
+connect rooms through E / Interact; each room has a marked return transfer.
+Navigate opens camera, mock population and geometry inspection controls. The fullscreen button
 toggles browser fullscreen where supported. No account is required.
 
-- Illustrated Malaysian campus: courtyard, covered corridor, two walkable classrooms.
+- Preserved illustrated entrance plus High Council, Engineering Lab, Library, Watchtower, QA Lab, Kantin and Bilik Cikgu navigation studies.
+- Marked floor transfers with return paths; 16 lab workstation approaches and optional DEMO worker congestion.
+- Logical room/campus maps, free camera, follow player/DEMO actor, wheel/pinch zoom and collision diagnostics.
 - Animated Sprinter explorer, Tiled foot collision, mobile camera follow and touch controls.
 - Stationary Ustazah Juliana using the owner’s Medalist sprite, with friendly Malay dialogue.
 - React whiteboard with clearly marked demo lessons; no live GitHub claims.
@@ -46,12 +50,17 @@ behavior, XSS handling, private-route denial and operator authentication.
 [Whiteboard screenshot](docs/evidence/whiteboard-desktop.png) ·
 [Teacher screenshot](docs/evidence/teacher-desktop.png) ·
 [Mobile screenshot](docs/evidence/campus-mobile.png) ·
-[Redesign evidence](docs/REDESIGN.md) · [Sprint 0 evidence](docs/SPRINT_0.md)
+[Navigation milestone](docs/NAVIGATION_MILESTONE.md) ·
+[Navigation inventory and circulation plans](docs/navigation/README.md) ·
+[Runtime evidence](docs/navigation/runtime.md) ·
+[Earlier redesign evidence](docs/REDESIGN.md) · [Sprint 0 evidence](docs/SPRINT_0.md)
 
 ## Scope
 
 The campus uses an approved original generated environment and the owner’s
-authorized custom Sprinter and Medalist sprites. Further campus expansion,
+authorized custom Sprinter and Medalist sprites. New rooms are deliberately
+low-detail navigation studies; final independent HD plates are gated by walking
+and alignment verification. Final room artwork,
 an animated specialist cast, real authorized GitHub queries,
 server-side public allowlist projection, optional sanitized live events and
 Cloudflare Tunnel remain later milestones. No deployment or live integration is

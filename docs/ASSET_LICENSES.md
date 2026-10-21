@@ -1,15 +1,16 @@
 # Asset provenance registry
 
-Reviewed 2026-10-20. Code licensing and artwork permissions are distinct.
+Reviewed 2026-10-21. Code licensing and artwork permissions are distinct.
 
-| Files | Source | Permission / evidence | Attribution |
-| --- | --- | --- | --- |
-| `public/assets/campus.png` | Original environment made with built-in image generation for this project | Owner approved the scene and its implementation on 2026-10-20; no borrowed game tilesets | MAIA Retro-Tech Academy / Azib |
-| `public/assets/sprinter.webp` | Owner-supplied custom Sprinter pet sprite sheet | Owner explicitly authorized using this existing sprite as the explorer in this public personal project | Custom asset supplied by Azib |
-| `public/assets/medalist.webp` | Owner-supplied custom Medalist pet sprite sheet | Owner explicitly authorized using this existing sprite as Ustazah Juliana in this public personal project | Custom asset supplied by Azib |
-| Tiled geometry, UI and original procedural spike art | Academy project | Project MIT LICENSE | Azib |
-| Template structure | Phaser Studio Inc; pinned in ADR 001 | MIT; `licenses/phaser-template-MIT.txt` | Full notice retained |
-| UI font | Operating-system font stack | No font files distributed | Not applicable |
+| Files                                                                 | Source                                                                      | Permission / evidence                                                                                     | Attribution                    |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| `public/assets/campus.png`                                            | Original environment made with built-in image generation for this project   | Owner approved the scene and its implementation on 2026-10-20; no borrowed game tilesets                  | MAIA Retro-Tech Academy / Azib |
+| `public/assets/sprinter.webp`                                         | Owner-supplied custom Sprinter pet sprite sheet                             | Owner explicitly authorized using this existing sprite as the explorer in this public personal project    | Custom asset supplied by Azib  |
+| `public/assets/medalist.webp`                                         | Owner-supplied custom Medalist pet sprite sheet                             | Owner explicitly authorized using this existing sprite as Ustazah Juliana in this public personal project | Custom asset supplied by Azib  |
+| Tiled geometry, UI and original procedural spike art                  | Academy project                                                             | Project MIT LICENSE                                                                                       | Azib                           |
+| Navigation grayboxes and `docs/navigation/*.svg` circulation diagrams | Original project geometry/code, exported for the navigation-first milestone | Project MIT LICENSE; temporary studies, not final HD environment art                                      | Azib                           |
+| Template structure                                                    | Phaser Studio Inc; pinned in ADR 001                                        | MIT; `licenses/phaser-template-MIT.txt`                                                                   | Full notice retained           |
+| UI font                                                               | Operating-system font stack                                                 | No font files distributed                                                                                 | Not applicable                 |
 
 The custom character sheets are supplied assets, not OpenAI's built-in companion
 art. Their project-specific reuse authorization does not establish a separate
@@ -30,6 +31,9 @@ plaster, timber classrooms, turquoise louvres, tropical courtyard and afternoon
 light. Remove UI and characters. Keep actual open classroom thresholds and clear
 front-room aisles. Preserve the approved scene composition.”
 
-Editable collision source is `scripts/map.ts`, with Tiled TMX and JSON exports.
+The entrance collision source is `scripts/map.ts`. The connected graybox catalog
+is `packages/world/scenes.ts`; `npm run scenes:generate` exports editable Tiled
+TMX/JSON, route evidence and original circulation diagrams. No new final HD room
+plates or foreground masks are included in this navigation milestone.
 Custom sprites are retained byte-for-byte, including their alpha channels.
 Dependencies retain package licenses; build output includes collected notices.

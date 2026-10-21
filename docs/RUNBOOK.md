@@ -13,6 +13,25 @@ Open http://127.0.0.1:3000. Use WASD/arrows to move, E to interact, Escape to cl
 The on-screen D-pad supports held touches. Room directory jumps to safe room positions. M opens the directory.
 The teacher dialogue advances with its button, Enter or Space.
 
+Gold floor-transfer markers connect the entrance to seven independent temporary
+navigation rooms. Approach a marker and press E / Interact; use the south return
+transfer in each room. The Navigate menu offers free camera / touch pan, player
+follow, wheel/buttons/two-finger zoom and opt-in DEMO populations. Follow player
+restores the camera. The room map toggle opens the logical campus graph.
+
+Collision diagnostics and Toggle art are geometry-review tools. The room
+grayboxes establish walking lanes before new final HD art; they are not the
+finished visual direction. See [navigation inventory](navigation/README.md),
+[circulation evidence](navigation/route-report.md) and [runtime evidence](navigation/runtime.md).
+
+Regenerate authored geometry and circulation diagrams with:
+
+```sh
+npm run map:generate
+npm run scenes:generate
+npm test
+```
+
 `npm run dev` is a loopback-only frontend development server. Its board API is
 absent, so the board honestly shows OFFLINE. Use the production run above for the
 complete demo. Never tunnel the development server.

@@ -1,24 +1,37 @@
-# Architecture — Sprint 0
+# Architecture — navigation milestone
 
-The browser is a Vite-built React application hosting one Phaser 3.90 scene.
-`Campus` loads a 32 × 22 Tiled JSON map on a 48 px grid. The invisible collision
-layer drives Arcade Physics, including walls and furniture. The teacher has a
-static physics body. The independent visitor has normalized movement and a foot
-collider. The camera follows the visitor; rooms have two-tile entrances.
+The browser is a Vite-built React application hosting one persistent Phaser 3.90
+world. `Campus` keeps the visitor, input and transition state; `RoomView` replaces
+room-local graphics, bodies, colliders and interaction zones as the visitor moves
+between eight canonical spaces. `CameraRig` owns player follow, free pan, DEMO
+actor follow and bounded zoom. Room switches do not reload the document.
 
-`packages/world/content.ts` separates scripted teacher dialogue and room IDs
-from rendering. A typed in-memory bridge carries position and interaction events
-between Phaser and React. Native HTML dialogs trap focus; gameplay stops while
-one is open. Input belongs to the focused canvas and is cleared on window blur.
-Pointer cancellation releases touch movement. A room directory offers an
-accessible alternate route without removing the walkable campus.
+`packages/world/scenes.ts` is the authoritative geometry catalog, using a 48 px
+logical reference. Its Tiled TMX/JSON exports contain solids, reciprocal portals,
+safe spawns, reserved circulation and interaction approaches. The approved
+entrance image and original 22 collision objects remain; seven new rooms are
+explicitly temporary navigation studies. Arcade Physics drives actual keyboard
+and touch movement with the independently checked 14.08 × 7.92 visitor foot body.
+
+The typed bridge reports world/camera/interaction snapshots to React. Juliana,
+welcome and fixture conversations use anchored, non-blocking speech bubbles;
+walking stays active. The structured PR board and directory remain accessible
+HTML dialogs that pause gameplay. Input belongs to the focused canvas and clears
+on blur, cancellation and transition. Explicit floor transfers require a fresh
+interaction; directory shortcuts offer a separate accessible route.
+
+The opt-in DEMO registry preserves stable worker/task identities across unloaded
+room views. It currently allocates static placements and overflow; it is not a
+live provider, a time-based reservation manager or a worker behavior scheduler.
+The room map and whole-campus graph expose the authoritative layout. Debug
+controls report actual physics, camera, texture and lifecycle facts.
 
 ## Physical boundary
 
-| Process | Bind | Files / inputs | Routes |
-| --- | --- | --- | --- |
-| Public | 127.0.0.1:3000 | `dist/public`, demo DTO | `/`, `/healthz`, `/api/public/board`, assets/maps/notices |
-| Operator | 127.0.0.1:3100 | local password only | authenticated `/`, `/api/operator/board` |
+| Process  | Bind           | Files / inputs          | Routes                                                    |
+| -------- | -------------- | ----------------------- | --------------------------------------------------------- |
+| Public   | 127.0.0.1:3000 | `dist/public`, demo DTO | `/`, `/healthz`, `/api/public/board`, assets/maps/notices |
+| Operator | 127.0.0.1:3100 | local password only     | authenticated `/`, `/api/operator/board`                  |
 
 The public entry point never imports the operator app. The browser build starts
 at `apps/public-web`; there is no operator build in `dist/public`. There is no
@@ -33,7 +46,9 @@ operator access requires a separate authentication design.
 
 ## Deferred contracts
 
-Real GitHub collection and public allowlist projection are Sprint 3. No server
+The [approved living-world interaction plan](plans/2026-10-21-living-world-interaction-vertical-slice.md) adds typed interactables, temporal reservations, separate work/world state, seated foreground occlusion and interruptible dining. These are subsequent implementation gates. A future simulation owner must outlive disposable room views; React must not simulate actor positions or author provider truth.
+
+Real GitHub collection and public allowlist projection remain future work. No server
 accepts raw agent events yet. Later collectors must provide a deny-by-default
 projection with hostile private fixtures and no private counts. Offline output
 must never be substituted with live-looking demo results.

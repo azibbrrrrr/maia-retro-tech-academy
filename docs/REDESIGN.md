@@ -1,5 +1,11 @@
 # Approved campus redesign — 2026-10-20
 
+> Historical single-scene milestone. The navigation-first expansion now moves the
+> teacher and PR board into dedicated rooms and replaces the backdrop thumbnail
+> with logical maps. See [current navigation inventory](navigation/README.md) and
+> [runtime evidence](navigation/runtime.md). Results below describe the earlier
+> verified implementation, not the expanded campus acceptance gate.
+
 The approved scene is implemented as an actual Phaser world filling the browser
 viewport. Original environment art is the backdrop; Sprinter and Medalist are
 separate animated sprites. Tiled rectangle objects provide collision for walls,
@@ -15,15 +21,15 @@ are unchanged.
 
 ## Evidence
 
-| Command | Final result |
-| --- | --- |
-| `npm run check` | Exit 0: typecheck, lint, 5 unit tests, build, bundle scan and 17 browser tests passed |
-| `npm run test:e2e` (within check) | 17 passed in 57.9 seconds; no failures |
-| `npm run audit:bundle` (within check) | 11 distribution files; no private markers or source maps |
-| `npm audit --audit-level=high` | 0 vulnerabilities |
-| `.local/bin/gitleaks git --redact` | No leaks |
-| `.local/bin/gitleaks dir --redact` | No leaks, including public build |
-| `git diff --check` | Exit 0 |
+| Command                               | Final result                                                                          |
+| ------------------------------------- | ------------------------------------------------------------------------------------- |
+| `npm run check`                       | Exit 0: typecheck, lint, 5 unit tests, build, bundle scan and 17 browser tests passed |
+| `npm run test:e2e` (within check)     | 17 passed in 57.9 seconds; no failures                                                |
+| `npm run audit:bundle` (within check) | 11 distribution files; no private markers or source maps                              |
+| `npm audit --audit-level=high`        | 0 vulnerabilities                                                                     |
+| `.local/bin/gitleaks git --redact`    | No leaks                                                                              |
+| `.local/bin/gitleaks dir --redact`    | No leaks, including public build                                                      |
+| `git diff --check`                    | Exit 0                                                                                |
 
 Earlier local browser runs exposed automation latency around narrow waypoints;
 press/release timing now runs in the browser and waits for completed render frames
