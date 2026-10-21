@@ -1,0 +1,167 @@
+[
+  {
+    "population": 4,
+    "trackedWorkers": 4,
+    "inRoomWorkers": 4,
+    "environment": {
+      "browser": "156.0.8078.4",
+      "mode": "Chromium new headless",
+      "graphics": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+        "vendor": "Google Inc. (Apple)"
+      },
+      "platform": "darwin",
+      "arch": "arm64",
+      "node": "v25.9.0",
+      "physicalDevice": false,
+      "safari": false
+    },
+    "performance": {
+      "frameMs": 16.658333333333363,
+      "transitionMs": 299,
+      "textures": [
+        {
+          "key": "campus",
+          "width": 1672,
+          "height": 941,
+          "bytes": 6293408,
+          "filter": "linear"
+        },
+        {
+          "key": "sprinter",
+          "width": 1536,
+          "height": 1872,
+          "bytes": 11501568,
+          "filter": "nearest"
+        },
+        {
+          "key": "medalist",
+          "width": 1536,
+          "height": 1872,
+          "bytes": 11501568,
+          "filter": "nearest"
+        }
+      ],
+      "objects": 81,
+      "staticBodies": 25
+    },
+    "browserFrames": {
+      "frames": 120,
+      "elapsedMs": 1999.8000000000002,
+      "meanFrameMs": 16.665000000000003,
+      "p95FrameMs": 16.700000000000728,
+      "maxFrameMs": 16.800000000000182
+    },
+    "derivedFps": 60.00600060006
+  },
+  {
+    "population": 12,
+    "trackedWorkers": 12,
+    "inRoomWorkers": 12,
+    "environment": {
+      "browser": "156.0.8078.4",
+      "mode": "Chromium new headless",
+      "graphics": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+        "vendor": "Google Inc. (Apple)"
+      },
+      "platform": "darwin",
+      "arch": "arm64",
+      "node": "v25.9.0",
+      "physicalDevice": false,
+      "safari": false
+    },
+    "performance": {
+      "frameMs": 16.666000000000004,
+      "transitionMs": 296.5,
+      "textures": [
+        {
+          "key": "campus",
+          "width": 1672,
+          "height": 941,
+          "bytes": 6293408,
+          "filter": "linear"
+        },
+        {
+          "key": "sprinter",
+          "width": 1536,
+          "height": 1872,
+          "bytes": 11501568,
+          "filter": "nearest"
+        },
+        {
+          "key": "medalist",
+          "width": 1536,
+          "height": 1872,
+          "bytes": 11501568,
+          "filter": "nearest"
+        }
+      ],
+      "objects": 105,
+      "staticBodies": 33
+    },
+    "browserFrames": {
+      "frames": 120,
+      "elapsedMs": 1999.8999999999996,
+      "meanFrameMs": 16.66583333333333,
+      "p95FrameMs": 16.799999999999272,
+      "maxFrameMs": 16.80000000000109
+    },
+    "derivedFps": 60.00300015000751
+  },
+  {
+    "population": 20,
+    "trackedWorkers": 20,
+    "inRoomWorkers": 16,
+    "environment": {
+      "browser": "156.0.8078.4",
+      "mode": "Chromium new headless",
+      "graphics": {
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3, Unspecified Version)",
+        "vendor": "Google Inc. (Apple)"
+      },
+      "platform": "darwin",
+      "arch": "arm64",
+      "node": "v25.9.0",
+      "physicalDevice": false,
+      "safari": false
+    },
+    "performance": {
+      "frameMs": 16.666166666666673,
+      "transitionMs": 295.40000000596046,
+      "textures": [
+        {
+          "key": "campus",
+          "width": 1672,
+          "height": 941,
+          "bytes": 6293408,
+          "filter": "linear"
+        },
+        {
+          "key": "sprinter",
+          "width": 1536,
+          "height": 1872,
+          "bytes": 11501568,
+          "filter": "nearest"
+        },
+        {
+          "key": "medalist",
+          "width": 1536,
+          "height": 1872,
+          "bytes": 11501568,
+          "filter": "nearest"
+        }
+      ],
+      "objects": 117,
+      "staticBodies": 37
+    },
+    "browserFrames": {
+      "frames": 120,
+      "elapsedMs": 1999.8999999999996,
+      "meanFrameMs": 16.66583333333333,
+      "p95FrameMs": 16.700000000000728,
+      "maxFrameMs": 16.80000000000109
+    },
+    "derivedFps": 60.00300015000751
+  }
+]

@@ -1,4 +1,4 @@
-import academy from "../../public/maps/academy.json";
+import academy from "../../public/maps/academy.json" with { type: "json" };
 
 export const sceneIds = [
   "entrance",

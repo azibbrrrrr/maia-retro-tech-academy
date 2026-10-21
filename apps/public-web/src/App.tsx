@@ -1,25 +1,39 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Phaser from "phaser";
+import { NavigationMap, NavigationTools } from "./NavigationHud";
+import { SpeechBubble, type Speech } from "./SpeechBubble";
 import { Campus } from "../../../packages/game/Campus";
 import type {
   Bridge,
   Direction,
   WorldState,
 } from "../../../packages/game/bridge";
-import {
-  places,
-  teacher,
-  type Interaction,
-} from "../../../packages/world/content";
+import { places, teacher } from "../../../packages/world/content";
 import type { BoardTab, DemoBoard } from "../../../packages/contracts/board";
 
-type Panel = Interaction | "directory" | null;
+type Panel = "board" | "directory" | null;
 const initialWorld: WorldState = {
   x: 836,
   y: 660,
   area: "Dataran Akademi",
   nearby: "",
   ready: false,
+  sceneId: "entrance",
+  fixture: "",
+  transitioning: false,
+  camera: { mode: "player", zoom: 1, x: 0, y: 0, width: 0, height: 0 },
+  selectedActor: "",
+  debug: false,
+  art: true,
+  actors: [],
+  visibleActors: 0,
+  performance: {
+    frameMs: 0,
+    transitionMs: 0,
+    textures: [],
+    objects: 0,
+    staticBodies: 0,
+  },
 };
 
 function Game({ bridge }: { bridge: Bridge }) {
@@ -188,6 +202,12 @@ export function App() {
   const [world, setWorld] = useState(initialWorld);
   const [panel, setPanel] = useState<Panel>(null);
   const [line, setLine] = useState(0);
+  const [speech, setSpeech] = useState<Speech | null>(null);
+  const speechRef = useRef<Speech | null>(null);
+  const dismissSpeech = () => {
+    speechRef.current = null;
+    setSpeech(null);
+  };
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenPending, setFullscreenPending] = useState(false);
   const [fullscreenMessage, setFullscreenMessage] = useState("");
@@ -196,19 +216,40 @@ export function App() {
     typeof document.exitFullscreen === "function" &&
     document.fullscreenEnabled !== false;
   const dialog = useRef<HTMLDialogElement>(null);
-  const nextDialogue = useRef<HTMLButtonElement>(null);
   const bridge = useMemo<Bridge>(
     () => ({
       held: new Set(),
       paused: false,
       onState: setWorld,
-      onInteract: (kind) => {
-        setLine(0);
-        setPanel(kind);
+      onInteract: (kind, anchor) => {
+        if (kind === "board") {
+          speechRef.current = null;
+          setSpeech(null);
+          setPanel("board");
+          return;
+        }
+        if (!anchor) return;
+        const current = speechRef.current;
+        setLine(
+          current?.kind === "teacher" &&
+            kind === "teacher" &&
+            current.sceneId === anchor.sceneId
+            ? (value) => (value + 1) % teacher.dialogue.length
+            : 0,
+        );
+        const next = { kind, ...anchor };
+        speechRef.current = next;
+        setSpeech(next);
       },
       interact: () => {},
       visit: () => {},
       zoom: () => {},
+      cameraMode: () => {},
+      pan: () => {},
+      selectActor: () => {},
+      demoActors: () => {},
+      debug: () => {},
+      art: () => {},
       focus: () => {},
     }),
     [],
@@ -218,14 +259,37 @@ export function App() {
     bridge.held.clear();
     if (panel) {
       dialog.current?.showModal();
-      if (panel === "teacher") nextDialogue.current?.focus();
     } else {
       dialog.current?.close();
       bridge.focus();
     }
   }, [panel, bridge]);
   useEffect(() => {
+    if (
+      speech &&
+      (world.transitioning ||
+        speech.sceneId !== world.sceneId ||
+        Math.hypot(world.x - speech.point.x, world.y - speech.point.y) > 110)
+    ) {
+      speechRef.current = null;
+      setSpeech(null);
+    }
+  }, [world.x, world.y, world.sceneId, world.transitioning, speech]);
+  useEffect(() => {
+    if (panel) {
+      speechRef.current = null;
+      setSpeech(null);
+    }
+  }, [panel]);
+  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && speechRef.current && panel === null) {
+        event.preventDefault();
+        speechRef.current = null;
+        setSpeech(null);
+        bridge.focus();
+        return;
+      }
       const target = event.target;
       if (
         panel !== null ||
@@ -292,7 +356,18 @@ export function App() {
         <header className="hud-top">
           <button
             className="location-badge hud-surface"
-            onClick={() => setPanel("welcome")}
+            onClick={() => {
+              const next: Speech = {
+                kind: "welcome",
+                sceneId: world.sceneId,
+                label: "MAIA welcome",
+                point: { x: world.x, y: world.y },
+                speaker: { x: world.x, y: world.y - 82 },
+              };
+              speechRef.current = next;
+              setSpeech(next);
+              bridge.focus();
+            }}
             aria-label="About MAIA academy"
           >
             <span className="academy-name">MAIA / RETRO-TECH ACADEMY</span>
@@ -401,37 +476,23 @@ export function App() {
             </span>
           </button>
         </div>
-        <aside
-          className="minimap-panel hud-surface"
-          aria-label="Campus navigation"
-        >
-          <svg
-            className="mini-map"
-            viewBox="0 0 1672 941"
-            role="img"
-            aria-label={`Campus map. You are in ${world.area}.`}
-          >
-            <image href="/assets/campus.png" width="1672" height="941" />
-            <circle
-              data-explorer
-              cx={world.x}
-              cy={world.y}
-              r="32"
-              fill="#f9da81"
-              stroke="#172e2a"
-              strokeWidth="12"
-            />
-          </svg>
-          <div className="map-info">
-            <p>
-              <span className="keyboard-help">
-                WASD / Arrow keys to explore
-              </span>
-              <span className="offline-note">Agent connections offline</span>
-            </p>
-            <span className="mode-badge">DEMO</span>
-          </div>
-        </aside>
+        {speech && (
+          <SpeechBubble
+            speech={speech}
+            world={world}
+            line={line}
+            onNext={() => {
+              setLine((value) => (value + 1) % teacher.dialogue.length);
+              bridge.focus();
+            }}
+            onClose={() => {
+              dismissSpeech();
+              bridge.focus();
+            }}
+          />
+        )}
+        <NavigationTools world={world} bridge={bridge} />
+        <NavigationMap world={world} />
       </main>
       <dialog
         ref={dialog}
@@ -449,33 +510,6 @@ export function App() {
           ×
         </button>
         {panel === "board" && <Board />}
-        {panel === "teacher" && (
-          <div className="teacher-dialog">
-            <p className="eyebrow">BILIK CIKGU / A FRIENDLY FACE</p>
-            <span className="teacher-heart" aria-hidden="true">
-              ♡
-            </span>
-            <h2 id="panel-title">{teacher.name}</h2>
-            <span className="card-status rose">
-              Schoolteacher · scripted character
-            </span>
-            <blockquote lang="ms">{teacher.dialogue[line]}</blockquote>
-            <p className="muted">
-              A little reminder from your friendly classroom teacher.
-            </p>
-            <button
-              className="primary"
-              aria-label="Next dialogue"
-              ref={nextDialogue}
-              onClick={() => setLine((line + 1) % teacher.dialogue.length)}
-            >
-              Sambung cerita <span>→</span>
-            </button>
-            <small>
-              {line + 1} / {teacher.dialogue.length} · Malay dialogue
-            </small>
-          </div>
-        )}
         {panel === "directory" && (
           <>
             <p className="eyebrow">FIND YOUR WAY</p>
@@ -499,41 +533,6 @@ export function App() {
                 <span>↗</span>
               </button>
             ))}
-          </>
-        )}
-        {panel === "welcome" && (
-          <>
-            <p className="eyebrow">THE SCHOOL GATES ARE OPEN</p>
-            <h2 id="panel-title">
-              Selamat datang
-              <br />
-              ke Akademi MAIA.
-            </h2>
-            <p className="panel-intro">
-              An original little Malaysian campus, where timber classrooms meet
-              modern engineering ideas.
-            </p>
-            <ol className="welcome-list">
-              <li>Move with WASD, arrow keys or the on-screen D-pad.</li>
-              <li>
-                Approach Cikgu or the whiteboard, then press E or tap Interact.
-              </li>
-              <li>
-                Use the room directory for a quick trip. Escape closes any
-                panel.
-              </li>
-            </ol>
-            <div className="notice">
-              <strong>YOUR OWN EXPLORER</strong>
-              <span>
-                You control your visitor avatar. This campus does not expose an
-                owner’s coding session.
-              </span>
-            </div>
-            <p className="muted">
-              Illustrated campus · Demo board · Agent connections offline. No
-              personal school information or live private data is shown.
-            </p>
           </>
         )}
       </dialog>

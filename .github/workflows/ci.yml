@@ -37,4 +37,5 @@ jobs:
           name: browser-evidence
           path: |
             docs/evidence/
+            docs/navigation/evidence/
             test-results/

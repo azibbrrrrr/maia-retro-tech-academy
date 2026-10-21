@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./helpers/test";
 
 test("HUD shortcuts travel to rooms and directory pauses movement until Escape", async ({
   page,
@@ -9,13 +9,18 @@ test("HUD shortcuts travel to rooms and directory pauses movement until Escape",
   ).toBeEnabled();
   await page.getByRole("button", { name: "Cikgu ♥", exact: true }).click();
   await expect(page.locator("canvas")).toBeFocused();
-  const teacherX = await page.locator("[data-explorer]").getAttribute("cx");
+  await expect(page.locator("[data-explorer]")).toHaveAttribute(
+    "data-scene",
+    "cikgu_room",
+  );
+  await page.waitForTimeout(350);
   await page.getByRole("button", { name: "PR Board", exact: true }).click();
   await expect(page.locator("canvas")).toBeFocused();
-  await expect(page.locator("[data-explorer]")).not.toHaveAttribute(
-    "cx",
-    teacherX!,
+  await expect(page.locator("[data-explorer]")).toHaveAttribute(
+    "data-scene",
+    "high_council",
   );
+  await page.waitForTimeout(350);
   await page.keyboard.press("m");
   await expect(page.getByRole("dialog")).toContainText("Room directory");
   await page.keyboard.press("m");
@@ -31,7 +36,7 @@ test("HUD shortcuts travel to rooms and directory pauses movement until Escape",
 
 for (const viewport of [
   { width: 1440, height: 900 },
-  { width: 1000, height: 1000 },
+  { width: 1280, height: 720 },
   { width: 390, height: 844 },
   { width: 844, height: 390 },
   { width: 320, height: 568 },
@@ -119,9 +124,11 @@ test("fullscreen rejection reports the failure without claiming fullscreen", asy
   });
   await page.goto("/");
   await page.getByRole("button", { name: "Enter fullscreen" }).click();
-  await expect(page.getByRole("status")).toContainText(
-    "Fullscreen could not be opened",
-  );
+  await expect(
+    page
+      .getByRole("status")
+      .filter({ hasText: "Fullscreen could not be opened" }),
+  ).toContainText("Fullscreen could not be opened");
   await expect(
     page.getByRole("button", { name: "Enter fullscreen" }),
   ).toHaveAttribute("aria-pressed", "false");

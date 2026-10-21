@@ -1,30 +1,19 @@
-export type Place = "gate" | "council" | "teacher";
-export type Interaction = "teacher" | "board" | "welcome";
-export const places: {
-  id: Place;
-  title: string;
-  description: string;
-  spawn: string;
-}[] = [
-  {
-    id: "gate",
-    title: "School gate",
-    description: "Courtyard · start your visit",
-    spawn: "spawn_gate",
-  },
-  {
-    id: "council",
-    title: "High Council",
-    description: "Whiteboard · learn about pull requests",
-    spawn: "door_council",
-  },
-  {
-    id: "teacher",
-    title: "Bilik Cikgu",
-    description: "Ustazah Juliana · say hello",
-    spawn: "door_teacher",
-  },
-];
+import { sceneCatalog, sceneIds, type SceneId } from "./scenes";
+export type Place = SceneId | "gate" | "council" | "teacher";
+export type Interaction = "teacher" | "board" | "welcome" | "fixture";
+export const places = sceneIds.map((id) => ({
+  id: (id === "entrance" ? "gate" : id) as Place,
+  title:
+    id === "entrance"
+      ? "School gate"
+      : id === "high_council"
+        ? "High Council"
+        : sceneCatalog[id].title,
+  description:
+    id === "entrance"
+      ? "Courtyard · start your visit"
+      : "Temporary navigation study · DEMO / OFFLINE",
+}));
 export const teacher = {
   id: "npc_cikgu",
   type: "Npc",
