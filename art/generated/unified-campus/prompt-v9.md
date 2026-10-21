@@ -1,0 +1,10 @@
+# Warm unified campus v9 — four open verandah entrances
+
+Mode: built-in imagegen edit, 2026-10-22.
+Input: v8 warm campus plus `campus-warm-v8-four-apertures-edit-guide.png`.
+The guide marks four actual closed wall/door regions for removal; annotations
+must not appear in the final image. Owner explicitly authorized entrance edits. Actual output is native 1670×941; no upscale or 4K claim.
+
+## Final prompt
+
+Use case: precise-object-edit. Image1 is the full academy EDIT TARGET. Image2 is an ENGINEERING EDIT MASK GUIDE: four red rectangles labeled1,2,3,4 identify walls that MUST BE DELETED. Make a clear structural change in ALL FOUR rectangles. DELETE ALL vertical wall/closed door/leaf/brass handle/post/railing pixels inside each marked rectangle and replace them with EMPTY, LEVEL, continuous walkable FLOOR. These rooms must be OPEN TO THE VERANDAH with BIG OPEN SIDE-WALL GAPS, not closed hinged doors. Region1 Library: broad wood-floor to corridor-tile aperture occupying the whole red band. Region2 NOC: broad dark-floor to corridor-tile aperture occupying whole red band. Region3 Council: broad wood-floor to corridor-tile aperture occupying whole red band. Region4 QA: broad dark-floor to corridor-tile aperture occupying whole red band. Keep only small upper/lower jambs OUTSIDE red rectangles. Within each rectangle there must be no upright wall stripe, no leaf, no pillar across the path: it should show flat FLOOR continuous from one side to the other. It is OK to fully remove each short side-wall section to make open pavilion-style room entrances. This explicit removal is more important than preserving door details. Preserve the other architecture, exact room locations,16Engineeringdesks4×4,2Kantintables,courtyard,gardens,gate,allroom-signtext,richwarmgoldenlight,terracottaroofs,turquoiselouvres and mature detailedpixelart aesthetic. Output fullcampus ONLY without red rectangles/labels/grid/people/HUD. Do not merely remove cabinets while keeping closeddoorstripes. Allfour actualwallsegments must become obvious bigfloor openings.
