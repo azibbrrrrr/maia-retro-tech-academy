@@ -1,0 +1,3796 @@
+{
+  "compressionlevel": -1,
+  "width": 80,
+  "height": 45,
+  "infinite": false,
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "tiledversion": "1.11.2",
+  "tilewidth": 48,
+  "tileheight": 48,
+  "type": "map",
+  "version": "1.10",
+  "nextlayerid": 9,
+  "nextobjectid": 162,
+  "properties": [
+    {
+      "name": "campusId",
+      "type": "string",
+      "value": "academy"
+    },
+    {
+      "name": "worldWidth",
+      "type": "float",
+      "value": 3840
+    },
+    {
+      "name": "worldHeight",
+      "type": "float",
+      "value": 2160
+    },
+    {
+      "name": "nativeImageWidth",
+      "type": "float",
+      "value": 1670
+    },
+    {
+      "name": "nativeImageHeight",
+      "type": "float",
+      "value": 941
+    },
+    {
+      "name": "imageScaleX",
+      "type": "float",
+      "value": 2.2994011976047903
+    },
+    {
+      "name": "imageScaleY",
+      "type": "float",
+      "value": 2.2954303931987248
+    },
+    {
+      "name": "imageOffsetX",
+      "type": "float",
+      "value": 0
+    },
+    {
+      "name": "imageOffsetY",
+      "type": "float",
+      "value": 0
+    },
+    {
+      "name": "backgroundSource",
+      "type": "string",
+      "value": "/assets/campus-unified.png"
+    }
+  ],
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "name": "campus-background",
+      "tilewidth": 1670,
+      "tileheight": 941,
+      "tilecount": 1,
+      "columns": 0,
+      "objectalignment": "bottomleft",
+      "tiles": [
+        {
+          "id": 0,
+          "image": "../assets/campus-unified.png",
+          "imagewidth": 1670,
+          "imageheight": 941
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "id": 2,
+      "name": "background",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "name": "campus-background",
+          "type": "",
+          "gid": 1,
+          "x": 0,
+          "y": 2160,
+          "width": 3840,
+          "height": 2160
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "zones",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 2,
+          "name": "entrance",
+          "type": "semantic-zone",
+          "x": 0,
+          "y": 0,
+          "width": 3840,
+          "height": 2160,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 3840,
+              "y": 0
+            },
+            {
+              "x": 3840,
+              "y": 2160
+            },
+            {
+              "x": 0,
+              "y": 2160
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Dataran Akademi"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 0
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 0
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 3840
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 2160
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "library",
+          "type": "semantic-zone",
+          "x": 151.7605,
+          "y": 119.3624,
+          "width": 692.1197,
+          "height": 420.06370000000004,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 692.1197,
+              "y": 0
+            },
+            {
+              "x": 692.1197,
+              "y": 420.06370000000004
+            },
+            {
+              "x": 0,
+              "y": 420.06370000000004
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Perpustakaan"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 110.3713
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 68.8629
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 873.7724
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 518.7673
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "engineering_lab",
+          "type": "semantic-zone",
+          "x": 1122.1078,
+          "y": 89.5218,
+          "width": 1600.3832,
+          "height": 764.3783,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 1600.3832,
+              "y": 0
+            },
+            {
+              "x": 1600.3832,
+              "y": 764.3783
+            },
+            {
+              "x": 0,
+              "y": 764.3783
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Makmal Kejuruteraan"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 1094.515
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 55.0903
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 1655.5688
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 849.3093
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "watchtower",
+          "type": "semantic-zone",
+          "x": 2975.4251,
+          "y": 117.067,
+          "width": 726.6107999999999,
+          "height": 422.3591,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 726.6107999999999,
+              "y": 0
+            },
+            {
+              "x": 726.6107999999999,
+              "y": 422.3591
+            },
+            {
+              "x": 0,
+              "y": 422.3591
+            },
+            {
+              "x": 0,
+              "y": 0
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Watchtower NOC"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 2878.8503
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 64.2721
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 850.7784
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 527.9489
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "high_council",
+          "type": "semantic-zone",
+          "x": 140.2635,
+          "y": 608.2891,
+          "width": 682.9221,
+          "height": 426.95000000000005,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 682.9221,
+              "y": 0
+            },
+            {
+              "x": 682.9221,
+              "y": 426.95000000000005
+            },
+            {
+              "x": 0,
+              "y": 426.95000000000005
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Dewan High Council"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 101.1737
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 578.4485
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 878.3712
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 500.4038
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "qa_lab",
+          "type": "semantic-zone",
+          "x": 3016.8144,
+          "y": 605.9936,
+          "width": 687.5209,
+          "height": 429.2455,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 687.5209,
+              "y": 0
+            },
+            {
+              "x": 687.5209,
+              "y": 429.2455
+            },
+            {
+              "x": 0,
+              "y": 429.2455
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Makmal QA"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 2869.6527
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 576.153
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 869.1736
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 504.9947
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "kantin",
+          "type": "semantic-zone",
+          "x": 135.6647,
+          "y": 1088.034,
+          "width": 788.6945999999999,
+          "height": 580.7438999999999,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 788.6945999999999,
+              "y": 0
+            },
+            {
+              "x": 788.6945999999999,
+              "y": 580.7438999999999
+            },
+            {
+              "x": 0,
+              "y": 580.7438999999999
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Kantin Akademi"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 96.5749
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 1055.898
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 887.5688
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 642.7205
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "cikgu_room",
+          "type": "semantic-zone",
+          "x": 2878.8503,
+          "y": 1088.034,
+          "width": 827.7844,
+          "height": 560.0849999999998,
+          "polygon": [
+            {
+              "x": 0,
+              "y": 0
+            },
+            {
+              "x": 827.7844,
+              "y": 0
+            },
+            {
+              "x": 827.7844,
+              "y": 560.0849999999998
+            },
+            {
+              "x": 0,
+              "y": 560.0849999999998
+            }
+          ],
+          "properties": [
+            {
+              "name": "title",
+              "type": "string",
+              "value": "Bilik Cikgu"
+            },
+            {
+              "name": "focusX",
+              "type": "float",
+              "value": 2867.3533
+            },
+            {
+              "name": "focusY",
+              "type": "float",
+              "value": 1055.898
+            },
+            {
+              "name": "focusWidth",
+              "type": "float",
+              "value": 878.3713
+            },
+            {
+              "name": "focusHeight",
+              "type": "float",
+              "value": 631.2433
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "collision",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 10,
+          "name": "library-north-wall",
+          "type": "wall",
+          "x": 110.3713,
+          "y": 59.6812,
+          "width": 864.5748,
+          "height": 55.0903,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "library-west-wall",
+          "type": "wall",
+          "x": 110.3713,
+          "y": 110.1807,
+          "width": 45.988,
+          "height": 440.7226,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "library-east-north-jamb",
+          "type": "wall",
+          "x": 818.5868,
+          "y": 110.1807,
+          "width": 52.8863,
+          "height": 201.9978,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "library-east-south-jamb",
+          "type": "wall",
+          "x": 809.3892,
+          "y": 484.3358,
+          "width": 55.1857,
+          "height": 71.1584,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "library-south-wall",
+          "type": "wall",
+          "x": 151.7605,
+          "y": 532.5399,
+          "width": 779.497,
+          "height": 55.0903,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "lab-north-wall",
+          "type": "wall",
+          "x": 1094.515,
+          "y": 50.4995,
+          "width": 1655.5688,
+          "height": 57.3857,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "lab-west-north",
+          "type": "wall",
+          "x": 1094.515,
+          "y": 105.5898,
+          "width": 39.0898,
+          "height": 160.6801,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "lab-west-closed-leaf",
+          "type": "wall",
+          "x": 1092.2156,
+          "y": 266.2699,
+          "width": 50.5868,
+          "height": 229.5431,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "name": "lab-west-south",
+          "type": "wall",
+          "x": 1094.515,
+          "y": 495.813,
+          "width": 39.0898,
+          "height": 362.678,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "lab-east-north",
+          "type": "wall",
+          "x": 2708.6946,
+          "y": 105.5898,
+          "width": 41.3892,
+          "height": 160.6801,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "name": "lab-east-closed-leaf",
+          "type": "wall",
+          "x": 2706.3952,
+          "y": 266.2699,
+          "width": 55.1856,
+          "height": 229.5431,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "lab-east-south",
+          "type": "wall",
+          "x": 2708.6946,
+          "y": 495.813,
+          "width": 41.3892,
+          "height": 362.678,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "lab-south-west-jamb",
+          "type": "wall",
+          "x": 1667.0659,
+          "y": 814.8778,
+          "width": 64.3832,
+          "height": 144.6121,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "lab-south-east-jamb",
+          "type": "wall",
+          "x": 2106.2515,
+          "y": 814.8778,
+          "width": 66.6826,
+          "height": 144.6121,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "watchtower-north-wall",
+          "type": "wall",
+          "x": 2901.8443,
+          "y": 57.3858,
+          "width": 853.0779,
+          "height": 57.3857,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "name": "watchtower-east-wall",
+          "type": "wall",
+          "x": 3706.6347,
+          "y": 110.1807,
+          "width": 45.9881,
+          "height": 447.6089,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "watchtower-west-north-jamb",
+          "type": "wall",
+          "x": 2943.2335,
+          "y": 110.1807,
+          "width": 62.0839,
+          "height": 206.5887,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "watchtower-west-south-jamb",
+          "type": "wall",
+          "x": 2961.6287,
+          "y": 482.0404,
+          "width": 52.8863,
+          "height": 75.7492,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "watchtower-south-wall",
+          "type": "wall",
+          "x": 2920.2395,
+          "y": 527.949,
+          "width": 786.3952,
+          "height": 50.4995,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "council-north-wall",
+          "type": "wall",
+          "x": 105.7725,
+          "y": 583.0393,
+          "width": 850.7784,
+          "height": 57.3858,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "council-west-wall",
+          "type": "wall",
+          "x": 105.7725,
+          "y": 635.8342,
+          "width": 45.988,
+          "height": 399.4049,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "name": "council-east-north-jamb",
+          "type": "wall",
+          "x": 797.8922,
+          "y": 638.1296,
+          "width": 55.1856,
+          "height": 110.1807,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "council-east-south-jamb",
+          "type": "wall",
+          "x": 779.497,
+          "y": 934.2402,
+          "width": 57.485,
+          "height": 107.8852,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "name": "council-south-wall",
+          "type": "wall",
+          "x": 147.1617,
+          "y": 1030.6482,
+          "width": 774.8982,
+          "height": 55.0904,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "qa-north-wall",
+          "type": "wall",
+          "x": 2885.7485,
+          "y": 580.7439,
+          "width": 866.8743,
+          "height": 61.9766,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "name": "qa-east-wall",
+          "type": "wall",
+          "x": 3708.9341,
+          "y": 638.1296,
+          "width": 45.9881,
+          "height": 403.9958,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "name": "qa-west-north-jamb",
+          "type": "wall",
+          "x": 2984.6228,
+          "y": 638.1296,
+          "width": 62.0838,
+          "height": 126.2487,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "name": "qa-west-south-jamb",
+          "type": "wall",
+          "x": 2998.4192,
+          "y": 943.4219,
+          "width": 50.5868,
+          "height": 98.7035,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "name": "qa-south-wall",
+          "type": "wall",
+          "x": 2920.2395,
+          "y": 1030.6482,
+          "width": 788.6946,
+          "height": 55.0904,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "name": "kantin-north-wall",
+          "type": "wall",
+          "x": 96.5749,
+          "y": 1051.3071,
+          "width": 864.5748,
+          "height": 57.3858,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "name": "kantin-west-wall",
+          "type": "wall",
+          "x": 96.5749,
+          "y": 1106.3974,
+          "width": 45.988,
+          "height": 566.9714,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "name": "kantin-east-north-jamb",
+          "type": "wall",
+          "x": 910.5629,
+          "y": 1106.3974,
+          "width": 55.1856,
+          "height": 197.4071,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "name": "kantin-east-south-jamb",
+          "type": "wall",
+          "x": 882.9701,
+          "y": 1576.9607,
+          "width": 59.7844,
+          "height": 107.8852,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "name": "kantin-south-wall",
+          "type": "wall",
+          "x": 144.8623,
+          "y": 1661.8916,
+          "width": 781.7964,
+          "height": 52.7949,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "name": "cikgu-north-wall",
+          "type": "wall",
+          "x": 2874.2515,
+          "y": 1051.3071,
+          "width": 878.3713,
+          "height": 57.3858,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "name": "cikgu-east-wall",
+          "type": "wall",
+          "x": 3706.6347,
+          "y": 1106.3974,
+          "width": 45.9881,
+          "height": 573.8576,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "name": "cikgu-west-north-jamb",
+          "type": "wall",
+          "x": 2844.3593,
+          "y": 1106.3974,
+          "width": 50.5868,
+          "height": 204.2934,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "name": "cikgu-west-south-jamb",
+          "type": "wall",
+          "x": 2871.9521,
+          "y": 1554.0064,
+          "width": 64.3832,
+          "height": 128.5441,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "name": "cikgu-south-wall",
+          "type": "wall",
+          "x": 2920.2395,
+          "y": 1661.8916,
+          "width": 786.3952,
+          "height": 52.7949,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "name": "north-campus-boundary",
+          "type": "wall",
+          "x": 0,
+          "y": 0,
+          "width": 3840,
+          "height": 43.6132,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "name": "west-campus-boundary",
+          "type": "wall",
+          "x": 0,
+          "y": 41.3177,
+          "width": 45.988,
+          "height": 1661.8917,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "name": "east-campus-boundary",
+          "type": "wall",
+          "x": 3794.012,
+          "y": 41.3177,
+          "width": 45.988,
+          "height": 1661.8917,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "name": "outer-fence-west",
+          "type": "fence",
+          "x": 0,
+          "y": 1703.2094,
+          "width": 1476.2156,
+          "height": 61.9766,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fence"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "name": "outer-fence-east",
+          "type": "fence",
+          "x": 2366.0838,
+          "y": 1703.2094,
+          "width": 1473.9162,
+          "height": 61.9766,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fence"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "name": "gate-sign-wall",
+          "type": "wall",
+          "x": 1529.1018,
+          "y": 1650.4145,
+          "width": 790.994,
+          "height": 236.4293,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "name": "open-gate-leaf-west",
+          "type": "fence",
+          "x": 1342.8503,
+          "y": 1756.0043,
+          "width": 131.0659,
+          "height": 149.2029,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fence"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "name": "open-gate-leaf-east",
+          "type": "fence",
+          "x": 2368.3832,
+          "y": 1756.0043,
+          "width": 131.0659,
+          "height": 149.2029,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fence"
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "name": "courtyard-garden-west",
+          "type": "landscape",
+          "x": 1193.3892,
+          "y": 1023.762,
+          "width": 600.1437,
+          "height": 527.9489,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "name": "courtyard-garden-east",
+          "type": "landscape",
+          "x": 2051.0659,
+          "y": 1023.762,
+          "width": 595.5449,
+          "height": 527.9489,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "name": "courtyard-bench-west",
+          "type": "fixture",
+          "x": 1515.3054,
+          "y": 1423.1668,
+          "width": 174.7545,
+          "height": 68.863,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "name": "courtyard-bench-east",
+          "type": "fixture",
+          "x": 2191.3293,
+          "y": 1423.1668,
+          "width": 179.3533,
+          "height": 68.863,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "name": "tree-trunk-west",
+          "type": "landscape",
+          "x": 1476.2156,
+          "y": 1166.0786,
+          "width": 36.7904,
+          "height": 48.2041,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "name": "tree-trunk-east",
+          "type": "landscape",
+          "x": 2290.2036,
+          "y": 1166.0786,
+          "width": 36.7904,
+          "height": 48.2041,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 63,
+          "name": "library-bookcases",
+          "type": "fixture",
+          "x": 183.9521,
+          "y": 130.8395,
+          "width": 634.6347,
+          "height": 151.4984,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "name": "library-reading-table",
+          "type": "fixture",
+          "x": 333.4132,
+          "y": 346.61,
+          "width": 413.8922,
+          "height": 192.8161,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 65,
+          "name": "library-side-cabinet-west",
+          "type": "fixture",
+          "x": 170.1557,
+          "y": 344.3146,
+          "width": 89.6766,
+          "height": 114.7715,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 66,
+          "name": "library-lower-jamb-plant",
+          "type": "landscape",
+          "x": 749.6048,
+          "y": 507.2901,
+          "width": 50.5868,
+          "height": 45.9086,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "name": "lab-north-equipment",
+          "type": "fixture",
+          "x": 1168.0958,
+          "y": 114.7715,
+          "width": 351.8084,
+          "height": 133.135,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 68,
+          "name": "lab-north-equipment-center",
+          "type": "fixture",
+          "x": 1538.2994,
+          "y": 114.7715,
+          "width": 777.1976,
+          "height": 133.135,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 69,
+          "name": "lab-north-equipment-east",
+          "type": "fixture",
+          "x": 2333.8922,
+          "y": 114.7715,
+          "width": 335.7126,
+          "height": 133.135,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "name": "station-footprint-01",
+          "type": "fixture",
+          "x": 1347.4491,
+          "y": 273.1562,
+          "width": 177.0539,
+          "height": 140.0213,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "name": "station-footprint-02",
+          "type": "fixture",
+          "x": 1639.4731,
+          "y": 273.1562,
+          "width": 179.3532,
+          "height": 140.0213,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 72,
+          "name": "station-footprint-03",
+          "type": "fixture",
+          "x": 2018.8743,
+          "y": 273.1562,
+          "width": 170.1556,
+          "height": 140.0213,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 73,
+          "name": "station-footprint-04",
+          "type": "fixture",
+          "x": 2322.3952,
+          "y": 273.1562,
+          "width": 172.4551,
+          "height": 140.0213,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 74,
+          "name": "station-footprint-05",
+          "type": "fixture",
+          "x": 1347.4491,
+          "y": 413.1775,
+          "width": 177.0539,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 75,
+          "name": "station-footprint-06",
+          "type": "fixture",
+          "x": 1639.4731,
+          "y": 413.1775,
+          "width": 179.3532,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 76,
+          "name": "station-footprint-07",
+          "type": "fixture",
+          "x": 2018.8743,
+          "y": 413.1775,
+          "width": 170.1556,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 77,
+          "name": "station-footprint-08",
+          "type": "fixture",
+          "x": 2322.3952,
+          "y": 413.1775,
+          "width": 172.4551,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 78,
+          "name": "station-footprint-09",
+          "type": "fixture",
+          "x": 1347.4491,
+          "y": 548.6079,
+          "width": 177.0539,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 79,
+          "name": "station-footprint-10",
+          "type": "fixture",
+          "x": 1639.4731,
+          "y": 548.6079,
+          "width": 179.3532,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 80,
+          "name": "station-footprint-11",
+          "type": "fixture",
+          "x": 2018.8743,
+          "y": 548.6079,
+          "width": 170.1556,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 81,
+          "name": "station-footprint-12",
+          "type": "fixture",
+          "x": 2322.3952,
+          "y": 548.6079,
+          "width": 172.4551,
+          "height": 135.4304,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 82,
+          "name": "station-footprint-13",
+          "type": "fixture",
+          "x": 1347.4491,
+          "y": 684.0383,
+          "width": 177.0539,
+          "height": 140.0212,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 83,
+          "name": "station-footprint-14",
+          "type": "fixture",
+          "x": 1639.4731,
+          "y": 684.0383,
+          "width": 179.3532,
+          "height": 140.0212,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 84,
+          "name": "station-footprint-15",
+          "type": "fixture",
+          "x": 2018.8743,
+          "y": 684.0383,
+          "width": 170.1556,
+          "height": 140.0212,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "name": "station-footprint-16",
+          "type": "fixture",
+          "x": 2322.3952,
+          "y": 684.0383,
+          "width": 172.4551,
+          "height": 140.0212,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 86,
+          "name": "watchtower-rack-west",
+          "type": "fixture",
+          "x": 2943.2335,
+          "y": 130.8395,
+          "width": 114.9701,
+          "height": 201.9979,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 87,
+          "name": "watchtower-rack-east",
+          "type": "fixture",
+          "x": 3564.0719,
+          "y": 123.9532,
+          "width": 124.1676,
+          "height": 392.5186,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "name": "watchtower-console",
+          "type": "fixture",
+          "x": 3046.7066,
+          "y": 280.0425,
+          "width": 505.8683,
+          "height": 105.5898,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 89,
+          "name": "watchtower-chair-west",
+          "type": "fixture",
+          "x": 3173.1737,
+          "y": 374.1552,
+          "width": 80.479,
+          "height": 100.9989,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 90,
+          "name": "watchtower-chair-east",
+          "type": "fixture",
+          "x": 3403.1138,
+          "y": 374.1552,
+          "width": 87.3772,
+          "height": 100.9989,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "name": "council-pr-board",
+          "type": "fixture",
+          "x": 326.515,
+          "y": 677.152,
+          "width": 423.0898,
+          "height": 112.4761,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 92,
+          "name": "council-side-cabinet-west",
+          "type": "fixture",
+          "x": 160.9581,
+          "y": 748.3103,
+          "width": 89.6766,
+          "height": 206.5887,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 93,
+          "name": "council-south-jamb-plant",
+          "type": "landscape",
+          "x": 763.4012,
+          "y": 897.5133,
+          "width": 48.2874,
+          "height": 59.6812,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 94,
+          "name": "council-table",
+          "type": "fixture",
+          "x": 319.6168,
+          "y": 840.1275,
+          "width": 384,
+          "height": 146.9076,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 95,
+          "name": "council-chair-1",
+          "type": "fixture",
+          "x": 285.1257,
+          "y": 826.3549,
+          "width": 43.6887,
+          "height": 133.135,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 96,
+          "name": "council-chair-2",
+          "type": "fixture",
+          "x": 682.9222,
+          "y": 826.3549,
+          "width": 45.988,
+          "height": 133.135,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 97,
+          "name": "council-chair-3",
+          "type": "fixture",
+          "x": 393.1976,
+          "y": 987.0351,
+          "width": 96.5749,
+          "height": 45.9086,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 98,
+          "name": "council-chair-4",
+          "type": "fixture",
+          "x": 542.6587,
+          "y": 987.0351,
+          "width": 96.5748,
+          "height": 45.9086,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 99,
+          "name": "qa-board",
+          "type": "fixture",
+          "x": 3085.7964,
+          "y": 677.152,
+          "width": 409.2934,
+          "height": 112.4761,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 100,
+          "name": "qa-retained-stand",
+          "type": "fixture",
+          "x": 3051.3054,
+          "y": 725.356,
+          "width": 62.0838,
+          "height": 89.5218,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 101,
+          "name": "qa-cabinet-east",
+          "type": "fixture",
+          "x": 3564.0719,
+          "y": 729.9469,
+          "width": 98.8742,
+          "height": 238.7247,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "name": "qa-test-bench",
+          "type": "fixture",
+          "x": 3175.4731,
+          "y": 798.8098,
+          "width": 370.2035,
+          "height": 89.5218,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 103,
+          "name": "qa-lower-console",
+          "type": "fixture",
+          "x": 3276.6467,
+          "y": 915.8767,
+          "width": 218.4431,
+          "height": 36.7269,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 104,
+          "name": "lab-south-planter-west",
+          "type": "landscape",
+          "x": 1736.0479,
+          "y": 888.3316,
+          "width": 59.7844,
+          "height": 66.5674,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 105,
+          "name": "lab-south-planter-east",
+          "type": "landscape",
+          "x": 2044.1677,
+          "y": 888.3316,
+          "width": 62.0838,
+          "height": 66.5674,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 106,
+          "name": "lab-front-bed-west",
+          "type": "landscape",
+          "x": 1133.6048,
+          "y": 892.9224,
+          "width": 374.8024,
+          "height": 61.9766,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 107,
+          "name": "lab-front-bench-west",
+          "type": "fixture",
+          "x": 1513.006,
+          "y": 879.1498,
+          "width": 147.1617,
+          "height": 91.8173,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 108,
+          "name": "lab-front-bench-east",
+          "type": "fixture",
+          "x": 2184.4311,
+          "y": 879.1498,
+          "width": 158.6587,
+          "height": 91.8173,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 109,
+          "name": "lab-front-bed-east",
+          "type": "landscape",
+          "x": 2345.3892,
+          "y": 892.9224,
+          "width": 379.4012,
+          "height": 61.9766,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "landscape"
+            }
+          ]
+        },
+        {
+          "id": 110,
+          "name": "kantin-counter",
+          "type": "fixture",
+          "x": 149.4611,
+          "y": 1228.0553,
+          "width": 627.7365,
+          "height": 117.0669,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 111,
+          "name": "kantin-fridge-west",
+          "type": "fixture",
+          "x": 179.3533,
+          "y": 1230.3507,
+          "width": 117.2695,
+          "height": 192.8161,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 112,
+          "name": "kantin-fridge-east",
+          "type": "fixture",
+          "x": 800.1916,
+          "y": 1232.6461,
+          "width": 103.4731,
+          "height": 188.2253,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 113,
+          "name": "kantin-table-1",
+          "type": "fixture",
+          "x": 294.3234,
+          "y": 1446.1211,
+          "width": 174.7544,
+          "height": 121.6579,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 114,
+          "name": "kantin-table-2",
+          "type": "fixture",
+          "x": 570.2515,
+          "y": 1446.1211,
+          "width": 174.7545,
+          "height": 121.6579,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 115,
+          "name": "kantin-table-1-chair-n",
+          "type": "fixture",
+          "x": 347.2096,
+          "y": 1409.3943,
+          "width": 66.6826,
+          "height": 45.9086,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 116,
+          "name": "kantin-table-1-chair-s",
+          "type": "fixture",
+          "x": 347.2096,
+          "y": 1560.8927,
+          "width": 66.6826,
+          "height": 52.7949,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 117,
+          "name": "kantin-table-2-chair-n",
+          "type": "fixture",
+          "x": 623.1377,
+          "y": 1409.3943,
+          "width": 66.6827,
+          "height": 45.9086,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 118,
+          "name": "kantin-table-2-chair-s",
+          "type": "fixture",
+          "x": 623.1377,
+          "y": 1560.8927,
+          "width": 66.6827,
+          "height": 52.7949,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 119,
+          "name": "cikgu-blackboard",
+          "type": "fixture",
+          "x": 3143.2814,
+          "y": 1170.6695,
+          "width": 363.3054,
+          "height": 110.1807,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 120,
+          "name": "cikgu-bookshelf-east",
+          "type": "fixture",
+          "x": 3501.988,
+          "y": 1189.0329,
+          "width": 167.8563,
+          "height": 231.8385,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 121,
+          "name": "cikgu-cabinet-west",
+          "type": "fixture",
+          "x": 2977.7246,
+          "y": 1253.305,
+          "width": 110.3712,
+          "height": 211.1796,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 122,
+          "name": "cikgu-teacher-desk",
+          "type": "fixture",
+          "x": 3177.7725,
+          "y": 1372.6674,
+          "width": 301.2215,
+          "height": 126.2486,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 123,
+          "name": "cikgu-visitor-chair",
+          "type": "fixture",
+          "x": 3235.2575,
+          "y": 1494.3252,
+          "width": 80.479,
+          "height": 91.8172,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "doorways",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 124,
+          "name": "library-east",
+          "type": "doorway",
+          "x": 843.8802,
+          "y": 371.8597,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "library"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 770.2994
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 371.8597
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 935.8563
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 371.8597
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 75
+            }
+          ]
+        },
+        {
+          "id": 125,
+          "name": "lab-south",
+          "type": "doorway",
+          "x": 1926.8982,
+          "y": 869.9681,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 1874.012
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 803.4006
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 1926.8982
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 975.5579
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 106
+            }
+          ]
+        },
+        {
+          "id": 126,
+          "name": "watchtower-west",
+          "type": "doorway",
+          "x": 2975.4251,
+          "y": 390.2232,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "watchtower"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 3023.7126
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 390.2232
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 2862.7545
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 390.2232
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 72
+            }
+          ]
+        },
+        {
+          "id": 127,
+          "name": "council-east",
+          "type": "doorway",
+          "x": 823.1856,
+          "y": 849.3092,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "high_council"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 758.8024
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 849.3092
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 935.8563
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 849.3092
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 81
+            }
+          ]
+        },
+        {
+          "id": 128,
+          "name": "qa-west",
+          "type": "doorway",
+          "x": 3016.8144,
+          "y": 863.0818,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "qa_lab"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 3104.1916
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 863.0818
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 2897.2455
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 863.0818
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 78
+            }
+          ]
+        },
+        {
+          "id": 129,
+          "name": "kantin-east",
+          "type": "doorway",
+          "x": 924.3593,
+          "y": 1434.644,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "kantin"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 800.1916
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 1434.644
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 1023.2335
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 1434.644
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 119
+            }
+          ]
+        },
+        {
+          "id": 130,
+          "name": "cikgu-west",
+          "type": "doorway",
+          "x": 2878.8503,
+          "y": 1446.1211,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "cikgu_room"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 2957.0299
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 1446.1211
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 2825.9641
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 1446.1211
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 106
+            }
+          ]
+        },
+        {
+          "id": 131,
+          "name": "outer-gate-west",
+          "type": "doorway",
+          "x": 1503.8084,
+          "y": 1735.3454,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 1503.8084
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 1891.4346
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 1503.8084
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 1632.051
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 23
+            }
+          ]
+        },
+        {
+          "id": 132,
+          "name": "outer-gate-east",
+          "type": "doorway",
+          "x": 2343.0898,
+          "y": 1735.3454,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneA",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "zoneB",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "approachAX",
+              "type": "float",
+              "value": 2343.0898
+            },
+            {
+              "name": "approachAY",
+              "type": "float",
+              "value": 1891.4346
+            },
+            {
+              "name": "approachBX",
+              "type": "float",
+              "value": 2343.0898
+            },
+            {
+              "name": "approachBY",
+              "type": "float",
+              "value": 1632.051
+            },
+            {
+              "name": "nativeClearWidth",
+              "type": "float",
+              "value": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "spawn_points",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 133,
+          "name": "entry",
+          "type": "spawn",
+          "x": 1503.8084,
+          "y": 1891.4346,
+          "width": 0,
+          "height": 0,
+          "point": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "approaches",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 134,
+          "name": "station-01",
+          "type": "workstation",
+          "x": 1260.0719,
+          "y": 392.5186,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 1"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1437.1257
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 360.3826
+            }
+          ]
+        },
+        {
+          "id": 135,
+          "name": "station-02",
+          "type": "workstation",
+          "x": 1874.012,
+          "y": 392.5186,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 2"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1729.1497
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 360.3826
+            }
+          ]
+        },
+        {
+          "id": 136,
+          "name": "station-03",
+          "type": "workstation",
+          "x": 1979.7844,
+          "y": 392.5186,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 3"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2103.9521
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 360.3826
+            }
+          ]
+        },
+        {
+          "id": 137,
+          "name": "station-04",
+          "type": "workstation",
+          "x": 2271.8084,
+          "y": 392.5186,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 4"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2409.7725
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 360.3826
+            }
+          ]
+        },
+        {
+          "id": 138,
+          "name": "station-05",
+          "type": "workstation",
+          "x": 1260.0719,
+          "y": 530.2444,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 5"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1437.1257
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 498.1084
+            }
+          ]
+        },
+        {
+          "id": 139,
+          "name": "station-06",
+          "type": "workstation",
+          "x": 1874.012,
+          "y": 530.2444,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 6"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1729.1497
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 498.1084
+            }
+          ]
+        },
+        {
+          "id": 140,
+          "name": "station-07",
+          "type": "workstation",
+          "x": 1979.7844,
+          "y": 530.2444,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 7"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2103.9521
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 498.1084
+            }
+          ]
+        },
+        {
+          "id": 141,
+          "name": "station-08",
+          "type": "workstation",
+          "x": 2271.8084,
+          "y": 530.2444,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 8"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2409.7725
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 498.1084
+            }
+          ]
+        },
+        {
+          "id": 142,
+          "name": "station-09",
+          "type": "workstation",
+          "x": 1260.0719,
+          "y": 665.6748,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 9"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1437.1257
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 633.5388
+            }
+          ]
+        },
+        {
+          "id": 143,
+          "name": "station-10",
+          "type": "workstation",
+          "x": 1874.012,
+          "y": 665.6748,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 10"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1729.1497
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 633.5388
+            }
+          ]
+        },
+        {
+          "id": 144,
+          "name": "station-11",
+          "type": "workstation",
+          "x": 1979.7844,
+          "y": 665.6748,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 11"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2103.9521
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 633.5388
+            }
+          ]
+        },
+        {
+          "id": 145,
+          "name": "station-12",
+          "type": "workstation",
+          "x": 2271.8084,
+          "y": 665.6748,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 12"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2409.7725
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 633.5388
+            }
+          ]
+        },
+        {
+          "id": 146,
+          "name": "station-13",
+          "type": "workstation",
+          "x": 1260.0719,
+          "y": 803.4006,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 13"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1437.1257
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 771.2646
+            }
+          ]
+        },
+        {
+          "id": 147,
+          "name": "station-14",
+          "type": "workstation",
+          "x": 1874.012,
+          "y": 803.4006,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 14"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 1729.1497
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 771.2646
+            }
+          ]
+        },
+        {
+          "id": 148,
+          "name": "station-15",
+          "type": "workstation",
+          "x": 1979.7844,
+          "y": 803.4006,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 15"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2103.9521
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 771.2646
+            }
+          ]
+        },
+        {
+          "id": 149,
+          "name": "station-16",
+          "type": "workstation",
+          "x": 2271.8084,
+          "y": 803.4006,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO workstation 16"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 2409.7725
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 771.2646
+            }
+          ]
+        },
+        {
+          "id": 150,
+          "name": "task-board",
+          "type": "interaction",
+          "x": 1924.5988,
+          "y": 259.3836,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO task board"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "board"
+            }
+          ]
+        },
+        {
+          "id": 151,
+          "name": "library-board",
+          "type": "interaction",
+          "x": 630.0359,
+          "y": 337.4283,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "library"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Library / research board"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "board"
+            }
+          ]
+        },
+        {
+          "id": 152,
+          "name": "watchtower-board",
+          "type": "interaction",
+          "x": 3322.6347,
+          "y": 399.4049,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "watchtower"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Watchtower status board"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "board"
+            }
+          ]
+        },
+        {
+          "id": 153,
+          "name": "pr-board",
+          "type": "interaction",
+          "x": 540.3593,
+          "y": 807.9915,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "high_council"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "DEMO PR board"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "board"
+            }
+          ]
+        },
+        {
+          "id": 154,
+          "name": "qa-board",
+          "type": "interaction",
+          "x": 3131.7844,
+          "y": 826.3549,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "qa_lab"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "QA test board"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "board"
+            }
+          ]
+        },
+        {
+          "id": 155,
+          "name": "service-counter",
+          "type": "interaction",
+          "x": 471.3772,
+          "y": 1379.5537,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "kantin"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Serving counter approach"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "fixture"
+            }
+          ]
+        },
+        {
+          "id": 156,
+          "name": "table-1",
+          "type": "seat",
+          "x": 496.6707,
+          "y": 1510.3932,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "kantin"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Kantin table 1 approach"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": 157,
+          "name": "table-2",
+          "type": "seat",
+          "x": 774.8982,
+          "y": 1510.3932,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "kantin"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Kantin table 2 approach"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": 158,
+          "name": "teacher",
+          "type": "interaction",
+          "x": 3327.2335,
+          "y": 1331.3496,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "cikgu_room"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Ustazah Juliana conversation approach"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "teacher"
+            }
+          ]
+        },
+        {
+          "id": 159,
+          "name": "visitor-seat",
+          "type": "seat",
+          "x": 3338.7305,
+          "y": 1549.4155,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "cikgu_room"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Teacher room visitor seat"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": ""
+            },
+            {
+              "name": "seatX",
+              "type": "float",
+              "value": 3274.3473
+            },
+            {
+              "name": "seatY",
+              "type": "float",
+              "value": 1549.4155
+            }
+          ]
+        },
+        {
+          "id": 160,
+          "name": "welcome",
+          "type": "interaction",
+          "x": 1922.2994,
+          "y": 1916.6844,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "entrance"
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Akademi MAIA welcome sign approach"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "welcome"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "npc_spawns",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 161,
+          "name": "npc_cikgu",
+          "type": "npc",
+          "x": 3334.1317,
+          "y": 1349.7131,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "properties": [
+            {
+              "name": "zoneId",
+              "type": "string",
+              "value": "cikgu_room"
+            },
+            {
+              "name": "approach",
+              "type": "string",
+              "value": "teacher"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
