@@ -1,178 +1,119 @@
 import { useState } from "react";
 import type { Bridge, WorldState } from "../../../packages/game/bridge";
-import { sceneCatalog, sceneIds } from "../../../packages/world/scenes";
+import { campusDefinition } from "../../../packages/world/unified-campus";
 
-export function NavigationMap({ world }: { world: WorldState }) {
-  const [campus, setCampus] = useState(false);
-  const scene = sceneCatalog[world.sceneId];
+export function NavigationMap({
+  world,
+  bridge,
+}: {
+  world: WorldState;
+  bridge: Bridge;
+}) {
   const selectedActor = world.actors.find(
     (actor) => actor.id === world.selectedActor,
   );
-  const node = (id: (typeof sceneIds)[number]) => ({
-    x: 150 + sceneCatalog[id].mapPosition.x * 94,
-    y: 30 + sceneCatalog[id].mapPosition.y * 72,
-  });
+  const { width, height } = campusDefinition.bounds;
   return (
     <aside className="minimap-panel hud-surface" aria-label="Campus navigation">
-      <button
-        className="map-toggle"
-        aria-label={campus ? "Show room map" : "Show campus connections"}
-        onClick={() => setCampus(!campus)}
+      <svg
+        className="mini-map"
+        viewBox={`0 0 ${width} ${height}`}
+        role="img"
+        aria-label={`Full campus map. You are in ${world.area}.`}
       >
-        {campus ? "Campus connections" : "Room map"} ↔
-      </button>
-      {campus && (
-        <svg
-          className="campus-graph"
-          viewBox="0 0 300 210"
-          role="img"
-          aria-label="Logical campus connections: entrance links all seven rooms"
-        >
-          {sceneCatalog.entrance.portals.map((p) => {
-            const a = node("entrance"),
-              b = node(p.targetScene);
+        <image
+          href="/assets/campus-unified.png"
+          x="0"
+          y="0"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
+        />
+        {campusDefinition.zones
+          .filter((zone) => zone.id !== "entrance")
+          .map((zone) => {
+            const points = zone.polygon
+              .map((point) => `${point.x},${point.y}`)
+              .join(" ");
             return (
-              <line
-                key={p.id}
-                x1={a.x}
-                y1={a.y}
-                x2={b.x}
-                y2={b.y}
-                stroke="#cfb77e"
-                strokeWidth="2"
+              <polygon
+                key={zone.id}
+                points={points}
+                fill={zone.id === world.zoneId ? "#ffdf8a33" : "#26352d11"}
+                stroke={zone.id === world.zoneId ? "#ffdf8a" : "#fff2cf99"}
+                strokeWidth="5"
+                role="button"
+                tabIndex={0}
+                aria-label={`Focus ${zone.title}`}
+                onClick={() => bridge.focusZone(zone.id)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ")
+                    bridge.focusZone(zone.id);
+                }}
               />
             );
           })}
-          {sceneIds.map((id) => {
-            const p = node(id);
-            const actorRoom = selectedActor?.sceneId === id;
-            return (
-              <g key={id}>
-                <rect
-                  x={p.x - 42}
-                  y={p.y - 12}
-                  width="84"
-                  height="25"
-                  rx="4"
-                  fill={world.sceneId === id ? "#ddbd76" : "#435d57"}
-                />
-                <text
-                  x={p.x}
-                  y={p.y + 4}
-                  fontSize="10"
-                  textAnchor="middle"
-                  fill={world.sceneId === id ? "#182e28" : "#fff4cf"}
-                >
-                  {id
-                    .replace("engineering_lab", "eng. lab")
-                    .replace("high_council", "council")
-                    .replace("cikgu_room", "cikgu")
-                    .replace("qa_lab", "QA lab")}
-                </text>
-                {actorRoom && id !== world.sceneId && (
-                  <circle
-                    data-selected-actor-id={selectedActor.id}
-                    data-selected-actor-scene={id}
-                    role="img"
-                    aria-label={`Selected DEMO actor room: ${sceneCatalog[id].title}`}
-                    cx={p.x + 35}
-                    cy={p.y - 10}
-                    r="7"
-                    fill="#ff78b5"
-                    stroke="#fff7e5"
-                    strokeWidth="2"
-                  >
-                    <title>{`Selected DEMO actor room: ${sceneCatalog[id].title}`}</title>
-                  </circle>
-                )}
-              </g>
-            );
-          })}
-        </svg>
-      )}
-      <svg
-        className="mini-map"
-        viewBox={`0 0 ${scene.bounds.width} ${scene.bounds.height}`}
-        role="img"
-        aria-label={`Room map. You are in ${world.area}.`}
-      >
-        <rect
-          width={scene.bounds.width}
-          height={scene.bounds.height}
-          fill="#273c3b"
-        />
-        {scene.reservedLanes.map((r) => (
+        {campusDefinition.solids.map((solid) => (
           <rect
-            key={r.id}
-            x={r.x}
-            y={r.y}
-            width={r.width}
-            height={r.height}
-            fill="#406b57"
+            key={solid.id}
+            x={solid.x}
+            y={solid.y}
+            width={solid.width}
+            height={solid.height}
+            fill="#253b3266"
+            stroke="#e9ddb577"
+            strokeWidth="2"
           />
         ))}
-        {scene.solids.map((r) => (
-          <rect
-            key={r.id}
-            x={r.x}
-            y={r.y}
-            width={r.width}
-            height={r.height}
-            fill="#81908a"
-          />
-        ))}
-        {scene.portals.map((p) => (
-          <rect
-            key={p.id}
-            x={p.x}
-            y={p.y}
-            width={p.width}
-            height={p.height}
+        {campusDefinition.doorways.map((door) => (
+          <circle
+            key={door.id}
+            cx={door.threshold.x}
+            cy={door.threshold.y}
+            r="9"
             fill="#ffcf5d"
           />
         ))}
-        {scene.anchors.map((a) => (
+        {campusDefinition.anchors.map((anchor) => (
           <circle
-            key={a.id}
-            cx={a.point.x}
-            cy={a.point.y}
-            r="12"
-            fill="#7bc5df"
+            key={anchor.id}
+            cx={anchor.point.x}
+            cy={anchor.point.y}
+            r="7"
+            fill={anchor.kind === "workstation" ? "#7bc5df" : "#e6c47b"}
           />
         ))}
         <circle
           data-explorer
-          data-scene={world.sceneId}
+          data-scene={world.zoneId}
           cx={world.x}
           cy={world.y}
-          r="24"
+          r="26"
           fill="#f9da81"
           stroke="#172e2a"
           strokeWidth="8"
         />
-        {selectedActor?.sceneId === world.sceneId && selectedActor.position && (
+        {selectedActor?.position && (
           <circle
             data-selected-actor={selectedActor.id}
             role="img"
-            aria-label={`Selected DEMO actor ${selectedActor.id} in this room`}
+            aria-label={`Selected DEMO actor ${selectedActor.id} at ${selectedActor.zoneId}`}
             cx={selectedActor.position.x}
             cy={selectedActor.position.y}
-            r="18"
+            r="24"
             fill="#ff78b5"
             stroke="#fff7e5"
-            strokeWidth="6"
+            strokeWidth="7"
           >
-            <title>{`Selected DEMO actor ${selectedActor.id} in this room`}</title>
+            <title>{`Selected DEMO actor ${selectedActor.id} at ${selectedActor.zoneId}`}</title>
           </circle>
         )}
       </svg>
       {selectedActor && (
         <p className="selected-actor-status" role="status" aria-live="polite">
-          {selectedActor.sceneId === world.sceneId
-            ? selectedActor.position
-              ? `Selected DEMO actor ${selectedActor.id} is shown in this room map.`
-              : `Selected DEMO actor ${selectedActor.id} is off-seat in ${scene.title}; no map coordinate.`
-            : `Selected DEMO actor ${selectedActor.id} is in ${sceneCatalog[selectedActor.sceneId].title} (off-room).${selectedActor.position ? "" : " No map coordinate is available."}`}
+          {selectedActor.position
+            ? `Selected DEMO actor ${selectedActor.id} is at ${selectedActor.zoneId}.`
+            : `Selected DEMO actor ${selectedActor.id} is off-seat; no map position is available.`}
         </p>
       )}
       <div className="map-info">
@@ -182,9 +123,6 @@ export function NavigationMap({ world }: { world: WorldState }) {
         </p>
         <span className="mode-badge">DEMO</span>
       </div>
-      {scene.temporary && (
-        <p className="study-note">Temporary navigation study</p>
-      )}
     </aside>
   );
 }
@@ -214,6 +152,12 @@ export function NavigationTools({
         >
           <p className="eyebrow">CAMERA · DEMO / OFFLINE</p>
           <div className="tool-row">
+            <button
+              aria-pressed={world.camera.mode === "overview"}
+              onClick={() => bridge.cameraMode("overview")}
+            >
+              Overview
+            </button>
             <button
               aria-pressed={world.camera.mode === "player"}
               onClick={() => bridge.cameraMode("player")}
@@ -253,16 +197,22 @@ export function NavigationTools({
             </button>
           </div>
           <label>
-            Mock population{" "}
+            DEMO workers{" "}
             <select
               aria-label="DEMO population"
               value={world.actors.length}
-              onChange={(e) => bridge.demoActors(Number(e.target.value))}
+              onChange={(event) =>
+                bridge.demoActors(Number(event.target.value))
+              }
             >
-              {[0, 4, 12, 20, 28].map((n) => (
-                <option key={n} value={n}>
-                  {n} DEMO workers{n === 20 ? " · congestion" : ""}
-                  {n === 28 ? " · overflow" : ""}
+              {[0, 4, 12, 20, 28].map((count) => (
+                <option key={count} value={count}>
+                  {count} workers
+                  {count === 20
+                    ? " · 16 stations + 4 overflow"
+                    : count === 28
+                      ? " · 8 without positions"
+                      : ""}
                 </option>
               ))}
             </select>
@@ -272,27 +222,20 @@ export function NavigationTools({
             <select
               aria-label="Follow DEMO actor"
               value={world.selectedActor}
-              onChange={(e) => bridge.selectActor(e.target.value)}
+              onChange={(event) => bridge.selectActor(event.target.value)}
             >
               <option value="">Select a mock actor</option>
-              {world.actors.map((a) => (
-                <option key={a.id} value={a.id}>
-                  {a.id} · {a.sceneId}
+              {world.actors.map((actor) => (
+                <option key={actor.id} value={actor.id}>
+                  {actor.id} · {actor.zoneId}
                 </option>
               ))}
             </select>
           </label>
-          {world.selectedActor &&
-            world.actors.find((a) => a.id === world.selectedActor)?.sceneId !==
-              world.sceneId && (
-              <p className="registry-summary">
-                Selected actor is off-room; its DEMO task stays tracked.
-              </p>
-            )}
           <p className="registry-summary">
-            {world.visibleActors} in room / {world.actors.length} tracked ·{" "}
-            {world.actors.filter((a) => !a.position).length} off-seat · DEMO
-            activity only
+            {world.visibleActors} positioned / {world.actors.length} tracked ·{" "}
+            {world.actors.filter((actor) => !actor.position).length} without a
+            map position · DEMO labels only
           </p>
           <div className="tool-row">
             <button aria-pressed={world.debug} onClick={() => bridge.debug()}>
@@ -305,8 +248,8 @@ export function NavigationTools({
           {world.debug && (
             <div className="diagnostics" aria-label="Collision diagnostics">
               <p>
-                Pink solids · green aisles · blue approaches · yellow route ·
-                white live foot body
+                Pink outlines are collision bodies · blue circles are approaches
+                · white rectangle is the visitor foot body.
               </p>
               <output
                 data-body={JSON.stringify(world.body)}
@@ -319,10 +262,9 @@ export function NavigationTools({
                 {world.body?.height.toFixed(4)} · offsets{" "}
                 {world.body?.left.toFixed(4)}, {world.body?.top.toFixed(4)}
                 <br />
-                Camera {world.camera.mode} · {world.x},{world.y}
+                Camera {world.camera.mode} · visitor {world.x},{world.y}
                 <br />
-                {world.performance.frameMs.toFixed(2)} ms/frame · last transfer{" "}
-                {world.performance.transitionMs.toFixed(1)} ms
+                {world.performance.frameMs.toFixed(2)} ms/frame
                 <br />
                 {world.performance.objects} objects /{" "}
                 {world.performance.staticBodies} static bodies
@@ -333,16 +275,16 @@ export function NavigationTools({
               </output>
               <details>
                 <summary>Texture memory estimate / DEMO registry</summary>
-                {world.performance.textures.map((t) => (
-                  <p key={t.key}>
-                    {t.key} {t.width}×{t.height} · {t.bytes} RGBA bytes ·{" "}
-                    {t.filter}
+                {world.performance.textures.map((texture) => (
+                  <p key={texture.key}>
+                    {texture.key} {texture.width}×{texture.height} ·{" "}
+                    {texture.bytes} RGBA bytes · {texture.filter}
                   </p>
                 ))}
-                {world.actors.map((a) => (
-                  <p key={a.id}>
-                    {a.id} / {a.taskId} · {a.sceneId} ·{" "}
-                    {a.anchorId ?? "off-seat"} · {a.workState} · DEMO
+                {world.actors.map((actor) => (
+                  <p key={actor.id}>
+                    {actor.id} / {actor.taskId} · {actor.zoneId} ·{" "}
+                    {actor.anchorId ?? "no position"} · {actor.workState} · DEMO
                   </p>
                 ))}
               </details>

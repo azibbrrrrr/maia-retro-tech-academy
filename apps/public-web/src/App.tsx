@@ -9,19 +9,25 @@ import type {
   WorldState,
 } from "../../../packages/game/bridge";
 import { places, teacher } from "../../../packages/world/content";
+import {
+  CAMPUS_ID,
+  campusDefinition,
+} from "../../../packages/world/unified-campus";
 import type { BoardTab, DemoBoard } from "../../../packages/contracts/board";
 
 type Panel = "board" | "directory" | null;
 const initialWorld: WorldState = {
-  x: 836,
-  y: 660,
+  campusId: CAMPUS_ID,
+  x: campusDefinition.spawns.entry.x,
+  y: campusDefinition.spawns.entry.y,
   area: "Dataran Akademi",
   nearby: "",
   ready: false,
   sceneId: "entrance",
+  zoneId: "entrance",
   fixture: "",
   transitioning: false,
-  camera: { mode: "player", zoom: 1, x: 0, y: 0, width: 0, height: 0 },
+  camera: { mode: "overview", zoom: 0.1, x: 0, y: 0, width: 0, height: 0 },
   selectedActor: "",
   debug: false,
   art: true,
@@ -233,7 +239,8 @@ export function App() {
         setLine(
           current?.kind === "teacher" &&
             kind === "teacher" &&
-            current.sceneId === anchor.sceneId
+            current.campusId === anchor.campusId &&
+            current.zoneId === anchor.zoneId
             ? (value) => (value + 1) % teacher.dialogue.length
             : 0,
         );
@@ -245,6 +252,7 @@ export function App() {
       visit: () => {},
       zoom: () => {},
       cameraMode: () => {},
+      focusZone: () => {},
       pan: () => {},
       selectActor: () => {},
       demoActors: () => {},
@@ -267,14 +275,13 @@ export function App() {
   useEffect(() => {
     if (
       speech &&
-      (world.transitioning ||
-        speech.sceneId !== world.sceneId ||
+      (speech.campusId !== world.campusId ||
         Math.hypot(world.x - speech.point.x, world.y - speech.point.y) > 110)
     ) {
       speechRef.current = null;
       setSpeech(null);
     }
-  }, [world.x, world.y, world.sceneId, world.transitioning, speech]);
+  }, [world.x, world.y, world.campusId, speech]);
   useEffect(() => {
     if (panel) {
       speechRef.current = null;
@@ -356,19 +363,8 @@ export function App() {
         <header className="hud-top">
           <button
             className="location-badge hud-surface"
-            onClick={() => {
-              const next: Speech = {
-                kind: "welcome",
-                sceneId: world.sceneId,
-                label: "MAIA welcome",
-                point: { x: world.x, y: world.y },
-                speaker: { x: world.x, y: world.y - 82 },
-              };
-              speechRef.current = next;
-              setSpeech(next);
-              bridge.focus();
-            }}
-            aria-label="About MAIA academy"
+            onClick={() => bridge.focusZone("entrance")}
+            aria-label="Focus academy courtyard"
           >
             <span className="academy-name">MAIA / RETRO-TECH ACADEMY</span>
             <span className="mode-badge">DEMO</span>
@@ -394,8 +390,7 @@ export function App() {
               className="hud-button board-shortcut"
               disabled={!world.ready}
               onClick={() => {
-                bridge.visit("council");
-                bridge.focus();
+                setPanel("board");
               }}
             >
               PR Board
@@ -492,7 +487,7 @@ export function App() {
           />
         )}
         <NavigationTools world={world} bridge={bridge} />
-        <NavigationMap world={world} />
+        <NavigationMap world={world} bridge={bridge} />
       </main>
       <dialog
         ref={dialog}
@@ -513,10 +508,10 @@ export function App() {
         {panel === "directory" && (
           <>
             <p className="eyebrow">FIND YOUR WAY</p>
-            <h2 id="panel-title">Room directory</h2>
+            <h2 id="panel-title">Campus directory</h2>
             <p className="panel-intro">
-              Walk there, or jump into a room. Every room leads back to the
-              courtyard.
+              Choose a place to inspect. The camera will focus on it while you
+              stay where you are.
             </p>
             {places.map((place) => (
               <button

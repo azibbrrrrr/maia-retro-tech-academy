@@ -86,14 +86,11 @@ export function SpeechBubble({
           ) : speech.kind === "welcome" ? (
             <p>
               Selamat datang ke Akademi MAIA. Walk with WASD, arrows or the
-              D-pad. Use E at gold transfer pads. The directory offers quick
-              travel.
+              D-pad. Reach the welcome sign and press E to interact. The
+              directory focuses the camera on each place.
             </p>
           ) : (
-            <p>
-              {world.area} · Temporary navigation study. This DEMO station is
-              reachable; live work is OFFLINE.
-            </p>
+            <p>{speech.label} · DEMO / OFFLINE. Live work is not connected.</p>
           )}
         </div>
         <footer>

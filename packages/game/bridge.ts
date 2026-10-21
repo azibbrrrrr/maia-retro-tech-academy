@@ -1,13 +1,15 @@
 import type { Interaction, Place } from "../world/content";
-import type { DemoActor } from "../world/actors";
-import type { SceneId } from "../world/scenes";
+import type { DemoActor } from "../world/unified-actors";
+import type { CampusZoneId } from "../world/unified-campus";
 
 export type Direction = "up" | "down" | "left" | "right";
-export type CameraMode = "player" | "free" | "agent";
+export type CameraMode = "overview" | "player" | "free" | "agent";
 export type WorldState = {
+  campusId: "academy";
   x: number;
   y: number;
-  sceneId: SceneId;
+  sceneId: CampusZoneId;
+  zoneId: CampusZoneId;
   area: string;
   nearby: string;
   fixture: string;
@@ -50,7 +52,9 @@ export type WorldState = {
   };
 };
 export type SpeechAnchor = {
-  sceneId: SceneId;
+  campusId: "academy";
+  zoneId: CampusZoneId;
+  sceneId: CampusZoneId;
   label: string;
   point: { x: number; y: number };
   speaker: { x: number; y: number };
@@ -64,6 +68,7 @@ export type Bridge = {
   visit: (place: Place) => void;
   zoom: (amount: number) => void;
   cameraMode: (mode: CameraMode) => void;
+  focusZone: (zoneId: CampusZoneId) => void;
   pan: (x: number, y: number) => void;
   selectActor: (id: string) => void;
   demoActors: (count: number) => void;

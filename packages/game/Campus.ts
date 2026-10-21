@@ -1,56 +1,50 @@
 import Phaser from "phaser";
 import type { Bridge } from "./bridge";
+import { FOOT_BODY } from "../world/scenes";
 import {
-  FOOT_BODY,
-  resolvePlace,
-  sceneIds,
-  type SceneDefinition,
-  type SceneId,
-  type Point,
-  type Anchor,
-  type Portal,
-} from "../world/scenes";
-import { importScene } from "../world/tiled";
-import { createDemoActors, reserveDemoWorkstations } from "../world/actors";
-import { findRoute } from "../world/navigation";
+  CAMPUS_ID,
+  campusDefinition as fallbackCampus,
+  pointToZone,
+  type CampusAnchor,
+  type CampusDefinition,
+  type CampusZoneId,
+} from "../world/unified-campus";
+import {
+  importCampus,
+  type CampusTiledMap,
+} from "../world/unified-campus-tiled";
+import {
+  createDemoActors,
+  reserveUnifiedDemoActors,
+} from "../world/unified-actors";
 import { CameraRig } from "./CameraRig";
 import { RoomView } from "./RoomView";
 
-type Target = {
-  point: Point;
-  label: string;
-  anchor?: Anchor;
-  portal?: Portal;
-  distance: number;
-};
+type Target = { anchor: CampusAnchor; distance: number };
+
 export class Campus extends Phaser.Scene {
   private player!: Phaser.Physics.Arcade.Sprite;
   private keys = new Set<string>();
   private room!: RoomView;
-  private catalog = {} as Record<SceneId, SceneDefinition>;
+  private definition: CampusDefinition = fallbackCampus;
   private rig!: CameraRig;
   private nearest?: Target;
   private lastFixture = "";
-  private demoRegistry = reserveDemoWorkstations(createDemoActors(0));
+  private demoRegistry = reserveUnifiedDemoActors(createDemoActors(20));
   private selectedActor = "";
   private debugVisible = false;
   private artVisible = true;
   private overlay!: Phaser.GameObjects.Graphics;
   private lastReport = 0;
-  private lastRouteReport = 0;
-  private debugRoute: Point[] | null = null;
   private reducedMotion = false;
-  private transitioning = false;
-  private transitionMs = 0;
   private frameDeltas: number[] = [];
   private facing: "left" | "right" = "right";
-  private portalArmed = true;
   constructor(private bridge: Bridge) {
     super("Campus");
   }
   preload() {
-    for (const id of sceneIds) this.load.json(id, `/maps/scenes/${id}.json`);
-    this.load.image("campus", "/assets/campus.png");
+    this.load.json("campus-map", "/maps/campus-unified.json");
+    this.load.image("campus", "/assets/campus-unified.png");
     for (const name of ["sprinter", "medalist"])
       this.load.spritesheet(name, `/assets/${name}.webp`, {
         frameWidth: 192,
@@ -58,9 +52,8 @@ export class Campus extends Phaser.Scene {
       });
   }
   create() {
-    for (const id of sceneIds)
-      this.catalog[id] = importScene(this.cache.json.get(id));
-    // Only the illustrated plate is filtered; sprite sheets retain crisp pixels.
+    const map = this.cache.json.get("campus-map") as CampusTiledMap | undefined;
+    this.definition = map ? importCampus(map) : fallbackCampus;
     this.textures.get("campus").setFilter(Phaser.Textures.FilterMode.LINEAR);
     for (const name of ["sprinter", "medalist"]) {
       this.textures.get(name).setFilter(Phaser.Textures.FilterMode.NEAREST);
@@ -86,8 +79,9 @@ export class Campus extends Phaser.Scene {
             repeat: -1,
           });
     }
+    const spawn = this.definition.spawns.entry;
     this.player = this.physics.add
-      .sprite(836, 660, "sprinter")
+      .sprite(spawn.x, spawn.y, "sprinter")
       .setOrigin(FOOT_BODY.origin.x, FOOT_BODY.origin.y)
       .setScale(FOOT_BODY.scale)
       .play("sprinter-idle");
@@ -95,9 +89,22 @@ export class Campus extends Phaser.Scene {
       .setSize(FOOT_BODY.source.width, FOOT_BODY.source.height)
       .setOffset(FOOT_BODY.source.offsetX, FOOT_BODY.source.offsetY)
       .setCollideWorldBounds(true);
+    this.physics.world.setBounds(
+      0,
+      0,
+      this.definition.bounds.width,
+      this.definition.bounds.height,
+    );
+    this.room = new RoomView(
+      this,
+      this.definition,
+      this.player,
+      this.demoRegistry,
+      (anchor) => this.interactAnchor(anchor),
+    );
     this.overlay = this.add.graphics().setDepth(10000);
-    this.rig = new CameraRig(this, this.player);
-    this.loadRoom("entrance", "entry");
+    this.rig = new CameraRig(this, this.player, this.definition);
+    this.rig.overview();
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const syncMotion = () => {
       this.reducedMotion = motion.matches;
@@ -106,11 +113,7 @@ export class Campus extends Phaser.Scene {
     syncMotion();
     motion.addEventListener("change", syncMotion);
     const keydown = (event: KeyboardEvent) => {
-      if (
-        this.bridge.paused ||
-        this.transitioning ||
-        document.activeElement !== this.game.canvas
-      )
+      if (this.bridge.paused || document.activeElement !== this.game.canvas)
         return;
       const key = event.key.toLowerCase();
       if (
@@ -127,8 +130,6 @@ export class Campus extends Phaser.Scene {
         ].includes(key)
       ) {
         event.preventDefault();
-        // A repeat after blur/pause/transfer belongs to the released old hold.
-        // Require a fresh down edge before allowing it to move the visitor.
         if (event.repeat && !this.keys.has(key)) return;
         this.keys.add(key);
         if (key === "e" && !event.repeat) this.bridge.interact();
@@ -148,43 +149,41 @@ export class Campus extends Phaser.Scene {
     this.scale.on("resize", resize);
     this.bridge.focus = () => this.game.canvas.focus({ preventScroll: true });
     this.bridge.visit = (alias) => {
-      const id = resolvePlace(alias);
-      if (id) this.transition(id, "entry");
+      const zone = this.resolveZone(alias);
+      if (zone) this.rig.focusZone(zone);
     };
     this.bridge.interact = () => {
-      if (this.bridge.paused || this.transitioning) return;
+      if (this.bridge.paused) return;
       this.findNearest();
-      if (this.nearest?.portal && this.portalArmed) {
-        const p = this.nearest.portal;
-        this.portalArmed = false;
-        this.transition(p.targetScene, p.targetSpawn);
-      } else if (this.nearest?.anchor) this.interactAnchor(this.nearest.anchor);
+      if (this.nearest) this.interactAnchor(this.nearest.anchor);
     };
     this.bridge.zoom = (amount) => this.rig.zoom(amount);
     this.bridge.pan = (x, y) => this.rig.pan(x, y);
     this.bridge.cameraMode = (mode) => {
-      if (mode === "player") this.rig.followPlayer();
+      if (mode === "overview") this.rig.overview();
+      else if (mode === "player") this.rig.followPlayer();
       else if (mode === "free") this.rig.free();
       else this.rig.followAgent(this.room.actors.get(this.selectedActor));
       this.report();
       this.bridge.focus();
     };
+    this.bridge.focusZone = (zone) => {
+      this.rig.focusZone(zone);
+      this.report();
+    };
     this.bridge.selectActor = (id) => {
-      this.selectedActor = this.demoRegistry.some((a) => a.id === id) ? id : "";
-      this.rig.followAgent(this.room.actors.get(this.selectedActor));
+      const actor = this.demoRegistry.find((candidate) => candidate.id === id);
+      this.selectedActor = actor?.id ?? "";
+      this.rig.followAgent(
+        actor?.position ? this.room.actors.get(actor.id) : undefined,
+      );
       this.report();
     };
     this.bridge.demoActors = (count) => {
-      // Explicitly selected mock populations only; demoRegistry survives room unloading.
-      this.demoRegistry = reserveDemoWorkstations(createDemoActors(count));
-      if (!this.demoRegistry.some((a) => a.id === this.selectedActor))
+      this.demoRegistry = reserveUnifiedDemoActors(createDemoActors(count));
+      if (!this.demoRegistry.some((actor) => actor.id === this.selectedActor))
         this.selectedActor = this.demoRegistry[0]?.id ?? "";
-      const p = { x: this.player.x, y: this.player.y };
-      this.replaceRoom(this.room.definition.id);
-      this.player.setPosition(p.x, p.y);
-      (this.player.body as Phaser.Physics.Arcade.Body).updateFromGameObject();
-      if (this.rig.mode === "agent")
-        this.rig.followAgent(this.room.actors.get(this.selectedActor));
+      this.rebuildActors();
       this.report();
     };
     this.bridge.debug = () => {
@@ -193,7 +192,7 @@ export class Campus extends Phaser.Scene {
     };
     this.bridge.art = () => {
       this.artVisible = !this.artVisible;
-      this.room.art?.setVisible(this.artVisible);
+      this.room.art.setVisible(this.artVisible);
       this.report();
     };
     this.game.canvas.tabIndex = 0;
@@ -214,6 +213,7 @@ export class Campus extends Phaser.Scene {
       this.bridge.zoom = () => {};
       this.bridge.pan = () => {};
       this.bridge.cameraMode = () => {};
+      this.bridge.focusZone = () => {};
       this.bridge.selectActor = () => {};
       this.bridge.demoActors = () => {};
       this.bridge.debug = () => {};
@@ -221,188 +221,123 @@ export class Campus extends Phaser.Scene {
       this.bridge.focus = () => {};
     });
     this.report();
-    this.bridge.focus();
+  }
+  private resolveZone(alias: string): CampusZoneId | undefined {
+    if (this.definition.zones.some((zone) => zone.id === alias))
+      return alias as CampusZoneId;
+    if (alias === "gate") return "entrance";
+    if (alias === "council") return "high_council";
+    if (alias === "teacher") return "cikgu_room";
+    if (alias === "noc") return "watchtower";
   }
   private clearInput() {
     this.keys.clear();
     this.bridge.held.clear();
     this.player?.setVelocity(0);
   }
-  private replaceRoom(id: SceneId) {
-    this.room?.destroy();
+  private rebuildActors() {
+    this.room.destroy();
     this.room = new RoomView(
       this,
-      this.catalog[id],
+      this.definition,
       this.player,
       this.demoRegistry,
-      (a) => this.interactAnchor(a),
+      (anchor) => this.interactAnchor(anchor),
     );
-    this.room.art?.setVisible(this.artVisible);
+    this.room.art.setVisible(this.artVisible);
     this.room.motion(this.reducedMotion);
-    this.nearest = undefined;
-    this.debugRoute = null;
-    const b = this.room.definition.bounds;
-    this.physics.world.setBounds(0, 0, b.width, b.height);
+    if (this.rig.mode === "agent")
+      this.rig.followAgent(this.room.actors.get(this.selectedActor));
   }
-  private loadRoom(id: SceneId, spawn: string) {
-    this.replaceRoom(id);
-    const p = this.room.definition.spawns[spawn];
-    this.player.setPosition(p.x, p.y);
-    const body = this.player.body as Phaser.Physics.Arcade.Body;
-    body.reset(p.x, p.y);
-    body.updateFromGameObject();
-    this.rig.setRoom(this.room.definition);
-    this.clearInput();
-  }
-  private transition(id: SceneId, spawn: string) {
-    if (this.transitioning) return;
-    this.transitioning = true;
-    this.clearInput();
-    this.nearest = undefined;
-    this.report();
-    const start = performance.now(),
-      duration = this.reducedMotion ? 1 : 140;
-    this.cameras.main.fadeOut(duration, 0, 0, 0);
-    this.time.delayedCall(duration, () => {
-      this.loadRoom(id, spawn);
-      this.portalArmed = false;
-      this.cameras.main.fadeIn(duration, 0, 0, 0);
-      this.time.delayedCall(duration, () => {
-        this.transitioning = false;
-        this.transitionMs = performance.now() - start;
-        this.report();
-        this.bridge.focus();
-      });
-    });
-  }
-  private interactAnchor(a: Anchor) {
+  private interactAnchor(anchor: CampusAnchor) {
     if (
       this.bridge.paused ||
-      this.transitioning ||
       Phaser.Math.Distance.Between(
         this.player.x,
         this.player.y,
-        a.point.x,
-        a.point.y,
+        anchor.point.x,
+        anchor.point.y,
       ) > 76
     )
       return;
-    this.nearest = { point: a.point, label: a.label, anchor: a, distance: 0 };
-    // A shared approach can serve more than one fixture (council advisor /
-    // supervisor); identify each authored station instead of hiding the alias.
-    const labels = this.room.definition.anchors
-      .filter(
-        (other) => other.point.x === a.point.x && other.point.y === a.point.y,
-      )
-      .map((other) => other.label);
-    this.lastFixture = labels.join(" / ");
+    this.nearest = { anchor, distance: 0 };
+    this.lastFixture = anchor.label;
     this.report();
-    const npc = this.room.definition.npcs.find((n) => n.approach === a.id);
-    this.bridge.onInteract(a.interaction ?? "fixture", {
-      sceneId: this.room.definition.id,
-      label: this.lastFixture,
-      point: a.point,
+    const npc = this.definition.npcs.find(
+      (candidate) => candidate.approach === anchor.id,
+    );
+    const zoneId = anchor.zoneId;
+    this.bridge.onInteract(anchor.interaction ?? "fixture", {
+      campusId: CAMPUS_ID,
+      zoneId,
+      sceneId: zoneId,
+      label: anchor.label,
+      point: anchor.point,
       speaker: npc
         ? { x: npc.point.x, y: npc.point.y - 82 }
-        : { x: a.point.x, y: a.point.y - 16 },
+        : { x: anchor.point.x, y: anchor.point.y - 16 },
     });
-    if (a.interaction !== "board") this.bridge.focus();
+    if (anchor.interaction !== "board") this.bridge.focus();
   }
   private findNearest() {
     const p = { x: this.player.x, y: this.player.y };
-    const targets: Target[] = [
-      ...this.room.definition.portals.map((portal) => ({
-        point: portal.approach,
-        label: `Transfer: ${portal.label}`,
-        portal,
+    this.nearest = this.definition.anchors
+      .filter((anchor) => anchor.interaction)
+      .map((anchor) => ({
+        anchor,
         distance: Phaser.Math.Distance.Between(
           p.x,
           p.y,
-          portal.approach.x,
-          portal.approach.y,
+          anchor.point.x,
+          anchor.point.y,
         ),
-      })),
-      ...this.room.definition.anchors
-        .filter((a) => a.interaction)
-        .map((anchor) => ({
-          point: anchor.point,
-          label: anchor.label,
-          anchor,
-          distance: Phaser.Math.Distance.Between(
-            p.x,
-            p.y,
-            anchor.point.x,
-            anchor.point.y,
-          ),
-        })),
-    ];
-    // Portals are activated at their marked approach, never by proximity alone.
-    this.nearest = targets
-      .filter((t) => t.distance <= (t.portal ? 64 : 76))
+      }))
+      .filter((target) => target.distance <= 76)
       .sort((a, b) => a.distance - b.distance)[0];
-    if (
-      !this.transitioning &&
-      !this.keys.has("e") &&
-      !this.room.definition.portals.some(
-        (portal) =>
-          Phaser.Math.Distance.Between(
-            p.x,
-            p.y,
-            portal.x + portal.width / 2,
-            portal.y + portal.height / 2,
-          ) < 45,
-      )
-    )
-      this.portalArmed = true;
   }
-  private drawOverlay(time: number) {
+  private drawOverlay() {
     const g = this.overlay;
     g.clear();
     if (!this.debugVisible) return;
-    const room = this.room.definition;
-    for (const s of room.solids)
-      g.lineStyle(2, 0xff5970).strokeRect(s.x, s.y, s.width, s.height);
-    for (const lane of room.reservedLanes)
-      g.lineStyle(2, 0x5ef0a7).strokeRect(
-        lane.x,
-        lane.y,
-        lane.width,
-        lane.height,
+    for (const solid of this.definition.solids)
+      g.lineStyle(2, 0xff5970).strokeRect(
+        solid.x,
+        solid.y,
+        solid.width,
+        solid.height,
       );
-    for (const a of room.anchors)
-      g.lineStyle(2, 0x67d9ff).strokeCircle(a.point.x, a.point.y, 16);
-    const goal = this.nearest?.point ?? room.portals[0]?.approach;
-    if (goal && time - this.lastRouteReport > 250) {
-      this.debugRoute = findRoute(
-        room,
-        { x: this.player.x, y: this.player.y },
-        goal,
-      );
-      this.lastRouteReport = time;
-    }
-    const route = this.debugRoute;
-    if (route) {
-      g.lineStyle(3, 0xffdd6d).beginPath().moveTo(route[0].x, route[0].y);
-      for (const p of route.slice(1)) g.lineTo(p.x, p.y);
-      g.strokePath();
-    }
-    const b = this.player.body as Phaser.Physics.Arcade.Body;
-    g.lineStyle(2, 0xffffff).strokeRect(b.x, b.y, b.width, b.height);
+    for (const anchor of this.definition.anchors)
+      g.lineStyle(2, 0x67d9ff).strokeCircle(anchor.point.x, anchor.point.y, 16);
+    const body = this.player.body as Phaser.Physics.Arcade.Body;
+    g.lineStyle(2, 0xffffff).strokeRect(
+      body.x,
+      body.y,
+      body.width,
+      body.height,
+    );
   }
-  private report(fixture = this.lastFixture) {
-    if (!this.player || !this.room) return;
+  private report() {
+    if (!this.player || !this.room || !this.rig) return;
     this.findNearest();
-    const b = this.player.body as Phaser.Physics.Arcade.Body,
-      npc = this.room.teacher;
+    const zoneId =
+      pointToZone(this.definition, { x: this.player.x, y: this.player.y }) ??
+      "entrance";
+    const zone = this.definition.zones.find(
+      (candidate) => candidate.id === zoneId,
+    )!;
+    const body = this.player.body as Phaser.Physics.Arcade.Body;
+    const teacher = this.room.teacher;
     this.bridge.onState({
+      campusId: CAMPUS_ID,
       x: Math.round(this.player.x),
       y: Math.round(this.player.y),
-      sceneId: this.room.definition.id,
-      area: this.room.definition.title,
-      nearby: this.transitioning ? "" : (this.nearest?.label ?? ""),
-      fixture,
-      ready: !this.transitioning,
-      transitioning: this.transitioning,
+      sceneId: zoneId,
+      zoneId,
+      area: zone.title,
+      nearby: this.nearest?.anchor.label ?? "",
+      fixture: this.lastFixture,
+      ready: true,
+      transitioning: false,
       camera: this.rig.state(),
       selectedActor: this.selectedActor,
       debug: this.debugVisible,
@@ -411,32 +346,37 @@ export class Campus extends Phaser.Scene {
       visibleActors: this.room.actors.size,
       body: this.debugVisible
         ? {
-            width: b.width,
-            height: b.height,
-            left: b.x - this.player.x,
-            top: b.y - this.player.y,
-            right: b.right - this.player.x,
-            bottom: b.bottom - this.player.y,
+            width: body.width,
+            height: body.height,
+            left: body.x - this.player.x,
+            top: body.y - this.player.y,
+            right: body.right - this.player.x,
+            bottom: body.bottom - this.player.y,
           }
         : undefined,
-      teacher: npc
-        ? { x: npc.x, y: npc.y, frame: Number(npc.frame.name), count: 1 }
+      teacher: teacher
+        ? {
+            x: teacher.x,
+            y: teacher.y,
+            frame: Number(teacher.frame.name),
+            count: 1,
+          }
         : undefined,
       performance: {
         frameMs:
-          this.frameDeltas.reduce((a, b) => a + b, 0) /
+          this.frameDeltas.reduce((sum, value) => sum + value, 0) /
           (this.frameDeltas.length || 1),
-        transitionMs: this.transitionMs,
+        transitionMs: 0,
         textures: ["campus", "sprinter", "medalist"].map((key) => {
-          const t = this.textures.get(key),
-            s = t.getSourceImage() as HTMLImageElement;
+          const texture = this.textures.get(key),
+            source = texture.getSourceImage() as HTMLImageElement;
           return {
             key,
-            width: s.width,
-            height: s.height,
-            bytes: s.width * s.height * 4,
+            width: source.width,
+            height: source.height,
+            bytes: source.width * source.height * 4,
             filter:
-              t.source[0].scaleMode === Phaser.Textures.FilterMode.LINEAR
+              texture.source[0].scaleMode === Phaser.Textures.FilterMode.LINEAR
                 ? "linear"
                 : "nearest",
           };
@@ -446,19 +386,18 @@ export class Campus extends Phaser.Scene {
       },
     });
   }
-  update(time: number, delta: number) {
+  update(_time: number, delta: number) {
     if (!this.player) return;
     this.frameDeltas.push(delta);
     if (this.frameDeltas.length > 120) this.frameDeltas.shift();
     const active =
       !this.bridge.paused &&
-      !this.transitioning &&
       (document.activeElement === this.game.canvas ||
         this.bridge.held.size > 0);
-    if (this.bridge.paused || this.transitioning) this.clearInput();
-    const pressed = (key: string) => (this.keys.has(key) ? 1 : 0),
-      held = (key: "left" | "right" | "up" | "down") =>
-        this.bridge.held.has(key) ? 1 : 0;
+    if (this.bridge.paused) this.clearInput();
+    const pressed = (key: string) => (this.keys.has(key) ? 1 : 0);
+    const held = (key: "left" | "right" | "up" | "down") =>
+      this.bridge.held.has(key) ? 1 : 0;
     const x = active
       ? Math.max(pressed("d"), pressed("arrowright"), held("right")) -
         Math.max(pressed("a"), pressed("arrowleft"), held("left"))
@@ -467,8 +406,8 @@ export class Campus extends Phaser.Scene {
       ? Math.max(pressed("s"), pressed("arrowdown"), held("down")) -
         Math.max(pressed("w"), pressed("arrowup"), held("up"))
       : 0;
-    const direction = new Phaser.Math.Vector2(x, y).normalize().scale(190);
-    this.player.setVelocity(direction.x, direction.y).setDepth(this.player.y);
+    const velocity = new Phaser.Math.Vector2(x, y).normalize().scale(190);
+    this.player.setVelocity(velocity.x, velocity.y).setDepth(this.player.y);
     if (x) this.facing = x < 0 ? "left" : "right";
     if (!x && !y && this.reducedMotion) this.player.stop().setFrame(0);
     else
@@ -476,10 +415,10 @@ export class Campus extends Phaser.Scene {
         x || y ? `sprinter-${this.facing}` : "sprinter-idle",
         true,
       );
-    this.drawOverlay(time);
-    if (time - this.lastReport > 40) {
+    this.drawOverlay();
+    if (_time - this.lastReport > 40) {
       this.report();
-      this.lastReport = time;
+      this.lastReport = _time;
     }
   }
 }
