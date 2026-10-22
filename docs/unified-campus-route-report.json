@@ -1,0 +1,461 @@
+{
+  "asset": {
+    "path": "public/assets/campus-unified.png",
+    "nativePixels": [
+      1670,
+      941
+    ],
+    "sha256": "aea9ec282515dae16be48005ee0d93d186d8bd26210d74d4f534c0fc1f209745"
+  },
+  "world": {
+    "width": 3840,
+    "height": 2160
+  },
+  "imageToWorld": {
+    "scaleX": 2.2994011976047903,
+    "scaleY": 2.2954303931987248,
+    "offsetX": 0,
+    "offsetY": 0
+  },
+  "footGeometry": {
+    "conservativeStaticEnvelopeWorldUnits": [
+      16,
+      10
+    ],
+    "actualPhaserBodyWorldUnits": [
+      14.08,
+      7.92
+    ]
+  },
+  "spawn": {
+    "x": 1503.8084,
+    "y": 1891.4346
+  },
+  "issues": [],
+  "routeCount": 55,
+  "reachableRouteCount": 55,
+  "routes": [
+    {
+      "id": "station-01",
+      "reachable": true,
+      "distance": 1787.92
+    },
+    {
+      "id": "station-02",
+      "reachable": true,
+      "distance": 1769.94
+    },
+    {
+      "id": "station-03",
+      "reachable": true,
+      "distance": 1846.74
+    },
+    {
+      "id": "station-04",
+      "reachable": true,
+      "distance": 2377.11
+    },
+    {
+      "id": "station-05",
+      "reachable": true,
+      "distance": 1650.2
+    },
+    {
+      "id": "station-06",
+      "reachable": true,
+      "distance": 1632.21
+    },
+    {
+      "id": "station-07",
+      "reachable": true,
+      "distance": 1709.01
+    },
+    {
+      "id": "station-08",
+      "reachable": true,
+      "distance": 2514.81
+    },
+    {
+      "id": "station-09",
+      "reachable": true,
+      "distance": 1514.77
+    },
+    {
+      "id": "station-10",
+      "reachable": true,
+      "distance": 1496.78
+    },
+    {
+      "id": "station-11",
+      "reachable": true,
+      "distance": 1573.58
+    },
+    {
+      "id": "station-12",
+      "reachable": true,
+      "distance": 2650.23
+    },
+    {
+      "id": "station-13",
+      "reachable": true,
+      "distance": 1400.52
+    },
+    {
+      "id": "station-14",
+      "reachable": true,
+      "distance": 1359.06
+    },
+    {
+      "id": "station-15",
+      "reachable": true,
+      "distance": 1435.85
+    },
+    {
+      "id": "station-16",
+      "reachable": true,
+      "distance": 2647.1
+    },
+    {
+      "id": "task-board",
+      "reachable": true,
+      "distance": 1937.63
+    },
+    {
+      "id": "library-board",
+      "reachable": true,
+      "distance": 2091.88
+    },
+    {
+      "id": "watchtower-board",
+      "reachable": true,
+      "distance": 3097.83
+    },
+    {
+      "id": "pr-board",
+      "reachable": true,
+      "distance": 1699.11
+    },
+    {
+      "id": "qa-board",
+      "reachable": true,
+      "distance": 2425.84
+    },
+    {
+      "id": "service-counter",
+      "reachable": true,
+      "distance": 1265.57
+    },
+    {
+      "id": "table-1",
+      "reachable": true,
+      "distance": 1314.06
+    },
+    {
+      "id": "table-2",
+      "reachable": true,
+      "distance": 932.4
+    },
+    {
+      "id": "teacher",
+      "reachable": true,
+      "distance": 2226.56
+    },
+    {
+      "id": "visitor-seat",
+      "reachable": true,
+      "distance": 2154.57
+    },
+    {
+      "id": "welcome",
+      "reachable": true,
+      "distance": 419.29
+    },
+    {
+      "id": "npc_cikgu",
+      "reachable": true,
+      "distance": 2230.83
+    },
+    {
+      "id": "library-east:threshold",
+      "reachable": true,
+      "distance": 1885.62
+    },
+    {
+      "id": "library-east:approach-a",
+      "reachable": true,
+      "distance": 1933.59
+    },
+    {
+      "id": "library-east:approach-b",
+      "reachable": true,
+      "distance": 1851.37
+    },
+    {
+      "id": "lab-south:threshold",
+      "reachable": true,
+      "distance": 1327.05
+    },
+    {
+      "id": "lab-south:approach-a",
+      "reachable": true,
+      "distance": 1359.06
+    },
+    {
+      "id": "lab-south:approach-b",
+      "reachable": true,
+      "distance": 1221.47
+    },
+    {
+      "id": "watchtower-west:threshold",
+      "reachable": true,
+      "distance": 2755.93
+    },
+    {
+      "id": "watchtower-west:approach-a",
+      "reachable": true,
+      "distance": 2783.15
+    },
+    {
+      "id": "watchtower-west:approach-b",
+      "reachable": true,
+      "distance": 2729.5
+    },
+    {
+      "id": "council-east:threshold",
+      "reachable": true,
+      "distance": 1421.57
+    },
+    {
+      "id": "council-east:approach-a",
+      "reachable": true,
+      "distance": 1466.1
+    },
+    {
+      "id": "council-east:approach-b",
+      "reachable": true,
+      "distance": 1374.5
+    },
+    {
+      "id": "qa-west:threshold",
+      "reachable": true,
+      "distance": 2317.98
+    },
+    {
+      "id": "qa-west:approach-a",
+      "reachable": true,
+      "distance": 2382.08
+    },
+    {
+      "id": "qa-west:approach-b",
+      "reachable": true,
+      "distance": 2263.93
+    },
+    {
+      "id": "kantin-east:threshold",
+      "reachable": true,
+      "distance": 822.24
+    },
+    {
+      "id": "kantin-east:approach-a",
+      "reachable": true,
+      "distance": 931.05
+    },
+    {
+      "id": "kantin-east:approach-b",
+      "reachable": true,
+      "distance": 758.37
+    },
+    {
+      "id": "cikgu-west:threshold",
+      "reachable": true,
+      "distance": 1713.04
+    },
+    {
+      "id": "cikgu-west:approach-a",
+      "reachable": true,
+      "distance": 1785.37
+    },
+    {
+      "id": "cikgu-west:approach-b",
+      "reachable": true,
+      "distance": 1665.14
+    },
+    {
+      "id": "outer-gate-west:threshold",
+      "reachable": true,
+      "distance": 156.09
+    },
+    {
+      "id": "outer-gate-west:approach-a",
+      "reachable": true,
+      "distance": 0
+    },
+    {
+      "id": "outer-gate-west:approach-b",
+      "reachable": true,
+      "distance": 259.38
+    },
+    {
+      "id": "outer-gate-east:threshold",
+      "reachable": true,
+      "distance": 1001.24
+    },
+    {
+      "id": "outer-gate-east:approach-a",
+      "reachable": true,
+      "distance": 845.66
+    },
+    {
+      "id": "outer-gate-east:approach-b",
+      "reachable": true,
+      "distance": 1074.91
+    }
+  ],
+  "doors": [
+    {
+      "id": "library-east",
+      "clearWidthNativePx": 75,
+      "clearWidthWorld": 172.16,
+      "residualForFootBody": 156.16
+    },
+    {
+      "id": "lab-south",
+      "clearWidthNativePx": 106,
+      "clearWidthWorld": 243.32,
+      "residualForFootBody": 227.32
+    },
+    {
+      "id": "watchtower-west",
+      "clearWidthNativePx": 72,
+      "clearWidthWorld": 165.27,
+      "residualForFootBody": 149.27
+    },
+    {
+      "id": "council-east",
+      "clearWidthNativePx": 81,
+      "clearWidthWorld": 185.93,
+      "residualForFootBody": 169.93
+    },
+    {
+      "id": "qa-west",
+      "clearWidthNativePx": 78,
+      "clearWidthWorld": 179.04,
+      "residualForFootBody": 163.04
+    },
+    {
+      "id": "kantin-east",
+      "clearWidthNativePx": 119,
+      "clearWidthWorld": 273.16,
+      "residualForFootBody": 257.16
+    },
+    {
+      "id": "cikgu-west",
+      "clearWidthNativePx": 106,
+      "clearWidthWorld": 243.32,
+      "residualForFootBody": 227.32
+    },
+    {
+      "id": "outer-gate-west",
+      "clearWidthNativePx": 23,
+      "clearWidthWorld": 52.79,
+      "residualForFootBody": 36.79
+    },
+    {
+      "id": "outer-gate-east",
+      "clearWidthNativePx": 20,
+      "clearWidthWorld": 45.91,
+      "residualForFootBody": 29.91
+    }
+  ],
+  "workstationAisles": {
+    "deskColumnsNativePx": [
+      [
+        586,
+        663
+      ],
+      [
+        713,
+        791
+      ],
+      [
+        878,
+        952
+      ],
+      [
+        1010,
+        1085
+      ]
+    ],
+    "seatCenterXNativePx": [
+      625,
+      752,
+      915,
+      1048
+    ],
+    "approachXNativePx": [
+      548,
+      815,
+      861,
+      988
+    ],
+    "nativeColumnGapsPx": [
+      50,
+      87,
+      58
+    ],
+    "worldClearWidthsBeforeBody": [
+      114.97,
+      200.05,
+      133.37
+    ],
+    "residualAfterClearanceBody": [
+      98.97,
+      184.05,
+      117.37
+    ],
+    "rowGapNativePx": [
+      0,
+      0,
+      0
+    ],
+    "note": "Desk and chair ground silhouettes are traced as sixteen station footprints. Art footprints touch vertically; approaches use measured side aisles. The minimum inter-column residual after the 16-unit clearance body is reported without claiming more clearance than measured."
+  },
+  "entrance": {
+    "route": "entry spawn uses the visible west opening around the central sign wall; east opening is separately route checked",
+    "westOpeningNativePx": 23,
+    "eastOpeningNativePx": 20,
+    "gardenSideBypassNativePx": 26,
+    "note": "The center sign wall remains solid; no route or spawn is placed through it. Garden-bed ground footprints block walking; tree canopy is not treated as a collision."
+  },
+  "councilEast": {
+    "doorPlaneNativeX": 358,
+    "thresholdNative": [
+      358,
+      370
+    ],
+    "northJambNativeBounds": [
+      347,
+      278,
+      24,
+      48
+    ],
+    "southJambNativeBounds": [
+      339,
+      407,
+      25,
+      47
+    ],
+    "validatedRoutes": [
+      "council-east:threshold",
+      "council-east:approach-a",
+      "council-east:approach-b",
+      "pr-board"
+    ]
+  },
+  "exports": {
+    "json": "public/maps/campus-unified.json",
+    "tmx": "maps/campus-unified.tmx",
+    "backgroundPlacement": "one native-size image-collection tile, drawn by a bottom-left tile object at world x=0,y=2160 with world extent 3840×2160",
+    "roundTrip": "validated by tests/unified-campus.test.ts"
+  }
+}

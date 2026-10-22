@@ -1,0 +1,40 @@
+{
+  "environment": "headless Chromium on host",
+  "actual": {
+    "width": 14.08,
+    "height": 7.92,
+    "left": -7.039999999999964,
+    "top": -5.06880000000001,
+    "right": 7.040000000000077,
+    "bottom": 2.851199999999949
+  },
+  "declared": {
+    "frame": {
+      "width": 192,
+      "height": 208
+    },
+    "origin": {
+      "x": 0.5,
+      "y": 0.94
+    },
+    "scale": 0.44,
+    "source": {
+      "width": 32,
+      "height": 18,
+      "offsetX": 80,
+      "offsetY": 184
+    },
+    "exact": {
+      "left": -7.04,
+      "top": -5.0688,
+      "right": 7.04,
+      "bottom": 2.8512
+    },
+    "clearance": {
+      "left": -8,
+      "top": -6,
+      "right": 8,
+      "bottom": 4
+    }
+  }
+}

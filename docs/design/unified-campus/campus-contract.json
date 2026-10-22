@@ -1,0 +1,1990 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "U0 fixed-floorplan blueprint; layout reference only; do not treat as final art or accepted collision map",
+  "coordinateContract": {
+    "worldBounds": [
+      0,
+      0,
+      3840,
+      2160
+    ],
+    "worldUnits": "logical world units",
+    "origin": "top-left",
+    "axes": {
+      "x": "right",
+      "y": "down"
+    },
+    "imageBounds": [
+      0,
+      0,
+      3840,
+      2160
+    ],
+    "nativeImagePixels": [
+      3840,
+      2160
+    ],
+    "transform": "image(u,v) = world(x,y); world(x,y) = image(u,v); 1 world unit = 1 native image pixel",
+    "imageOffset": [
+      0,
+      0
+    ],
+    "scale": 1,
+    "crop": null,
+    "overviewFitScale": 0.5,
+    "grid": {
+      "spacing": 48,
+      "columns": 80,
+      "rows": 45
+    },
+    "footBody": [
+      14.08,
+      7.92
+    ],
+    "footBodySource": "preserve current tested Phaser body; do not rescale with the image",
+    "rectEncoding": "[x1, y1, x2, y2] inclusive bounds; width=x2-x1; height=y2-y1"
+  },
+  "siteIntent": {
+    "campusIsContinuous": true,
+    "normalMovementSceneHops": false,
+    "interiorsVisibleInOverview": true,
+    "treeCutoutFriendly": true
+  },
+  "rooms": [
+    {
+      "id": "library",
+      "label": "LIBRARY",
+      "rect": [
+        160,
+        160,
+        800,
+        520
+      ],
+      "fill": "#d9b68e",
+      "zoneType": "interior",
+      "function": "reading / reference"
+    },
+    {
+      "id": "noc",
+      "label": "NOC",
+      "rect": [
+        3040,
+        160,
+        3680,
+        520
+      ],
+      "fill": "#91bcb3",
+      "zoneType": "interior",
+      "function": "network operations"
+    },
+    {
+      "id": "engineering_lab",
+      "label": "ENGINEERING LAB",
+      "rect": [
+        1040,
+        80,
+        2800,
+        1080
+      ],
+      "fill": "#b5c9a6",
+      "zoneType": "interior",
+      "function": "engineering workstations"
+    },
+    {
+      "id": "high_council",
+      "label": "HIGH COUNCIL",
+      "rect": [
+        160,
+        660,
+        800,
+        1000
+      ],
+      "fill": "#d9aa8c",
+      "zoneType": "interior",
+      "function": "council meeting"
+    },
+    {
+      "id": "qa_lab",
+      "label": "QA LAB",
+      "rect": [
+        3040,
+        660,
+        3680,
+        1000
+      ],
+      "fill": "#b4abc7",
+      "zoneType": "interior",
+      "function": "quality testing"
+    },
+    {
+      "id": "kantin",
+      "label": "KANTIN",
+      "rect": [
+        160,
+        1520,
+        800,
+        1900
+      ],
+      "fill": "#e0c179",
+      "zoneType": "interior",
+      "function": "service counter and two dining tables"
+    },
+    {
+      "id": "cikgu_room",
+      "label": "CIKGU ROOM",
+      "rect": [
+        3040,
+        1520,
+        3680,
+        1900
+      ],
+      "fill": "#91b9bd",
+      "zoneType": "interior",
+      "function": "teacher desk and visitor approach"
+    },
+    {
+      "id": "courtyard",
+      "label": "CENTRAL COURTYARD",
+      "rect": [
+        1040,
+        1400,
+        2800,
+        1960
+      ],
+      "fill": "#b0c398",
+      "zoneType": "open-space",
+      "function": "open central court"
+    },
+    {
+      "id": "gate_approach",
+      "label": "GATE APPROACH",
+      "rect": [
+        1520,
+        1960,
+        2320,
+        2160
+      ],
+      "fill": "#d8cdb0",
+      "zoneType": "entry",
+      "function": "walkable outer entrance"
+    }
+  ],
+  "walkablePaths": [
+    {
+      "id": "road-strip",
+      "rect": [
+        0,
+        2040,
+        3840,
+        2160
+      ],
+      "width": 120,
+      "role": "walkable road strip beyond the open campus gate"
+    },
+    {
+      "id": "left-side-corridor",
+      "rect": [
+        800,
+        120,
+        1040,
+        1960
+      ],
+      "width": 240,
+      "role": "continuous north-south circulation"
+    },
+    {
+      "id": "right-side-corridor",
+      "rect": [
+        2800,
+        120,
+        3040,
+        1960
+      ],
+      "width": 240,
+      "role": "continuous north-south circulation"
+    },
+    {
+      "id": "cross-corridor",
+      "rect": [
+        120,
+        1080,
+        3720,
+        1400
+      ],
+      "width": 320,
+      "role": "primary east-west campus circulation"
+    },
+    {
+      "id": "courtyard",
+      "rect": [
+        1040,
+        1400,
+        2800,
+        1960
+      ],
+      "width": null,
+      "role": "open walkable central court"
+    },
+    {
+      "id": "courtyard-crosswalk",
+      "rect": [
+        1040,
+        1580,
+        2800,
+        1740
+      ],
+      "width": 160,
+      "role": "east-west courtyard path"
+    },
+    {
+      "id": "central-spine",
+      "rect": [
+        1720,
+        1400,
+        2120,
+        2160
+      ],
+      "width": 400,
+      "role": "primary gate-to-campus path"
+    },
+    {
+      "id": "gate-apron",
+      "rect": [
+        1520,
+        1960,
+        2320,
+        2160
+      ],
+      "width": 800,
+      "role": "walkable entrance apron"
+    }
+  ],
+  "doors": [
+    {
+      "id": "door-library-east",
+      "zoneId": "library",
+      "wall": "east",
+      "segment": [
+        800,
+        270,
+        800,
+        462
+      ],
+      "width": 192,
+      "opensTo": "left-side-corridor"
+    },
+    {
+      "id": "door-noc-west",
+      "zoneId": "noc",
+      "wall": "west",
+      "segment": [
+        3040,
+        270,
+        3040,
+        462
+      ],
+      "width": 192,
+      "opensTo": "right-side-corridor"
+    },
+    {
+      "id": "door-lab-west",
+      "zoneId": "engineering_lab",
+      "wall": "west",
+      "segment": [
+        1040,
+        416,
+        1040,
+        704
+      ],
+      "width": 288,
+      "opensTo": "left-side-corridor"
+    },
+    {
+      "id": "door-lab-east",
+      "zoneId": "engineering_lab",
+      "wall": "east",
+      "segment": [
+        2800,
+        416,
+        2800,
+        704
+      ],
+      "width": 288,
+      "opensTo": "right-side-corridor"
+    },
+    {
+      "id": "door-lab-south",
+      "zoneId": "engineering_lab",
+      "wall": "south",
+      "segment": [
+        1728,
+        1080,
+        2112,
+        1080
+      ],
+      "width": 384,
+      "opensTo": "cross-corridor"
+    },
+    {
+      "id": "door-council-east",
+      "zoneId": "high_council",
+      "wall": "east",
+      "segment": [
+        800,
+        696,
+        800,
+        984
+      ],
+      "width": 288,
+      "opensTo": "left-side-corridor"
+    },
+    {
+      "id": "door-qa-west",
+      "zoneId": "qa_lab",
+      "wall": "west",
+      "segment": [
+        3040,
+        696,
+        3040,
+        984
+      ],
+      "width": 288,
+      "opensTo": "right-side-corridor"
+    },
+    {
+      "id": "door-kantin-east",
+      "zoneId": "kantin",
+      "wall": "east",
+      "segment": [
+        800,
+        1560,
+        800,
+        1848
+      ],
+      "width": 288,
+      "opensTo": "left-side-corridor"
+    },
+    {
+      "id": "door-cikgu-west",
+      "zoneId": "cikgu_room",
+      "wall": "west",
+      "segment": [
+        3040,
+        1560,
+        3040,
+        1848
+      ],
+      "width": 288,
+      "opensTo": "right-side-corridor"
+    },
+    {
+      "id": "outer-gate",
+      "zoneId": "gate_approach",
+      "wall": "south-boundary",
+      "segment": [
+        1720,
+        2040,
+        2120,
+        2040
+      ],
+      "width": 400,
+      "opensTo": "road-strip"
+    }
+  ],
+  "wallSegments": [
+    {
+      "zoneId": "library",
+      "from": [
+        160,
+        160
+      ],
+      "to": [
+        800,
+        160
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "library",
+      "from": [
+        800,
+        160
+      ],
+      "to": [
+        800,
+        270
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "library",
+      "from": [
+        800,
+        462
+      ],
+      "to": [
+        800,
+        520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "library",
+      "from": [
+        160,
+        520
+      ],
+      "to": [
+        800,
+        520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "library",
+      "from": [
+        160,
+        160
+      ],
+      "to": [
+        160,
+        520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "noc",
+      "from": [
+        3040,
+        160
+      ],
+      "to": [
+        3680,
+        160
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "noc",
+      "from": [
+        3680,
+        160
+      ],
+      "to": [
+        3680,
+        520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "noc",
+      "from": [
+        3040,
+        520
+      ],
+      "to": [
+        3680,
+        520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "noc",
+      "from": [
+        3040,
+        160
+      ],
+      "to": [
+        3040,
+        270
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "noc",
+      "from": [
+        3040,
+        462
+      ],
+      "to": [
+        3040,
+        520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "engineering_lab",
+      "from": [
+        1040,
+        80
+      ],
+      "to": [
+        2800,
+        80
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "engineering_lab",
+      "from": [
+        2800,
+        80
+      ],
+      "to": [
+        2800,
+        416
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "engineering_lab",
+      "from": [
+        2800,
+        704
+      ],
+      "to": [
+        2800,
+        1080
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "engineering_lab",
+      "from": [
+        1040,
+        1080
+      ],
+      "to": [
+        1728,
+        1080
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "engineering_lab",
+      "from": [
+        2112,
+        1080
+      ],
+      "to": [
+        2800,
+        1080
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "engineering_lab",
+      "from": [
+        1040,
+        80
+      ],
+      "to": [
+        1040,
+        416
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "engineering_lab",
+      "from": [
+        1040,
+        704
+      ],
+      "to": [
+        1040,
+        1080
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "high_council",
+      "from": [
+        160,
+        660
+      ],
+      "to": [
+        800,
+        660
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "high_council",
+      "from": [
+        800,
+        660
+      ],
+      "to": [
+        800,
+        696
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "high_council",
+      "from": [
+        800,
+        984
+      ],
+      "to": [
+        800,
+        1000
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "high_council",
+      "from": [
+        160,
+        1000
+      ],
+      "to": [
+        800,
+        1000
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "high_council",
+      "from": [
+        160,
+        660
+      ],
+      "to": [
+        160,
+        1000
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "qa_lab",
+      "from": [
+        3040,
+        660
+      ],
+      "to": [
+        3680,
+        660
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "qa_lab",
+      "from": [
+        3680,
+        660
+      ],
+      "to": [
+        3680,
+        1000
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "qa_lab",
+      "from": [
+        3040,
+        1000
+      ],
+      "to": [
+        3680,
+        1000
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "qa_lab",
+      "from": [
+        3040,
+        660
+      ],
+      "to": [
+        3040,
+        696
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "qa_lab",
+      "from": [
+        3040,
+        984
+      ],
+      "to": [
+        3040,
+        1000
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "kantin",
+      "from": [
+        160,
+        1520
+      ],
+      "to": [
+        800,
+        1520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "kantin",
+      "from": [
+        800,
+        1520
+      ],
+      "to": [
+        800,
+        1560
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "kantin",
+      "from": [
+        800,
+        1848
+      ],
+      "to": [
+        800,
+        1900
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "kantin",
+      "from": [
+        160,
+        1900
+      ],
+      "to": [
+        800,
+        1900
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "kantin",
+      "from": [
+        160,
+        1520
+      ],
+      "to": [
+        160,
+        1900
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "cikgu_room",
+      "from": [
+        3040,
+        1520
+      ],
+      "to": [
+        3680,
+        1520
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "cikgu_room",
+      "from": [
+        3680,
+        1520
+      ],
+      "to": [
+        3680,
+        1900
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "cikgu_room",
+      "from": [
+        3040,
+        1900
+      ],
+      "to": [
+        3680,
+        1900
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "cikgu_room",
+      "from": [
+        3040,
+        1520
+      ],
+      "to": [
+        3040,
+        1560
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "cikgu_room",
+      "from": [
+        3040,
+        1848
+      ],
+      "to": [
+        3040,
+        1900
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "campus-boundary",
+      "from": [
+        160,
+        2040
+      ],
+      "to": [
+        1720,
+        2040
+      ],
+      "thickness": 24
+    },
+    {
+      "zoneId": "campus-boundary",
+      "from": [
+        2120,
+        2040
+      ],
+      "to": [
+        3680,
+        2040
+      ],
+      "thickness": 24
+    }
+  ],
+  "workstations": [
+    {
+      "id": "lab-desk-01",
+      "zoneId": "engineering_lab",
+      "row": 1,
+      "column": 1,
+      "deskRect": [
+        1180,
+        120,
+        1348,
+        188
+      ],
+      "chairRect": [
+        1238,
+        194,
+        1290,
+        238
+      ],
+      "approachRect": [
+        1218,
+        240,
+        1310,
+        272
+      ],
+      "usePoint": [
+        1264,
+        256
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-02",
+      "zoneId": "engineering_lab",
+      "row": 1,
+      "column": 2,
+      "deskRect": [
+        1540,
+        120,
+        1708,
+        188
+      ],
+      "chairRect": [
+        1598,
+        194,
+        1650,
+        238
+      ],
+      "approachRect": [
+        1578,
+        240,
+        1670,
+        272
+      ],
+      "usePoint": [
+        1624,
+        256
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-03",
+      "zoneId": "engineering_lab",
+      "row": 1,
+      "column": 3,
+      "deskRect": [
+        2140,
+        120,
+        2308,
+        188
+      ],
+      "chairRect": [
+        2198,
+        194,
+        2250,
+        238
+      ],
+      "approachRect": [
+        2178,
+        240,
+        2270,
+        272
+      ],
+      "usePoint": [
+        2224,
+        256
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-04",
+      "zoneId": "engineering_lab",
+      "row": 1,
+      "column": 4,
+      "deskRect": [
+        2500,
+        120,
+        2668,
+        188
+      ],
+      "chairRect": [
+        2558,
+        194,
+        2610,
+        238
+      ],
+      "approachRect": [
+        2538,
+        240,
+        2630,
+        272
+      ],
+      "usePoint": [
+        2584,
+        256
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-05",
+      "zoneId": "engineering_lab",
+      "row": 2,
+      "column": 1,
+      "deskRect": [
+        1180,
+        336,
+        1348,
+        404
+      ],
+      "chairRect": [
+        1238,
+        410,
+        1290,
+        454
+      ],
+      "approachRect": [
+        1218,
+        456,
+        1310,
+        488
+      ],
+      "usePoint": [
+        1264,
+        472
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-06",
+      "zoneId": "engineering_lab",
+      "row": 2,
+      "column": 2,
+      "deskRect": [
+        1540,
+        336,
+        1708,
+        404
+      ],
+      "chairRect": [
+        1598,
+        410,
+        1650,
+        454
+      ],
+      "approachRect": [
+        1578,
+        456,
+        1670,
+        488
+      ],
+      "usePoint": [
+        1624,
+        472
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-07",
+      "zoneId": "engineering_lab",
+      "row": 2,
+      "column": 3,
+      "deskRect": [
+        2140,
+        336,
+        2308,
+        404
+      ],
+      "chairRect": [
+        2198,
+        410,
+        2250,
+        454
+      ],
+      "approachRect": [
+        2178,
+        456,
+        2270,
+        488
+      ],
+      "usePoint": [
+        2224,
+        472
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-08",
+      "zoneId": "engineering_lab",
+      "row": 2,
+      "column": 4,
+      "deskRect": [
+        2500,
+        336,
+        2668,
+        404
+      ],
+      "chairRect": [
+        2558,
+        410,
+        2610,
+        454
+      ],
+      "approachRect": [
+        2538,
+        456,
+        2630,
+        488
+      ],
+      "usePoint": [
+        2584,
+        472
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-09",
+      "zoneId": "engineering_lab",
+      "row": 3,
+      "column": 1,
+      "deskRect": [
+        1180,
+        684,
+        1348,
+        752
+      ],
+      "chairRect": [
+        1238,
+        758,
+        1290,
+        802
+      ],
+      "approachRect": [
+        1218,
+        804,
+        1310,
+        836
+      ],
+      "usePoint": [
+        1264,
+        820
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-10",
+      "zoneId": "engineering_lab",
+      "row": 3,
+      "column": 2,
+      "deskRect": [
+        1540,
+        684,
+        1708,
+        752
+      ],
+      "chairRect": [
+        1598,
+        758,
+        1650,
+        802
+      ],
+      "approachRect": [
+        1578,
+        804,
+        1670,
+        836
+      ],
+      "usePoint": [
+        1624,
+        820
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-11",
+      "zoneId": "engineering_lab",
+      "row": 3,
+      "column": 3,
+      "deskRect": [
+        2140,
+        684,
+        2308,
+        752
+      ],
+      "chairRect": [
+        2198,
+        758,
+        2250,
+        802
+      ],
+      "approachRect": [
+        2178,
+        804,
+        2270,
+        836
+      ],
+      "usePoint": [
+        2224,
+        820
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-12",
+      "zoneId": "engineering_lab",
+      "row": 3,
+      "column": 4,
+      "deskRect": [
+        2500,
+        684,
+        2668,
+        752
+      ],
+      "chairRect": [
+        2558,
+        758,
+        2610,
+        802
+      ],
+      "approachRect": [
+        2538,
+        804,
+        2630,
+        836
+      ],
+      "usePoint": [
+        2584,
+        820
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-13",
+      "zoneId": "engineering_lab",
+      "row": 4,
+      "column": 1,
+      "deskRect": [
+        1180,
+        900,
+        1348,
+        968
+      ],
+      "chairRect": [
+        1238,
+        974,
+        1290,
+        1018
+      ],
+      "approachRect": [
+        1218,
+        1020,
+        1310,
+        1052
+      ],
+      "usePoint": [
+        1264,
+        1036
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-14",
+      "zoneId": "engineering_lab",
+      "row": 4,
+      "column": 2,
+      "deskRect": [
+        1540,
+        900,
+        1708,
+        968
+      ],
+      "chairRect": [
+        1598,
+        974,
+        1650,
+        1018
+      ],
+      "approachRect": [
+        1578,
+        1020,
+        1670,
+        1052
+      ],
+      "usePoint": [
+        1624,
+        1036
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-15",
+      "zoneId": "engineering_lab",
+      "row": 4,
+      "column": 3,
+      "deskRect": [
+        2140,
+        900,
+        2308,
+        968
+      ],
+      "chairRect": [
+        2198,
+        974,
+        2250,
+        1018
+      ],
+      "approachRect": [
+        2178,
+        1020,
+        2270,
+        1052
+      ],
+      "usePoint": [
+        2224,
+        1036
+      ],
+      "approachHeading": "south"
+    },
+    {
+      "id": "lab-desk-16",
+      "zoneId": "engineering_lab",
+      "row": 4,
+      "column": 4,
+      "deskRect": [
+        2500,
+        900,
+        2668,
+        968
+      ],
+      "chairRect": [
+        2558,
+        974,
+        2610,
+        1018
+      ],
+      "approachRect": [
+        2538,
+        1020,
+        2630,
+        1052
+      ],
+      "usePoint": [
+        2584,
+        1036
+      ],
+      "approachHeading": "south"
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "library-shelf-west",
+      "zoneId": "library",
+      "kind": "bookcase",
+      "rect": [
+        220,
+        225,
+        340,
+        430
+      ],
+      "solid": true
+    },
+    {
+      "id": "library-reading-table",
+      "zoneId": "library",
+      "kind": "table",
+      "rect": [
+        430,
+        280,
+        590,
+        350
+      ],
+      "solid": true
+    },
+    {
+      "id": "noc-rack-west",
+      "zoneId": "noc",
+      "kind": "server-rack",
+      "rect": [
+        3150,
+        215,
+        3240,
+        440
+      ],
+      "solid": true
+    },
+    {
+      "id": "noc-rack-east",
+      "zoneId": "noc",
+      "kind": "server-rack",
+      "rect": [
+        3450,
+        215,
+        3540,
+        440
+      ],
+      "solid": true
+    },
+    {
+      "id": "noc-console",
+      "zoneId": "noc",
+      "kind": "console",
+      "rect": [
+        3260,
+        390,
+        3430,
+        444
+      ],
+      "solid": true
+    },
+    {
+      "id": "council-table",
+      "zoneId": "high_council",
+      "kind": "meeting-table",
+      "rect": [
+        320,
+        790,
+        600,
+        890
+      ],
+      "solid": true
+    },
+    {
+      "id": "qa-bench",
+      "zoneId": "qa_lab",
+      "kind": "test-bench",
+      "rect": [
+        3250,
+        770,
+        3510,
+        860
+      ],
+      "solid": true
+    },
+    {
+      "id": "qa-board",
+      "zoneId": "qa_lab",
+      "kind": "whiteboard",
+      "rect": [
+        3300,
+        900,
+        3520,
+        928
+      ],
+      "solid": false
+    },
+    {
+      "id": "kantin-counter",
+      "zoneId": "kantin",
+      "kind": "service-counter",
+      "rect": [
+        240,
+        1600,
+        640,
+        1680
+      ],
+      "solid": true
+    },
+    {
+      "id": "kantin-table-1",
+      "zoneId": "kantin",
+      "kind": "dining-table",
+      "rect": [
+        260,
+        1750,
+        392,
+        1830
+      ],
+      "solid": true
+    },
+    {
+      "id": "kantin-table-2",
+      "zoneId": "kantin",
+      "kind": "dining-table",
+      "rect": [
+        486,
+        1750,
+        618,
+        1830
+      ],
+      "solid": true
+    },
+    {
+      "id": "cikgu-teacher-desk",
+      "zoneId": "cikgu_room",
+      "kind": "teacher-desk",
+      "rect": [
+        3240,
+        1620,
+        3470,
+        1740
+      ],
+      "solid": true
+    },
+    {
+      "id": "cikgu-visitor-chair",
+      "zoneId": "cikgu_room",
+      "kind": "chair",
+      "rect": [
+        3300,
+        1760,
+        3360,
+        1810
+      ],
+      "solid": true
+    },
+    {
+      "id": "court-benches",
+      "zoneId": "courtyard",
+      "kind": "bench-pair",
+      "rect": [
+        1180,
+        1790,
+        1380,
+        1830
+      ],
+      "solid": true
+    },
+    {
+      "id": "library-reading-chair-1",
+      "zoneId": "library",
+      "kind": "chair",
+      "rect": [
+        450,
+        380,
+        510,
+        430
+      ],
+      "solid": true
+    },
+    {
+      "id": "noc-console-chair",
+      "zoneId": "noc",
+      "kind": "chair",
+      "rect": [
+        3300,
+        450,
+        3360,
+        500
+      ],
+      "solid": true
+    },
+    {
+      "id": "council-chair-north",
+      "zoneId": "high_council",
+      "kind": "chair",
+      "rect": [
+        420,
+        730,
+        480,
+        780
+      ],
+      "solid": true
+    },
+    {
+      "id": "council-chair-south",
+      "zoneId": "high_council",
+      "kind": "chair",
+      "rect": [
+        420,
+        900,
+        480,
+        950
+      ],
+      "solid": true
+    },
+    {
+      "id": "council-chair-west",
+      "zoneId": "high_council",
+      "kind": "chair",
+      "rect": [
+        230,
+        810,
+        290,
+        870
+      ],
+      "solid": true
+    },
+    {
+      "id": "council-chair-east",
+      "zoneId": "high_council",
+      "kind": "chair",
+      "rect": [
+        630,
+        810,
+        690,
+        870
+      ],
+      "solid": true
+    },
+    {
+      "id": "kantin-table-1-chair-north",
+      "zoneId": "kantin",
+      "kind": "chair",
+      "rect": [
+        300,
+        1700,
+        352,
+        1740
+      ],
+      "solid": true
+    },
+    {
+      "id": "kantin-table-1-chair-south",
+      "zoneId": "kantin",
+      "kind": "chair",
+      "rect": [
+        300,
+        1840,
+        352,
+        1880
+      ],
+      "solid": true
+    },
+    {
+      "id": "kantin-table-2-chair-north",
+      "zoneId": "kantin",
+      "kind": "chair",
+      "rect": [
+        526,
+        1700,
+        578,
+        1740
+      ],
+      "solid": true
+    },
+    {
+      "id": "kantin-table-2-chair-south",
+      "zoneId": "kantin",
+      "kind": "chair",
+      "rect": [
+        526,
+        1840,
+        578,
+        1880
+      ],
+      "solid": true
+    }
+  ],
+  "useAnchors": [
+    {
+      "id": "outer-gate-spawn",
+      "zoneId": "gate_approach",
+      "purpose": "safe entry spawn south of the open gate",
+      "point": [
+        1920,
+        2100
+      ]
+    },
+    {
+      "id": "kantin-counter-service",
+      "zoneId": "kantin",
+      "purpose": "counter service approach",
+      "point": [
+        700,
+        1640
+      ]
+    },
+    {
+      "id": "kantin-table-1-use",
+      "zoneId": "kantin",
+      "purpose": "table approach",
+      "point": [
+        224,
+        1790
+      ]
+    },
+    {
+      "id": "kantin-table-2-use",
+      "zoneId": "kantin",
+      "purpose": "table approach",
+      "point": [
+        654,
+        1790
+      ]
+    },
+    {
+      "id": "cikgu-visitor-approach",
+      "zoneId": "cikgu_room",
+      "purpose": "teacher conversation approach",
+      "point": [
+        3160,
+        1680
+      ]
+    },
+    {
+      "id": "council-approach",
+      "zoneId": "high_council",
+      "purpose": "meeting approach",
+      "point": [
+        704,
+        740
+      ]
+    },
+    {
+      "id": "qa-approach",
+      "zoneId": "qa_lab",
+      "purpose": "test bench approach",
+      "point": [
+        3160,
+        800
+      ]
+    },
+    {
+      "id": "library-approach",
+      "zoneId": "library",
+      "purpose": "reading table approach",
+      "point": [
+        650,
+        360
+      ]
+    },
+    {
+      "id": "noc-approach",
+      "zoneId": "noc",
+      "purpose": "console approach",
+      "point": [
+        3460,
+        470
+      ]
+    },
+    {
+      "id": "lab-desk-01-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1264,
+        256
+      ]
+    },
+    {
+      "id": "lab-desk-02-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1624,
+        256
+      ]
+    },
+    {
+      "id": "lab-desk-03-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2224,
+        256
+      ]
+    },
+    {
+      "id": "lab-desk-04-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2584,
+        256
+      ]
+    },
+    {
+      "id": "lab-desk-05-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1264,
+        472
+      ]
+    },
+    {
+      "id": "lab-desk-06-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1624,
+        472
+      ]
+    },
+    {
+      "id": "lab-desk-07-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2224,
+        472
+      ]
+    },
+    {
+      "id": "lab-desk-08-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2584,
+        472
+      ]
+    },
+    {
+      "id": "lab-desk-09-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1264,
+        820
+      ]
+    },
+    {
+      "id": "lab-desk-10-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1624,
+        820
+      ]
+    },
+    {
+      "id": "lab-desk-11-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2224,
+        820
+      ]
+    },
+    {
+      "id": "lab-desk-12-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2584,
+        820
+      ]
+    },
+    {
+      "id": "lab-desk-13-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1264,
+        1036
+      ]
+    },
+    {
+      "id": "lab-desk-14-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        1624,
+        1036
+      ]
+    },
+    {
+      "id": "lab-desk-15-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2224,
+        1036
+      ]
+    },
+    {
+      "id": "lab-desk-16-approach",
+      "zoneId": "engineering_lab",
+      "purpose": "individual workstation approach",
+      "point": [
+        2584,
+        1036
+      ]
+    }
+  ],
+  "treeCutoutCandidates": [
+    {
+      "id": "court-tree-cutout-west",
+      "center": [
+        1320,
+        1480
+      ],
+      "radius": 56,
+      "clearOfPaths": true,
+      "purpose": "registered foreground cutout candidate; keep door and circulation clear"
+    },
+    {
+      "id": "court-tree-cutout-east",
+      "center": [
+        2520,
+        1480
+      ],
+      "radius": 56,
+      "clearOfPaths": true,
+      "purpose": "registered foreground cutout candidate; keep door and circulation clear"
+    }
+  ],
+  "connectivity": {
+    "root": "outer-gate",
+    "edges": [
+      [
+        "outer-gate",
+        "road-strip"
+      ],
+      [
+        "road-strip",
+        "central-spine"
+      ],
+      [
+        "central-spine",
+        "courtyard"
+      ],
+      [
+        "courtyard",
+        "cross-corridor"
+      ],
+      [
+        "cross-corridor",
+        "left-side-corridor"
+      ],
+      [
+        "cross-corridor",
+        "right-side-corridor"
+      ],
+      [
+        "engineering_lab",
+        "cross-corridor"
+      ],
+      [
+        "engineering_lab",
+        "left-side-corridor"
+      ],
+      [
+        "engineering_lab",
+        "right-side-corridor"
+      ],
+      [
+        "library",
+        "left-side-corridor"
+      ],
+      [
+        "high_council",
+        "left-side-corridor"
+      ],
+      [
+        "kantin",
+        "left-side-corridor"
+      ],
+      [
+        "noc",
+        "right-side-corridor"
+      ],
+      [
+        "qa_lab",
+        "right-side-corridor"
+      ],
+      [
+        "cikgu_room",
+        "right-side-corridor"
+      ]
+    ],
+    "rule": "Every edge is a continuous clear floor path through the listed physical wall opening or open shared floor; no teleport, floor pad, scene transition or hidden portal."
+  },
+  "labAisles": [
+    {
+      "id": "lab-column-aisle-west",
+      "rect": [
+        1348,
+        80,
+        1540,
+        1080
+      ],
+      "orientation": "vertical",
+      "clearance": 192,
+      "preferredMinimum": 96
+    },
+    {
+      "id": "lab-main-aisle",
+      "rect": [
+        1708,
+        80,
+        2140,
+        1080
+      ],
+      "orientation": "vertical",
+      "clearance": 432,
+      "preferredMinimum": 192
+    },
+    {
+      "id": "lab-column-aisle-east",
+      "rect": [
+        2308,
+        80,
+        2500,
+        1080
+      ],
+      "orientation": "vertical",
+      "clearance": 192,
+      "preferredMinimum": 96
+    },
+    {
+      "id": "lab-cross-aisle",
+      "rect": [
+        1040,
+        454,
+        2800,
+        684
+      ],
+      "orientation": "horizontal",
+      "clearance": 230,
+      "preferredMinimum": 192
+    }
+  ],
+  "notes": [
+    "Desk and fixture footprints are provisional registration geometry from the U0 layout, not final Phaser collisions.",
+    "The PNG is a first-imagegen layout guide. Keep room placement, count, door gaps, paths and proportions; generate the desired visual style at native 3840\u00d72160.",
+    "All seven interiors, courtyard and gate apron are on the same world plane and connected by actual open floor."
+  ]
+}

@@ -1,0 +1,868 @@
+{
+  "width": 35,
+  "height": 20,
+  "tilewidth": 48,
+  "tileheight": 48,
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "nextlayerid": 8,
+  "nextobjectid": 39,
+  "properties": [
+    {
+      "name": "sceneId",
+      "type": "string",
+      "value": "entrance"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "value": "Dataran Akademi"
+    },
+    {
+      "name": "temporary",
+      "type": "bool",
+      "value": false
+    },
+    {
+      "name": "worldWidth",
+      "type": "int",
+      "value": 1672
+    },
+    {
+      "name": "worldHeight",
+      "type": "int",
+      "value": 941
+    },
+    {
+      "name": "background",
+      "type": "string",
+      "value": "/assets/campus.png"
+    },
+    {
+      "name": "mapX",
+      "type": "int",
+      "value": 0
+    },
+    {
+      "name": "mapY",
+      "type": "int",
+      "value": 1
+    }
+  ],
+  "layers": [
+    {
+      "name": "collision",
+      "objects": [
+        {
+          "id": 1,
+          "name": "back walls and shelving",
+          "type": "solid",
+          "x": 0,
+          "y": 0,
+          "width": 1672,
+          "height": 205,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 2,
+          "name": "council outer wall",
+          "type": "solid",
+          "x": 0,
+          "y": 205,
+          "width": 180,
+          "height": 250,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 3,
+          "name": "teacher outer wall",
+          "type": "solid",
+          "x": 1500,
+          "y": 205,
+          "width": 172,
+          "height": 250,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 4,
+          "name": "council corridor partition",
+          "type": "solid",
+          "x": 735,
+          "y": 205,
+          "width": 55,
+          "height": 250,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 5,
+          "name": "teacher corridor partition",
+          "type": "solid",
+          "x": 880,
+          "y": 205,
+          "width": 55,
+          "height": 250,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 6,
+          "name": "council front west",
+          "type": "solid",
+          "x": 180,
+          "y": 325,
+          "width": 235,
+          "height": 130,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 7,
+          "name": "council front east",
+          "type": "solid",
+          "x": 540,
+          "y": 325,
+          "width": 195,
+          "height": 130,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 8,
+          "name": "teacher front west",
+          "type": "solid",
+          "x": 935,
+          "y": 325,
+          "width": 195,
+          "height": 130,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 9,
+          "name": "teacher front east",
+          "type": "solid",
+          "x": 1265,
+          "y": 325,
+          "width": 235,
+          "height": 130,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 10,
+          "name": "council desks and chairs",
+          "type": "solid",
+          "x": 350,
+          "y": 210,
+          "width": 210,
+          "height": 90,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 11,
+          "name": "teacher desks and chairs",
+          "type": "solid",
+          "x": 1120,
+          "y": 210,
+          "width": 165,
+          "height": 90,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 12,
+          "name": "council side furniture",
+          "type": "solid",
+          "x": 180,
+          "y": 205,
+          "width": 70,
+          "height": 120,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 13,
+          "name": "council server cabinet",
+          "type": "solid",
+          "x": 690,
+          "y": 205,
+          "width": 45,
+          "height": 35,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 14,
+          "name": "teacher side furniture",
+          "type": "solid",
+          "x": 1435,
+          "y": 205,
+          "width": 65,
+          "height": 120,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 15,
+          "name": "welcome noticeboard and planters",
+          "type": "solid",
+          "x": 660,
+          "y": 440,
+          "width": 355,
+          "height": 180,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 16,
+          "name": "west trees and benches",
+          "type": "solid",
+          "x": 180,
+          "y": 490,
+          "width": 395,
+          "height": 220,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 17,
+          "name": "east trees and benches",
+          "type": "solid",
+          "x": 1095,
+          "y": 490,
+          "width": 415,
+          "height": 220,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 18,
+          "name": "southwest flowerbed",
+          "type": "solid",
+          "x": 440,
+          "y": 710,
+          "width": 275,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 19,
+          "name": "southeast flowerbed",
+          "type": "solid",
+          "x": 953,
+          "y": 710,
+          "width": 267,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 20,
+          "name": "school gate and perimeter",
+          "type": "solid",
+          "x": 0,
+          "y": 742,
+          "width": 1672,
+          "height": 199,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 21,
+          "name": "west boundary",
+          "type": "solid",
+          "x": 0,
+          "y": 455,
+          "width": 65,
+          "height": 287,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 22,
+          "name": "east boundary",
+          "type": "solid",
+          "x": 1600,
+          "y": 455,
+          "width": 72,
+          "height": 287,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        }
+      ],
+      "id": 1,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "portals",
+      "objects": [
+        {
+          "id": 23,
+          "name": "entrance-to-high_council",
+          "type": "portal",
+          "x": 582,
+          "y": 249,
+          "width": 96,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Dewan High Council"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "high_council"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "entry"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "high_council-to-entrance"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 630
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 310
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "entrance-to-engineering_lab",
+          "type": "portal",
+          "x": 590,
+          "y": 638,
+          "width": 144,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Makmal Kejuruteraan"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "engineering_lab"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "entry"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "engineering_lab-to-entrance"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 744
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 694
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "name": "entrance-to-library",
+          "type": "portal",
+          "x": 252,
+          "y": 249,
+          "width": 96,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Perpustakaan"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "library"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "entry"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "library-to-entrance"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 300
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 310
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "entrance-to-watchtower",
+          "type": "portal",
+          "x": 428,
+          "y": 369,
+          "width": 96,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Watchtower NOC"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "watchtower"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "entry"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "watchtower-to-entrance"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 476
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 435
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "entrance-to-qa_lab",
+          "type": "portal",
+          "x": 972,
+          "y": 249,
+          "width": 96,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Makmal QA"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "qa_lab"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "entry"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "qa_lab-to-entrance"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 1020
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 310
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "entrance-to-kantin",
+          "type": "portal",
+          "x": 1152,
+          "y": 369,
+          "width": 96,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Kantin Akademi"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "kantin"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "entry"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "kantin-to-entrance"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 1200
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 435
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "entrance-to-cikgu_room",
+          "type": "portal",
+          "x": 1322,
+          "y": 249,
+          "width": 96,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Bilik Cikgu"
+            },
+            {
+              "name": "targetScene",
+              "type": "string",
+              "value": "cikgu_room"
+            },
+            {
+              "name": "targetSpawn",
+              "type": "string",
+              "value": "entry"
+            },
+            {
+              "name": "returnPortal",
+              "type": "string",
+              "value": "cikgu_room-to-entrance"
+            },
+            {
+              "name": "approachX",
+              "type": "int",
+              "value": 1370
+            },
+            {
+              "name": "approachY",
+              "type": "int",
+              "value": 310
+            },
+            {
+              "name": "activation",
+              "type": "string",
+              "value": "interact"
+            }
+          ]
+        }
+      ],
+      "id": 2,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "spawn_points",
+      "objects": [
+        {
+          "id": 30,
+          "name": "entry",
+          "type": "spawn",
+          "x": 836,
+          "y": 660,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        },
+        {
+          "id": 31,
+          "name": "from_high_council",
+          "type": "spawn",
+          "x": 630,
+          "y": 310,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        },
+        {
+          "id": 32,
+          "name": "from_engineering_lab",
+          "type": "spawn",
+          "x": 744,
+          "y": 694,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        },
+        {
+          "id": 33,
+          "name": "from_library",
+          "type": "spawn",
+          "x": 300,
+          "y": 310,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        },
+        {
+          "id": 34,
+          "name": "from_watchtower",
+          "type": "spawn",
+          "x": 476,
+          "y": 435,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        },
+        {
+          "id": 35,
+          "name": "from_qa_lab",
+          "type": "spawn",
+          "x": 1020,
+          "y": 310,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        },
+        {
+          "id": 36,
+          "name": "from_kantin",
+          "type": "spawn",
+          "x": 1200,
+          "y": 435,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        },
+        {
+          "id": 37,
+          "name": "from_cikgu_room",
+          "type": "spawn",
+          "x": 1370,
+          "y": 310,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": []
+        }
+      ],
+      "id": 3,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "approaches",
+      "objects": [
+        {
+          "id": 38,
+          "name": "welcome",
+          "type": "interaction",
+          "x": 836,
+          "y": 672,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "value": "Welcome directory"
+            },
+            {
+              "name": "interaction",
+              "type": "string",
+              "value": "welcome"
+            }
+          ]
+        }
+      ],
+      "id": 4,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "agent_seats",
+      "objects": [],
+      "id": 5,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "reserved_lanes",
+      "objects": [],
+      "id": 6,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    },
+    {
+      "name": "npc_spawns",
+      "objects": [],
+      "id": 7,
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "draworder": "topdown"
+    }
+  ],
+  "tilesets": []
+}
