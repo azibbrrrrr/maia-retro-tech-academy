@@ -56,6 +56,10 @@ These are headless scheduling and transfer measurements, not physical mobile FPS
 - Used seven visible clear-floor transfer pads from the entrance hub, preserving the accepted painted architecture and collision. The tradeoff is explicit floor transitions until future architectural artwork is aligned.
 - Chose a 1536×1152 lab graybox with validated 240/144-unit spines, 144-unit doorway and 120-unit desk gaps. Future HD pixel dimensions remain independent; art alignment may require a reviewed iteration.
 
+## Subsequent CI result
+
+The historical separate-room revision `ee085d4` subsequently completed Linux CI with 42 browser cases passing and 5 failing (39.2 minutes); both provenance jobs passed. Failures involved timed movement displacement, long-route deadlines and touch traversal. Local baseline/focused successes above remain local evidence, not final-head CI success. The owner has since replaced that presentation with the continuous-campus direction; its tests and geometry require a new acceptance run.
+
 ## Updated execution direction
 
 The owner subsequently approved the [living-world interaction vertical slice](plans/2026-10-21-living-world-interaction-vertical-slice.md) in [PR comment 6318675933](https://github.com/azibbrrrrr/maia-retro-tech-academy/pull/1#issuecomment-6318675933). Preserve this connected navigation baseline while first proving four workstation archetypes, two Kantin tables and a direct bidirectional door. Typed interactables/reservations, separate work and choreography state, seated desk occlusion, dining/preemption and reduced-motion environment effects precede detailed art expansion. These features are not implemented by the navigation milestone. Sol now leads/advises, with Luna executing; Terra is unavailable in this session.

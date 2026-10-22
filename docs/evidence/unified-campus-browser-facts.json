@@ -1,0 +1,44 @@
+{
+  "environment": {
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "platform": "darwin",
+    "arch": "arm64",
+    "node": "v25.9.0",
+    "physicalDevice": false,
+    "safari": false
+  },
+  "image": {
+    "width": 1670,
+    "height": 941,
+    "bytes": 2972840
+  },
+  "performance": {
+    "frameMs": 13.315152380952382,
+    "transitionMs": 0,
+    "textures": [
+      {
+        "key": "campus",
+        "width": 1670,
+        "height": 941,
+        "bytes": 6285880,
+        "filter": "linear"
+      },
+      {
+        "key": "sprinter",
+        "width": 1536,
+        "height": 1872,
+        "bytes": 11501568,
+        "filter": "nearest"
+      },
+      {
+        "key": "medalist",
+        "width": 1536,
+        "height": 1872,
+        "bytes": 11501568,
+        "filter": "nearest"
+      }
+    ],
+    "objects": 246,
+    "staticBodies": 135
+  }
+}

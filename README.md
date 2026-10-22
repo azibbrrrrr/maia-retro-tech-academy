@@ -4,9 +4,11 @@ An original, playable Malaysian retro-school campus: explore as your own visitor
 meet a scripted teacher and inspect a clearly labeled demonstration PR whiteboard.
 An independent personal, unofficial showcase by Azib. No production integration.
 
-**Navigation-first campus: approved illustrated entrance plus seven connected temporary room grayboxes. Local DEMO only.**
+**One continuous illustrated campus, with all seven rooms visible together. Local DEMO only.**
 
-![The academy courtyard](docs/evidence/campus-desktop.png)
+Draft checkpoint: browser acceptance is incomplete. See the [next-session handoff](docs/handoffs/2026-10-22-next-session.md) for passing checks, remaining failures and the asset inventory.
+
+![The academy courtyard](docs/evidence/unified-campus-overview-1920x1080.png)
 
 ## Play locally
 
@@ -18,15 +20,15 @@ npm start
 
 Open **http://127.0.0.1:3000**. Walk with WASD/arrows or the touch D-pad.
 Approach the teacher or whiteboard and press E or tap Interact. Escape closes
-panels; M opens the room directory for quick navigation. Gold floor transfers
-connect rooms through E / Interact; each room has a marked return transfer.
+panels; M opens the campus directory. The directory focuses the camera while the
+visitor stays in place. Walk through the open verandah entrances to reach rooms.
 Navigate opens camera, mock population and geometry inspection controls. The fullscreen button
 toggles browser fullscreen where supported. No account is required.
 
-- Preserved illustrated entrance plus High Council, Engineering Lab, Library, Watchtower, QA Lab, Kantin and Bilik Cikgu navigation studies.
-- Marked floor transfers with return paths; 16 lab workstation approaches and optional DEMO worker congestion.
-- Logical room/campus maps, free camera, follow player/DEMO actor, wheel/pinch zoom and collision diagnostics.
-- Animated Sprinter explorer, Tiled foot collision, mobile camera follow and touch controls.
+- Warm illustrated High Council, Engineering Lab, Library, Watchtower, QA Lab, Kantin and Bilik Cikgu in one world.
+- Seven physical room entrances, 16 lab workstation approaches, two Kantin tables and a serving counter.
+- A registered full-campus map, overview, free camera, player/DEMO actor follow, wheel/pinch zoom and collision diagnostics.
+- Animated Sprinter explorer, Tiled foot collision and touch controls.
 - Stationary Ustazah Juliana using the owner’s Medalist sprite, with friendly Malay dialogue.
 - React whiteboard with clearly marked demo lessons; no live GitHub claims.
 - Separate authenticated localhost-only operator skeleton on port 3100.
@@ -47,10 +49,9 @@ Gitleaks is required for the final command. Tests exercise actual Chromium
 keyboard/touch interaction, route traversal, collision, modal focus, offline
 behavior, XSS handling, private-route denial and operator authentication.
 
-[Whiteboard screenshot](docs/evidence/whiteboard-desktop.png) ·
-[Teacher screenshot](docs/evidence/teacher-desktop.png) ·
-[Mobile screenshot](docs/evidence/campus-mobile.png) ·
-[Navigation milestone](docs/NAVIGATION_MILESTONE.md) ·
+[Unified campus registration](docs/unified-campus-route-report.md) ·
+[Unified campus execution plan](docs/superpowers/plans/2026-10-21-unified-campus.md) ·
+[Historical navigation milestone](docs/NAVIGATION_MILESTONE.md) ·
 [Navigation inventory and circulation plans](docs/navigation/README.md) ·
 [Runtime evidence](docs/navigation/runtime.md) ·
 [Earlier redesign evidence](docs/REDESIGN.md) · [Sprint 0 evidence](docs/SPRINT_0.md)
@@ -58,10 +59,10 @@ behavior, XSS handling, private-route denial and operator authentication.
 ## Scope
 
 The campus uses an approved original generated environment and the owner’s
-authorized custom Sprinter and Medalist sprites. New rooms are deliberately
-low-detail navigation studies; final independent HD plates are gated by walking
-and alignment verification. Final room artwork,
-an animated specialist cast, real authorized GitHub queries,
+authorized custom Sprinter and Medalist sprites. The selected environment is
+native 1670×941 mapped to a logical 3840×2160 world, with matching Tiled geometry.
+Higher-resolution production art, foreground masks, an animated specialist cast,
+seated/dining behavior, real authorized GitHub queries,
 server-side public allowlist projection, optional sanitized live events and
 Cloudflare Tunnel remain later milestones. No deployment or live integration is
 claimed. No employer source, customer data or private metrics are present.

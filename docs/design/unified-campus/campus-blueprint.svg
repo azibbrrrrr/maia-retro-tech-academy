@@ -1,0 +1,383 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" role="img" aria-labelledby="title desc">
+<title id="title">Unified MAIA Campus — U0 fixed floorplan reference</title>
+<desc id="desc">Continuous 3840 by 2160 world plan. Seven visible interiors, central courtyard, open gate, physical room openings, and sixteen individually numbered engineering desks.</desc>
+<defs>
+  <pattern id="minor-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+    <path d="M 48 0 H 0 V 48" fill="none" stroke="#59705c" stroke-width="1" opacity=".14"/>
+  </pattern>
+  <pattern id="major-grid" width="240" height="240" patternUnits="userSpaceOnUse">
+    <path d="M 240 0 H 0 V 240" fill="none" stroke="#49634f" stroke-width="2" opacity=".16"/>
+  </pattern>
+  <pattern id="plaster" width="48" height="48" patternUnits="userSpaceOnUse">
+    <path d="M0 47.5 H48 M47.5 0 V48" fill="none" stroke="#6f745b" stroke-width="1" opacity=".12"/>
+  </pattern>
+  <pattern id="wood" width="96" height="36" patternUnits="userSpaceOnUse">
+    <path d="M0 35.5 H96 M48 0 V35 M0 17.5 H48 M72 18 V36" fill="none" stroke="#805c39" stroke-width="2" opacity=".18"/>
+  </pattern>
+  <pattern id="pavers" width="96" height="48" patternUnits="userSpaceOnUse">
+    <path d="M0 0 H96 M0 24 H96 M48 0 V24 M24 24 V48 M72 24 V48" fill="none" stroke="#7b785d" stroke-width="2" opacity=".2"/>
+  </pattern>
+  <filter id="room-shadow" x="-10%" y="-10%" width="120%" height="120%">
+    <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#29392d" flood-opacity=".22"/>
+  </filter>
+  <style>
+    text { font-family: Inter, Avenir, Arial, sans-serif; fill: #243a2f; }
+    .title { font-weight: 800; letter-spacing: 2px; }
+    .subtitle { font-weight: 600; letter-spacing: 1px; fill: #53634d; }
+    .room-title { font-weight: 800; letter-spacing: 1.6px; fill: #243c30; }
+    .room-id { font-family: ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: .5px; fill: #53634d; }
+    .path-label { font-weight: 700; letter-spacing: 1px; fill: #5f634d; }
+    .door-label { font-family: ui-monospace, Menlo, monospace; font-weight: 700; fill: #845c26; }
+    .desk-id { font-family: ui-monospace, Menlo, monospace; font-weight: 800; fill: #f5e9c9; }
+    .small { font-family: ui-monospace, Menlo, monospace; fill: #4a5846; }
+    .fixture-label { font-family: ui-monospace, Menlo, monospace; font-weight: 700; fill: #f5edda; }
+  </style>
+</defs>
+<rect width="3840" height="2160" fill="#e8dfca"/>
+<rect width="3840" height="2160" fill="url(#minor-grid)"/>
+<rect width="3840" height="2160" fill="url(#major-grid)"/>
+
+<rect x="160" y="160" width="640" height="360" fill="#d9b68e" filter="url(#room-shadow)" rx="14"/>
+<rect x="160" y="160" width="640" height="360" fill="url(#wood)" rx="14"/>
+<rect x="3040" y="160" width="640" height="360" fill="#91bcb3" filter="url(#room-shadow)" rx="14"/>
+<rect x="3040" y="160" width="640" height="360" fill="url(#plaster)" rx="14"/>
+<rect x="1040" y="80" width="1760" height="1000" fill="#b5c9a6" filter="url(#room-shadow)" rx="14"/>
+<rect x="1040" y="80" width="1760" height="1000" fill="url(#plaster)" rx="14"/>
+<rect x="160" y="660" width="640" height="340" fill="#d9aa8c" filter="url(#room-shadow)" rx="14"/>
+<rect x="160" y="660" width="640" height="340" fill="url(#wood)" rx="14"/>
+<rect x="3040" y="660" width="640" height="340" fill="#b4abc7" filter="url(#room-shadow)" rx="14"/>
+<rect x="3040" y="660" width="640" height="340" fill="url(#plaster)" rx="14"/>
+<rect x="160" y="1520" width="640" height="380" fill="#e0c179" filter="url(#room-shadow)" rx="14"/>
+<rect x="160" y="1520" width="640" height="380" fill="url(#plaster)" rx="14"/>
+<rect x="3040" y="1520" width="640" height="380" fill="#91b9bd" filter="url(#room-shadow)" rx="14"/>
+<rect x="3040" y="1520" width="640" height="380" fill="url(#wood)" rx="14"/>
+<rect x="1040" y="1400" width="1760" height="560" fill="#b0c398" filter="url(#room-shadow)" rx="14"/>
+<rect x="1040" y="1400" width="1760" height="560" fill="url(#plaster)" rx="14"/>
+<rect x="1520" y="1960" width="800" height="200" fill="#d8cdb0" filter="url(#room-shadow)" rx="14"/>
+<rect x="1520" y="1960" width="800" height="200" fill="url(#pavers)" rx="14"/>
+<rect x="0" y="2040" width="3840" height="120" fill="#d8d0b9" stroke="#b7ad91" stroke-width="4"/>
+<rect x="0" y="2040" width="3840" height="120" fill="url(#pavers)"/>
+<rect x="800" y="120" width="240" height="1840" fill="#d8d0b9" stroke="#b7ad91" stroke-width="4"/>
+<rect x="800" y="120" width="240" height="1840" fill="url(#pavers)"/>
+<rect x="2800" y="120" width="240" height="1840" fill="#d8d0b9" stroke="#b7ad91" stroke-width="4"/>
+<rect x="2800" y="120" width="240" height="1840" fill="url(#pavers)"/>
+<rect x="120" y="1080" width="3600" height="320" fill="#d8d0b9" stroke="#b7ad91" stroke-width="4"/>
+<rect x="120" y="1080" width="3600" height="320" fill="url(#pavers)"/>
+<rect x="1040" y="1580" width="1760" height="160" fill="#d8d0b9" stroke="#b7ad91" stroke-width="4"/>
+<rect x="1040" y="1580" width="1760" height="160" fill="url(#pavers)"/>
+<rect x="1720" y="1400" width="400" height="760" fill="#d8d0b9" stroke="#b7ad91" stroke-width="4"/>
+<rect x="1720" y="1400" width="400" height="760" fill="url(#pavers)"/>
+<rect x="1520" y="1960" width="800" height="200" fill="#d8d0b9" stroke="#b7ad91" stroke-width="4"/>
+<rect x="1520" y="1960" width="800" height="200" fill="url(#pavers)"/>
+<circle cx="1320" cy="1480" r="56" fill="#c5d0a6" stroke="#657d58" stroke-width="6" stroke-dasharray="16 12"/>
+<circle cx="1320" cy="1480" r="10" fill="none" stroke="#657d58" stroke-width="3"/>
+<text class="small" x="1320" y="1564" font-size="14" text-anchor="middle">TREE CUTOUT</text>
+<circle cx="2520" cy="1480" r="56" fill="#c5d0a6" stroke="#657d58" stroke-width="6" stroke-dasharray="16 12"/>
+<circle cx="2520" cy="1480" r="10" fill="none" stroke="#657d58" stroke-width="3"/>
+<text class="small" x="2520" y="1564" font-size="14" text-anchor="middle">TREE CUTOUT</text>
+<path d="M 120 1240 H 3720" fill="none" stroke="#8b845f" stroke-width="5" stroke-dasharray="20 22" opacity=".6"/>
+<path d="M 1920 1400 V 2160" fill="none" stroke="#8b845f" stroke-width="5" stroke-dasharray="20 22" opacity=".6"/>
+<path d="M 920 240 V 1080" fill="none" stroke="#8b845f" stroke-width="5" stroke-dasharray="20 22" opacity=".6"/>
+<path d="M 2920 240 V 1080" fill="none" stroke="#8b845f" stroke-width="5" stroke-dasharray="20 22" opacity=".6"/>
+<text class="room-title" x="480" y="230" font-size="26" text-anchor="middle">LIBRARY</text>
+<text class="room-id" x="480" y="257" font-size="14" text-anchor="middle">library</text>
+<text class="room-title" x="3360" y="230" font-size="26" text-anchor="middle">NOC</text>
+<text class="room-id" x="3360" y="257" font-size="14" text-anchor="middle">noc</text>
+<text class="room-title" x="1920" y="112" font-size="30" text-anchor="middle">ENGINEERING LAB</text>
+<text class="room-id" x="1920" y="139" font-size="14" text-anchor="middle">engineering_lab</text>
+<text class="room-title" x="480" y="710" font-size="26" text-anchor="middle">HIGH COUNCIL</text>
+<text class="room-id" x="480" y="737" font-size="14" text-anchor="middle">high_council</text>
+<text class="room-title" x="3360" y="710" font-size="26" text-anchor="middle">QA LAB</text>
+<text class="room-id" x="3360" y="737" font-size="14" text-anchor="middle">qa_lab</text>
+<text class="room-title" x="480" y="1560" font-size="26" text-anchor="middle">KANTIN</text>
+<text class="room-id" x="480" y="1587" font-size="14" text-anchor="middle">kantin</text>
+<text class="room-title" x="3360" y="1560" font-size="26" text-anchor="middle">CIKGU ROOM</text>
+<text class="room-id" x="3360" y="1587" font-size="14" text-anchor="middle">cikgu_room</text>
+<text class="room-title" x="1920" y="1460" font-size="22" text-anchor="middle">CENTRAL COURTYARD</text>
+<text class="room-id" x="1920" y="1487" font-size="14" text-anchor="middle">courtyard</text>
+<text class="room-title" x="1920" y="1978" font-size="22" text-anchor="middle">GATE APPROACH</text>
+<text class="room-id" x="1920" y="2005" font-size="14" text-anchor="middle">gate_approach</text>
+<rect x="220" y="225" width="120" height="205" rx="8" fill="#795d3c" stroke="#314c3c" stroke-width="8"/>
+<rect x="430" y="280" width="160" height="70" rx="16" fill="#895f38" stroke="#314c3c" stroke-width="8"/>
+<rect x="3150" y="215" width="90" height="225" rx="8" fill="#466b68" stroke="#314c3c" stroke-width="8"/>
+<rect x="3450" y="215" width="90" height="225" rx="8" fill="#466b68" stroke="#314c3c" stroke-width="8"/>
+<rect x="3260" y="390" width="170" height="54" rx="8" fill="#385553" stroke="#314c3c" stroke-width="8"/>
+<rect x="320" y="790" width="280" height="100" rx="16" fill="#805938" stroke="#314c3c" stroke-width="8"/>
+<text class="fixture-label" x="460" y="847" font-size="14" text-anchor="middle">COUNCIL TABLE</text>
+<rect x="3250" y="770" width="260" height="90" rx="8" fill="#64648b" stroke="#314c3c" stroke-width="8"/>
+<text class="fixture-label" x="3380" y="822" font-size="14" text-anchor="middle">TEST BENCH</text>
+<rect x="3300" y="900" width="220" height="28" rx="8" fill="#ede8d8" stroke="#314c3c" stroke-width="8"/>
+<line x1="3320" y1="914.0" x2="3500" y2="914.0" stroke="#536b5d" stroke-width="5"/>
+<rect x="240" y="1600" width="400" height="80" rx="16" fill="#9d613d" stroke="#314c3c" stroke-width="8"/>
+<text class="fixture-label" x="440" y="1647" font-size="14" text-anchor="middle">SERVICE COUNTER</text>
+<rect x="260" y="1750" width="132" height="80" rx="16" fill="#96653a" stroke="#314c3c" stroke-width="8"/>
+<text class="fixture-label" x="326" y="1797" font-size="14" text-anchor="middle">TABLE 1</text>
+<rect x="486" y="1750" width="132" height="80" rx="16" fill="#96653a" stroke="#314c3c" stroke-width="8"/>
+<text class="fixture-label" x="552" y="1797" font-size="14" text-anchor="middle">TABLE 2</text>
+<rect x="3240" y="1620" width="230" height="120" rx="16" fill="#79583c" stroke="#314c3c" stroke-width="8"/>
+<text class="fixture-label" x="3355" y="1687" font-size="14" text-anchor="middle">TEACHER DESK</text>
+<rect x="3300" y="1760" width="60" height="50" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="1180" y="1790" width="200" height="40" rx="8" fill="#84633c" stroke="#314c3c" stroke-width="8"/>
+<rect x="450" y="380" width="60" height="50" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="3300" y="450" width="60" height="50" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="420" y="730" width="60" height="50" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="420" y="900" width="60" height="50" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="230" y="810" width="60" height="60" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="630" y="810" width="60" height="60" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="300" y="1700" width="52" height="40" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="300" y="1840" width="52" height="40" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="526" y="1700" width="52" height="40" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="526" y="1840" width="52" height="40" rx="8" fill="#476d68" stroke="#314c3c" stroke-width="8"/>
+<rect x="1218" y="240" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1238" y="194" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1180" y="120" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1196" y="130" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1234" y="135" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1264" y="182" font-size="18" text-anchor="middle">01</text>
+<circle cx="1264" cy="256" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1264" cy="256" r="5" fill="#875e2c"/>
+<rect x="1578" y="240" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1598" y="194" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1540" y="120" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1556" y="130" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1594" y="135" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1624" y="182" font-size="18" text-anchor="middle">02</text>
+<circle cx="1624" cy="256" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1624" cy="256" r="5" fill="#875e2c"/>
+<rect x="2178" y="240" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2198" y="194" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2140" y="120" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2156" y="130" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2194" y="135" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2224" y="182" font-size="18" text-anchor="middle">03</text>
+<circle cx="2224" cy="256" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2224" cy="256" r="5" fill="#875e2c"/>
+<rect x="2538" y="240" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2558" y="194" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2500" y="120" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2516" y="130" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2554" y="135" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2584" y="182" font-size="18" text-anchor="middle">04</text>
+<circle cx="2584" cy="256" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2584" cy="256" r="5" fill="#875e2c"/>
+<rect x="1218" y="456" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1238" y="410" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1180" y="336" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1196" y="346" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1234" y="351" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1264" y="398" font-size="18" text-anchor="middle">05</text>
+<circle cx="1264" cy="472" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1264" cy="472" r="5" fill="#875e2c"/>
+<rect x="1578" y="456" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1598" y="410" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1540" y="336" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1556" y="346" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1594" y="351" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1624" y="398" font-size="18" text-anchor="middle">06</text>
+<circle cx="1624" cy="472" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1624" cy="472" r="5" fill="#875e2c"/>
+<rect x="2178" y="456" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2198" y="410" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2140" y="336" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2156" y="346" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2194" y="351" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2224" y="398" font-size="18" text-anchor="middle">07</text>
+<circle cx="2224" cy="472" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2224" cy="472" r="5" fill="#875e2c"/>
+<rect x="2538" y="456" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2558" y="410" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2500" y="336" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2516" y="346" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2554" y="351" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2584" y="398" font-size="18" text-anchor="middle">08</text>
+<circle cx="2584" cy="472" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2584" cy="472" r="5" fill="#875e2c"/>
+<rect x="1218" y="804" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1238" y="758" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1180" y="684" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1196" y="694" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1234" y="699" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1264" y="746" font-size="18" text-anchor="middle">09</text>
+<circle cx="1264" cy="820" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1264" cy="820" r="5" fill="#875e2c"/>
+<rect x="1578" y="804" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1598" y="758" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1540" y="684" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1556" y="694" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1594" y="699" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1624" y="746" font-size="18" text-anchor="middle">10</text>
+<circle cx="1624" cy="820" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1624" cy="820" r="5" fill="#875e2c"/>
+<rect x="2178" y="804" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2198" y="758" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2140" y="684" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2156" y="694" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2194" y="699" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2224" y="746" font-size="18" text-anchor="middle">11</text>
+<circle cx="2224" cy="820" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2224" cy="820" r="5" fill="#875e2c"/>
+<rect x="2538" y="804" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2558" y="758" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2500" y="684" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2516" y="694" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2554" y="699" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2584" y="746" font-size="18" text-anchor="middle">12</text>
+<circle cx="2584" cy="820" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2584" cy="820" r="5" fill="#875e2c"/>
+<rect x="1218" y="1020" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1238" y="974" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1180" y="900" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1196" y="910" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1234" y="915" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1264" y="962" font-size="18" text-anchor="middle">13</text>
+<circle cx="1264" cy="1036" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1264" cy="1036" r="5" fill="#875e2c"/>
+<rect x="1578" y="1020" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="1598" y="974" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="1540" y="900" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="1556" y="910" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="1594" y="915" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="1624" y="962" font-size="18" text-anchor="middle">14</text>
+<circle cx="1624" cy="1036" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="1624" cy="1036" r="5" fill="#875e2c"/>
+<rect x="2178" y="1020" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2198" y="974" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2140" y="900" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2156" y="910" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2194" y="915" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2224" y="962" font-size="18" text-anchor="middle">15</text>
+<circle cx="2224" cy="1036" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2224" cy="1036" r="5" fill="#875e2c"/>
+<rect x="2538" y="1020" width="92" height="32" rx="16" fill="#e7dfc9" fill-opacity=".35" stroke="#b47737" stroke-width="4" stroke-dasharray="12 9"/>
+<rect x="2558" y="974" width="52" height="44" rx="12" fill="#527d75" stroke="#304e44" stroke-width="5"/>
+<rect x="2500" y="900" width="168" height="68" rx="12" fill="#536d60" stroke="#2f4b3b" stroke-width="7"/>
+<rect x="2516" y="910" width="136" height="48" rx="5" fill="#d3c4a1" stroke="#314c3c" stroke-width="4"/>
+<rect x="2554" y="915" width="60" height="34" rx="4" fill="#46716d" stroke="#2b4945" stroke-width="3"/>
+<text class="desk-id" x="2584" y="962" font-size="18" text-anchor="middle">16</text>
+<circle cx="2584" cy="1036" r="16" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="2584" cy="1036" r="5" fill="#875e2c"/>
+<circle cx="700" cy="1640" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="700" cy="1640" r="4" fill="#875e2c"/>
+<text class="small" x="700" y="1668" font-size="12" text-anchor="middle">SERVICE APPROACH</text>
+<circle cx="224" cy="1790" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="224" cy="1790" r="4" fill="#875e2c"/>
+<text class="small" x="224" y="1818" font-size="12" text-anchor="middle">TABLE 1 APPROACH</text>
+<circle cx="654" cy="1790" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="654" cy="1790" r="4" fill="#875e2c"/>
+<text class="small" x="654" y="1818" font-size="12" text-anchor="middle">TABLE 2 APPROACH</text>
+<circle cx="3160" cy="1680" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="3160" cy="1680" r="4" fill="#875e2c"/>
+<text class="small" x="3160" y="1708" font-size="12" text-anchor="middle">VISITOR APPROACH</text>
+<circle cx="704" cy="740" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="704" cy="740" r="4" fill="#875e2c"/>
+<circle cx="3160" cy="800" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="3160" cy="800" r="4" fill="#875e2c"/>
+<circle cx="650" cy="360" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="650" cy="360" r="4" fill="#875e2c"/>
+<circle cx="3460" cy="470" r="14" fill="#f2ca72" stroke="#875e2c" stroke-width="4"/>
+<circle cx="3460" cy="470" r="4" fill="#875e2c"/>
+<line x1="160" y1="160" x2="800" y2="160" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="800" y1="160" x2="800" y2="270" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="800" y1="462" x2="800" y2="520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="520" x2="800" y2="520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="160" x2="160" y2="520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="160" x2="3680" y2="160" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3680" y1="160" x2="3680" y2="520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="520" x2="3680" y2="520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="160" x2="3040" y2="270" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="462" x2="3040" y2="520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="1040" y1="80" x2="2800" y2="80" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="2800" y1="80" x2="2800" y2="416" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="2800" y1="704" x2="2800" y2="1080" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="1040" y1="1080" x2="1728" y2="1080" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="2112" y1="1080" x2="2800" y2="1080" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="1040" y1="80" x2="1040" y2="416" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="1040" y1="704" x2="1040" y2="1080" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="660" x2="800" y2="660" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="800" y1="660" x2="800" y2="696" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="800" y1="984" x2="800" y2="1000" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="1000" x2="800" y2="1000" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="660" x2="160" y2="1000" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="660" x2="3680" y2="660" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3680" y1="660" x2="3680" y2="1000" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="1000" x2="3680" y2="1000" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="660" x2="3040" y2="696" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="984" x2="3040" y2="1000" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="1520" x2="800" y2="1520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="800" y1="1520" x2="800" y2="1560" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="800" y1="1848" x2="800" y2="1900" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="1900" x2="800" y2="1900" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="1520" x2="160" y2="1900" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="1520" x2="3680" y2="1520" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3680" y1="1520" x2="3680" y2="1900" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="1900" x2="3680" y2="1900" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="1520" x2="3040" y2="1560" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="3040" y1="1848" x2="3040" y2="1900" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="160" y1="2040" x2="1720" y2="2040" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="2120" y1="2040" x2="3680" y2="2040" stroke="#314e3c" stroke-width="24" stroke-linecap="square"/>
+<line x1="800" y1="270" x2="800" y2="462" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="838" y="366" font-size="15" text-anchor="start">door-library-east · 192w</text>
+<line x1="3040" y1="270" x2="3040" y2="462" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="3002" y="366" font-size="15" text-anchor="end">door-noc-west · 192w</text>
+<line x1="1040" y1="416" x2="1040" y2="704" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="1078" y="560" font-size="15" text-anchor="start">door-lab-west · 288w</text>
+<line x1="2800" y1="416" x2="2800" y2="704" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="2762" y="560" font-size="15" text-anchor="end">door-lab-east · 288w</text>
+<line x1="1728" y1="1080" x2="2112" y2="1080" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="1920" y="1052" font-size="15" text-anchor="middle">door-lab-south · 384w</text>
+<line x1="800" y1="696" x2="800" y2="984" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="838" y="840" font-size="15" text-anchor="start">door-council-east · 288w</text>
+<line x1="3040" y1="696" x2="3040" y2="984" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="3002" y="840" font-size="15" text-anchor="end">door-qa-west · 288w</text>
+<line x1="800" y1="1560" x2="800" y2="1848" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="838" y="1704" font-size="15" text-anchor="start">door-kantin-east · 288w</text>
+<line x1="3040" y1="1560" x2="3040" y2="1848" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<text class="door-label" x="3002" y="1704" font-size="15" text-anchor="end">door-cikgu-west · 288w</text>
+<line x1="1720" y1="2040" x2="2120" y2="2040" stroke="#c18a3c" stroke-width="12" stroke-dasharray="20 14"/>
+<rect x="1702" y="2010" width="36" height="60" rx="5" fill="#8b6240" stroke="#314e3c" stroke-width="6"/>
+<rect x="2102" y="2010" width="36" height="60" rx="5" fill="#8b6240" stroke="#314e3c" stroke-width="6"/>
+<circle cx="1920" cy="2100" r="20" fill="#f3ce77" stroke="#865e2c" stroke-width="6"/>
+<text class="path-label" x="2350" y="2145" font-size="17" text-anchor="middle">WALKABLE ROAD STRIP · SPAWN 1920,2100</text>
+<text class="path-label" x="920" y="1225" font-size="17" text-anchor="middle">CROSS CORRIDOR · 320w</text>
+<text class="path-label" x="1944" y="1820" font-size="17" transform="rotate(-90 1944 1820)">CENTRAL SPINE · 400w</text>
+<text class="path-label" x="920" y="195" font-size="13" text-anchor="middle">LEFT CORRIDOR · 240w</text>
+<text class="path-label" x="2920" y="195" font-size="13" text-anchor="middle">RIGHT CORRIDOR · 240w</text>
+<path d="M0 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<path d="M240 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="240" y="18" font-size="11" text-anchor="middle">240</text>
+<path d="M480 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="480" y="18" font-size="11" text-anchor="middle">480</text>
+<path d="M720 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="720" y="18" font-size="11" text-anchor="middle">720</text>
+<path d="M960 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="960" y="18" font-size="11" text-anchor="middle">960</text>
+<path d="M1200 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="1200" y="18" font-size="11" text-anchor="middle">1200</text>
+<path d="M1440 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="1440" y="18" font-size="11" text-anchor="middle">1440</text>
+<path d="M1680 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="1680" y="18" font-size="11" text-anchor="middle">1680</text>
+<path d="M1920 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="1920" y="18" font-size="11" text-anchor="middle">1920</text>
+<path d="M2160 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="2160" y="18" font-size="11" text-anchor="middle">2160</text>
+<path d="M2400 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="2400" y="18" font-size="11" text-anchor="middle">2400</text>
+<path d="M2640 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="2640" y="18" font-size="11" text-anchor="middle">2640</text>
+<path d="M2880 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="2880" y="18" font-size="11" text-anchor="middle">2880</text>
+<path d="M3120 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="3120" y="18" font-size="11" text-anchor="middle">3120</text>
+<path d="M3360 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="3360" y="18" font-size="11" text-anchor="middle">3360</text>
+<path d="M3600 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<text class="small" x="3600" y="18" font-size="11" text-anchor="middle">3600</text>
+<path d="M3840 0 v22" stroke="#405b48" stroke-width="4" opacity=".65"/>
+<rect x="48" y="6" width="1340" height="64" rx="14" fill="#f1e8d5" fill-opacity=".98" stroke="#48634e" stroke-width="4"/>
+<text class="title" x="76" y="32" font-size="22" text-anchor="start">MAIA · UNIFIED CAMPUS / U0 FIXED-FLOORPLAN GUIDE</text>
+<text class="subtitle" x="76" y="55" font-size="14" text-anchor="start">3840×2160 WORLD = NATIVE PNG · 1:1 · 48u GRID · DIAGRAM REFERENCE</text>
+<rect x="2780" y="6" width="1012" height="64" rx="14" fill="#f1e8d5" fill-opacity=".98" stroke="#48634e" stroke-width="4"/>
+<text class="small" x="2830" y="30" font-size="15" text-anchor="start">OPENINGS ARE CLEAR FLOOR · ROOMS SHARE ONE WORLD</text>
+<text class="small" x="2830" y="54" font-size="14" text-anchor="start">No scene hops · no transfer pads · no hidden doorway walls</text>
+</svg>

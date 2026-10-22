@@ -1,29 +1,33 @@
-# Architecture — navigation milestone
+# Architecture — continuous campus
 
 The browser is a Vite-built React application hosting one persistent Phaser 3.90
-world. `Campus` keeps the visitor, input and transition state; `RoomView` replaces
-room-local graphics, bodies, colliders and interaction zones as the visitor moves
-between eight canonical spaces. `CameraRig` owns player follow, free pan, DEMO
-actor follow and bounded zoom. Room switches do not reload the document.
+world. `Campus` keeps the visitor and input; `RoomView` retains the whole campus
+art, bodies, colliders and interactions while the visitor crosses semantic zones.
+`CameraRig` owns the default all-room overview, zone focus, player follow, free
+pan, DEMO actor follow and bounded zoom. Camera navigation preserves the visitor's
+coordinates. Walking through an opening changes the derived zone only.
 
-`packages/world/scenes.ts` is the authoritative geometry catalog, using a 48 px
-logical reference. Its Tiled TMX/JSON exports contain solids, reciprocal portals,
-safe spawns, reserved circulation and interaction approaches. The approved
-entrance image and original 22 collision objects remain; seven new rooms are
-explicitly temporary navigation studies. Arcade Physics drives actual keyboard
-and touch movement with the independently checked 14.08 × 7.92 visitor foot body.
+`packages/world/unified-campus.ts` is the authoritative global geometry. The
+1670×941 source image uses one explicit affine transform into the 3840×2160
+world; zones, solid ground footprints, doorway thresholds, approaches, NPC and
+spawn use that same transform. Its Tiled JSON/TMX exports show the background as
+a correctly sized image-collection tile object. Arcade Physics drives keyboard
+and touch movement with the unchanged 14.08 × 7.92 visitor foot body. Static
+route validation uses a conservative 16×10 clearance envelope. The old
+`scenes.ts` catalogs and room exports remain historical navigation studies.
 
 The typed bridge reports world/camera/interaction snapshots to React. Juliana,
 welcome and fixture conversations use anchored, non-blocking speech bubbles;
 walking stays active. The structured PR board and directory remain accessible
 HTML dialogs that pause gameplay. Input belongs to the focused canvas and clears
-on blur, cancellation and transition. Explicit floor transfers require a fresh
-interaction; directory shortcuts offer a separate accessible route.
+on blur, cancellation and pause. The directory and map focus the camera rather
+than transferring the visitor. No doorway action, fade or scene swap is needed.
 
-The opt-in DEMO registry preserves stable worker/task identities across unloaded
-room views. It currently allocates static placements and overflow; it is not a
+The DEMO registry preserves stable worker/task identities across zone crossings.
+It allocates sixteen static lab placements and four separate overflow positions;
+additional tracked actors have explicitly absent map positions. It is not a
 live provider, a time-based reservation manager or a worker behavior scheduler.
-The room map and whole-campus graph expose the authoritative layout. Debug
+The full-campus map exposes the same global layout and actor positions. Debug
 controls report actual physics, camera, texture and lifecycle facts.
 
 ## Physical boundary
@@ -46,7 +50,7 @@ operator access requires a separate authentication design.
 
 ## Deferred contracts
 
-The [approved living-world interaction plan](plans/2026-10-21-living-world-interaction-vertical-slice.md) adds typed interactables, temporal reservations, separate work/world state, seated foreground occlusion and interruptible dining. These are subsequent implementation gates. A future simulation owner must outlive disposable room views; React must not simulate actor positions or author provider truth.
+The [approved living-world interaction plan](plans/2026-10-21-living-world-interaction-vertical-slice.md) adds typed interactables, temporal reservations, separate work/world state, seated foreground occlusion and interruptible dining. These are subsequent implementation gates. A future simulation owner must outlive camera and semantic-zone changes; React must not simulate actor positions or author provider truth.
 
 Real GitHub collection and public allowlist projection remain future work. No server
 accepts raw agent events yet. Later collectors must provide a deny-by-default

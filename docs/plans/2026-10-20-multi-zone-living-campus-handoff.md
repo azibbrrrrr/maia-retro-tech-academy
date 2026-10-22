@@ -1,4 +1,7 @@
 # MAIA Retro-Tech Academy — Multi-Zone Living Campus & Developer Operations Handoff
+
+> **Owner navigation revision, 2026-10-22:** the later [unified-campus execution plan](../superpowers/plans/2026-10-21-unified-campus.md) supersedes this document's separate-room plates, portals and directory teleports. All seven rooms share one visible, continuous campus. The directory focuses the camera; visitors walk through physical openings. The warm native 1672×941 preview is accepted for integration, with higher-resolution art deferred. Operator security and the future living-world interaction requirements still apply. Implementation and verification status are recorded separately; this planning document is not release evidence.
+
 **Design revision:** 2026-10-20 · **Status:** approved direction / NOT yet implemented  
 **Applies to:** PR #1 (`feat/sprint-0-playable-campus`) and subsequent execution milestones  
 **Product weighting:** developer utility first (~80%); entertainment/ambient life second (~20%)  
