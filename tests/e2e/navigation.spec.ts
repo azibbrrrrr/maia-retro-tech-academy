@@ -1,465 +1,198 @@
 import { test, expect } from "./helpers/test";
 import { writeFileSync } from "node:fs";
 import {
-  sceneCatalog,
-  sceneIds,
-  FOOT_BODY,
-  type SceneId,
-} from "../../packages/world/scenes";
-import {
-  actorOccupancy,
-  createDemoActors,
-  reserveDemoWorkstations,
-} from "../../packages/world/actors";
-import {
-  walkTo,
-  scene,
-  ready,
-  directory,
-  position,
-  debug,
-  diagnostic,
-  tools,
-  pulse,
-} from "./helpers/walking";
+  campusDefinition,
+  imagePixelToWorld,
+  type CampusZoneId,
+} from "../../packages/world/unified-campus";
+import { createDemoActors, reserveUnifiedDemoActors } from "../../packages/world/unified-actors";
+import { debug, diagnostic, directory, position, ready, tools, walkTo, zone } from "./helpers/walking";
 
-// Continuous gameplay tracing records every animated frame and distorts the
-// long traversal/performance run. Keep explicit screenshots and position-rich
-// failures here; short regression suites retain their configured failure traces.
 test.use({ trace: "off" });
 
-test("floor transfer opens the lab and explicit return clears held input", async ({
-  page,
-}) => {
-  await page.goto("/");
-  await ready(page);
-  await expect(page.locator("[data-explorer]")).toHaveAttribute(
-    "data-scene",
-    "entrance",
-  );
+const titles: Record<CampusZoneId, string> = {
+  entrance: "School gate",
+  high_council: "High Council",
+  engineering_lab: "Makmal Kejuruteraan",
+  library: "Perpustakaan",
+  watchtower: "Watchtower NOC",
+  qa_lab: "Makmal QA",
+  kantin: "Kantin Akademi",
+  cikgu_room: "Bilik Cikgu",
+};
+
+async function interact(page: import("@playwright/test").Page, label: string) {
   await page.locator("canvas").focus();
-  await page.keyboard.down("ArrowLeft");
-  await page.waitForTimeout(750);
-  await page.keyboard.up("ArrowLeft");
   await page.keyboard.press("e");
-  await expect(page.locator("[data-explorer]")).toHaveAttribute(
-    "data-scene",
-    "engineering_lab",
-  );
-  await expect(
-    page.getByText("Temporary navigation study", { exact: true }),
-  ).toBeVisible();
-  await page.waitForTimeout(320);
-  await page.keyboard.down("ArrowDown");
-  await page.waitForTimeout(260);
-  await page.keyboard.press("e");
-  await expect(page.locator("[data-explorer]")).toHaveAttribute(
-    "data-scene",
-    "entrance",
-  );
-  await page.waitForTimeout(350);
-  const landing = await position(page);
-  await page.waitForTimeout(300);
-  expect(await position(page)).toEqual(landing);
-  await page.evaluate(() =>
-    document.querySelector("canvas")!.dispatchEvent(
-      new KeyboardEvent("keydown", {
-        key: "ArrowDown",
-        repeat: true,
-        bubbles: true,
-      }),
-    ),
-  );
-  await page.waitForTimeout(200);
-  expect(await position(page)).toEqual(landing);
-  await page.keyboard.up("ArrowDown");
-  await pulse(page, "ArrowDown", 100);
-  expect((await position(page)).y).toBeGreaterThan(landing.y + 10);
-  expect(page.url()).toBe("http://127.0.0.1:3000/");
-});
-
-// Missing collision, wrong map exports, unreachable anchors or a stalled input
-// path fail these routes at their observed position, never via a game test hook.
-
-test("gate visits all seven rooms, every required anchor and all sixteen desks through real physics", async ({
-  page,
-}) => {
-  test.setTimeout(600_000);
-  await page.goto("/");
-  await ready(page);
-  await page.screenshot({
-    path: "docs/navigation/evidence/entrance-desktop.png",
-  });
-  for (const id of sceneIds.filter((id) => id !== "entrance")) {
-    console.info(`Real-input route: entrance → ${id} → entrance`);
-    const pad = sceneCatalog.entrance.portals.find(
-      (p) => p.targetScene === id,
-    )!;
-    await walkTo(page, "entrance", pad.approach);
-    await page.keyboard.press("e");
-    await scene(page, id);
-    await expect(
-      page.getByText("Temporary navigation study", { exact: true }),
-    ).toBeVisible();
-    for (const anchor of sceneCatalog[id].anchors) {
-      console.info(`Interaction route: ${id}/${anchor.id}`);
-      await walkTo(page, id, anchor.point);
-      await page.keyboard.press("e");
-      const interaction =
-        anchor.interaction === "board"
-          ? page.getByRole("dialog")
-          : page.getByRole("region", { name: /speech bubble/ });
-      await expect(interaction).toBeVisible();
-      await expect(interaction).toContainText(
-        anchor.interaction === "teacher"
-          ? "Ustazah Juliana"
-          : anchor.interaction === "board"
-            ? "DEMO DATA"
-            : anchor.label,
-      );
-      await page.keyboard.press("Escape");
-      await expect(page.locator("canvas")).toBeFocused();
-    }
-    if (id === "engineering_lab")
-      await page.screenshot({
-        path: "docs/navigation/evidence/lab-sixteen.png",
-      });
-    await walkTo(page, id, sceneCatalog[id].portals[0].approach);
-    await page.keyboard.press("e");
-    await scene(page, "entrance");
-    await walkTo(page, "entrance", sceneCatalog.entrance.spawns.entry);
-  }
-});
-
-test("genuine touch crosses every room portal in both directions without quick travel", async ({
-  browser,
-}) => {
-  test.setTimeout(360_000);
-  const context = await browser.newContext({
-    viewport: { width: 390, height: 844 },
-    isMobile: true,
-    hasTouch: true,
-  });
-  const page = await context.newPage();
-  const touch = await context.newCDPSession(page);
-  await page.goto("/");
-  await ready(page);
-  for (const id of sceneIds.filter((id) => id !== "entrance")) {
-    console.info(`Real-input route: entrance → ${id} → entrance`);
-    const pad = sceneCatalog.entrance.portals.find(
-      (p) => p.targetScene === id,
-    )!;
-    await walkTo(page, "entrance", pad.approach, { touch });
-    await page.getByRole("button", { name: "Interact", exact: true }).tap();
-    await scene(page, id);
-    await walkTo(page, id, sceneCatalog[id].portals[0].approach, { touch });
-    await page.getByRole("button", { name: "Interact", exact: true }).tap();
-    await scene(page, "entrance");
-  }
-  await page.screenshot({
-    path: "docs/navigation/evidence/entrance-mobile.png",
-  });
-  await context.close();
-});
-
-test("live Arcade foot diagnostics match declared transform and real wall collision", async ({
-  page,
-}) => {
-  await page.goto("/");
-  await ready(page);
-  await directory(page, "High Council");
-  await debug(page);
-  const body = await diagnostic<Record<string, number>>(page, "body");
-  writeFileSync(
-    "docs/navigation/evidence/live-foot-body.json",
-    JSON.stringify(
-      {
-        environment: "headless Chromium on host",
-        actual: body,
-        declared: FOOT_BODY,
-      },
-      null,
-      2,
-    ) + "\n",
-  );
-  expect(body.width).toBeCloseTo(14.08, 4);
-  expect(body.height).toBeCloseTo(7.92, 4);
-  for (const k of ["left", "top", "right", "bottom"] as const)
-    expect(body[k]).toBeCloseTo(FOOT_BODY.exact[k], 4);
-  await page
-    .getByRole("button", { name: "Navigation controls", exact: true })
-    .click();
-  await walkTo(page, "high_council", { x: 576, y: 48 });
-  await pulse(page, "ArrowUp", 500);
-  expect((await position(page)).y).toBeGreaterThan(28);
-  expect((await position(page)).y).toBeLessThan(31);
-  await debug(page);
-  await page.screenshot({
-    path: "docs/navigation/evidence/collision-overlay.png",
-  });
-});
-
-test("twenty DEMO workers leave all sixteen desks approachable and overflow stays tracked across rooms", async ({
-  page,
-}) => {
-  test.setTimeout(360_000);
-  await page.goto("/");
-  await ready(page);
-  await directory(page, sceneCatalog.engineering_lab.title);
-  await debug(page);
-  await page.getByLabel("DEMO population").selectOption("20");
-  const workers = await diagnostic<{ id: string; sceneId: SceneId }[]>(
-    page,
-    "actors",
-  );
-  expect(workers).toHaveLength(20);
-  expect(new Set(workers.map((a) => a.id)).size).toBe(20);
-  expect(workers.filter((a) => a.sceneId !== "engineering_lab")).toHaveLength(
-    4,
-  );
-  await page
-    .getByRole("button", { name: "Navigation controls", exact: true })
-    .click();
-  const occupied = actorOccupancy(
-    reserveDemoWorkstations(createDemoActors(20)),
-    "engineering_lab",
-  );
-  for (const anchor of sceneCatalog.engineering_lab.anchors.filter(
-    (a) => a.kind === "workstation",
-  )) {
-    console.info(`Occupied approach: ${anchor.id}`);
-    await walkTo(page, "engineering_lab", anchor.point, { occupied });
-    await page.keyboard.press("e");
-    await expect(
-      page.getByRole("region", { name: /speech bubble/ }),
-    ).toContainText(anchor.label);
+  if (label.includes("board")) {
+    const panel = page.getByRole("dialog");
+    await expect(panel).toContainText("DEMO DATA");
+    await page.keyboard.press("Escape");
+  } else {
+    const bubble = page.getByRole("region", { name: /speech bubble/ });
+    await expect(bubble).toContainText(label === "teacher" ? "Ustazah Juliana" : label);
     await page.keyboard.press("Escape");
   }
-  await page.screenshot({
-    path: "docs/navigation/evidence/lab-congestion20.png",
-  });
-  await directory(page, "High Council");
-  await tools(page);
-  expect(
-    (await diagnostic<{ id: string }[]>(page, "actors")).map((a) => a.id),
-  ).toEqual(workers.map((a) => a.id));
-  await page.getByLabel("DEMO population").selectOption("28");
-  const overflow = await diagnostic<{ position: unknown }[]>(page, "actors");
-  expect(overflow.filter((a) => !a.position)).toHaveLength(4);
-  await directory(page, sceneCatalog.library.title);
-  await tools(page);
-  expect(await diagnostic<unknown[]>(page, "actors")).toHaveLength(28);
-  await page
-    .getByRole("button", { name: "Navigation controls", exact: true })
-    .click();
-  await page
-    .getByRole("button", { name: "Show campus connections", exact: true })
-    .click();
-  await page.screenshot({ path: "docs/navigation/evidence/logical-map.png" });
-});
+}
 
-for (const viewport of [
-  { width: 1440, height: 900 },
-  { width: 1280, height: 720 },
-  { width: 390, height: 844 },
-  { width: 844, height: 390 },
-  { width: 320, height: 568 },
-]) {
-  test(`all seven portal round trips and camera recovery at ${viewport.width}x${viewport.height}`, async ({
-    page,
-  }) => {
-    test.setTimeout(360_000);
+test("global map keeps the registered image alignment and seven room targets at every required viewport", async ({ page }) => {
+  for (const viewport of [
+    { width: 320, height: 568 },
+    { width: 390, height: 844 },
+    { width: 844, height: 390 },
+    { width: 768, height: 1024 },
+    { width: 1440, height: 900 },
+    { width: 1920, height: 1080 },
+  ]) {
     await page.setViewportSize(viewport);
     await page.goto("/");
     await ready(page);
-    for (const id of sceneIds.filter((id) => id !== "entrance")) {
-      await walkTo(
-        page,
-        "entrance",
-        sceneCatalog.entrance.portals.find((p) => p.targetScene === id)!
-          .approach,
-      );
-      await page.keyboard.press("e");
-      await scene(page, id);
-      const before = await position(page);
-      await tools(page);
-      await page.getByLabel("DEMO population").selectOption("20");
-      await page
-        .getByLabel("Follow DEMO actor")
-        .selectOption("demo-worker-001");
-      await expect(page.getByLabel("Camera status")).toHaveAttribute(
-        "data-camera-mode",
-        "agent",
-      );
-      await page
-        .getByRole("button", { name: "Follow player", exact: true })
-        .click();
-      await page.getByRole("button", { name: "Zoom in", exact: true }).click();
-      await page.getByRole("button", { name: "Pan left", exact: true }).click();
-      await expect(page.getByLabel("Camera status")).toHaveAttribute(
-        "data-camera-mode",
-        "free",
-      );
-      expect(await position(page)).toEqual(before);
-      await page
-        .getByRole("button", { name: "Follow player", exact: true })
-        .click();
-      await expect(page.getByLabel("Camera status")).toHaveAttribute(
-        "data-camera-mode",
-        "player",
-      );
-      await page
-        .getByRole("button", { name: "Navigation controls", exact: true })
-        .click();
-      if (viewport.width === 320 && id === "engineering_lab")
-        await page.screenshot({
-          path: "docs/navigation/evidence/lab-mobile-320.png",
-        });
-      await walkTo(page, id, sceneCatalog[id].portals[0].approach);
-      await page.keyboard.press("e");
-      await scene(page, "entrance");
-      await walkTo(page, "entrance", sceneCatalog.entrance.spawns.entry);
+    await expect(page.getByLabel("Camera status")).toHaveAttribute("data-camera-mode", "overview");
+    if (viewport.width === 320)
+      await page.screenshot({ path: "docs/evidence/unified-campus-overview-320.png" });
+    const image = campusDefinition.background;
+    expect(image.nativeSize).toEqual({ width: 1670, height: 941 });
+    expect(image.imageToWorld.scaleX).toBeCloseTo(3840 / 1670, 8);
+    expect(image.imageToWorld.scaleY).toBeCloseTo(2160 / 941, 8);
+    for (const room of campusDefinition.zones.filter((candidate) => candidate.id !== "entrance")) {
+      const roomShape = page.locator(`.mini-map polygon[aria-label="Focus ${room.title}"]`);
+      await expect(roomShape, `${viewport.width}x${viewport.height} should show ${room.id}`).toBeVisible();
     }
-  });
-}
-
-test("two-finger pinch and touch pan change camera without moving visitor", async ({
-  browser,
-}) => {
-  const context = await browser.newContext({
-    viewport: { width: 390, height: 844 },
-    hasTouch: true,
-    isMobile: true,
-  });
-  const page = await context.newPage();
-  const cdp = await context.newCDPSession(page);
-  await page.goto("/");
-  await ready(page);
-  await debug(page);
-  await page
-    .getByRole("button", { name: "Navigation controls", exact: true })
-    .click();
-  const before = await position(page);
-  const initial = Number(
-    await page.getByLabel("Camera status").getAttribute("data-camera-zoom"),
-  );
-  await cdp.send("Input.dispatchTouchEvent", {
-    type: "touchStart",
-    touchPoints: [
-      { x: 150, y: 360, id: 1 },
-      { x: 240, y: 360, id: 2 },
-    ],
-  });
-  for (let i = 1; i <= 5; i++) {
-    await cdp.send("Input.dispatchTouchEvent", {
-      type: "touchMove",
-      touchPoints: [
-        { x: 150 - i * 8, y: 360, id: 1 },
-        { x: 240 + i * 8, y: 360, id: 2 },
-      ],
-    });
-    await page.waitForTimeout(35);
+    const map = page.locator(".mini-map");
+    const mapSize = await map.evaluate((element) => ({ viewBox: element.getAttribute("viewBox"), width: element.querySelector("image")?.getAttribute("width"), height: element.querySelector("image")?.getAttribute("height") }));
+    expect(mapSize).toEqual({ viewBox: "0 0 3840 2160", width: "3840", height: "2160" });
+    expect(await page.locator("[data-explorer]").getAttribute("cx")).toBe(String((await position(page)).x));
+    if (viewport.width === 1920) await page.screenshot({ path: "docs/evidence/unified-campus-overview-1920x1080.png" });
   }
-  await cdp.send("Input.dispatchTouchEvent", {
-    type: "touchEnd",
-    touchPoints: [],
-  });
-  await expect
-    .poll(async () =>
-      Number(
-        await page.getByLabel("Camera status").getAttribute("data-camera-zoom"),
-      ),
-    )
-    .toBeGreaterThan(initial + 0.15);
-  expect(await position(page)).toEqual(before);
-  await tools(page);
-  await page.getByRole("button", { name: "Touch pan", exact: true }).click();
-  const camera = await diagnostic<{ x: number }>(page, "camera");
-  await page
-    .getByRole("button", { name: "Navigation controls", exact: true })
-    .click();
-  await cdp.send("Input.dispatchTouchEvent", {
-    type: "touchStart",
-    touchPoints: [{ x: 190, y: 360, id: 1 }],
-  });
-  for (let i = 1; i <= 5; i++) {
-    await cdp.send("Input.dispatchTouchEvent", {
-      type: "touchMove",
-      touchPoints: [{ x: 190 - i * 15, y: 360, id: 1 }],
-    });
-    await page.waitForTimeout(35);
-  }
-  await cdp.send("Input.dispatchTouchEvent", {
-    type: "touchEnd",
-    touchPoints: [],
-  });
-  await tools(page);
-  await expect
-    .poll(async () => (await diagnostic<{ x: number }>(page, "camera")).x)
-    .toBeGreaterThan(camera.x + 20);
-  expect(await position(page)).toEqual(before);
-  await page
-    .getByRole("button", { name: "Follow player", exact: true })
-    .click();
-  await expect(page.getByLabel("Camera status")).toHaveAttribute(
-    "data-camera-mode",
-    "player",
-  );
-  await context.close();
 });
 
-test("zoom clamps, blur releases movement and repeated room visits do not leak bodies", async ({
-  page,
-}) => {
-  test.setTimeout(120_000);
+test("ordinary keyboard walking crosses each physical doorway into every room and returns to the gate", async ({ page }) => {
+  test.setTimeout(600_000);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await ready(page);
+  await page.screenshot({ path: "docs/evidence/unified-campus-gate.png" });
+  const visited = new Set<CampusZoneId>(["entrance"]);
+  for (const door of campusDefinition.doorways.filter((candidate) => candidate.zones[1] === "entrance" && candidate.zones[0] !== "entrance")) {
+    const [inside, outside] = door.approaches;
+    await walkTo(page, outside, `${door.id} exterior approach`);
+    await zone(page, "entrance");
+    await walkTo(page, inside, `${door.id} physical threshold`);
+    await zone(page, door.zones[0]);
+    visited.add(door.zones[0]);
+    await walkTo(page, outside, `${door.id} return threshold`);
+    await zone(page, "entrance");
+  }
+  expect([...visited].sort()).toEqual(["cikgu_room", "engineering_lab", "high_council", "kantin", "library", "qa_lab", "watchtower", "entrance"].sort());
+  await walkTo(page, campusDefinition.spawns.entry, "gate return");
+  await expect(page.locator("[data-explorer]")).toHaveAttribute("data-scene", "entrance");
+  await page.screenshot({ path: "docs/evidence/unified-campus-door-return.png" });
+});
+
+test("visitor reaches every lab station and public interaction from the shared gate spawn", async ({ page }) => {
+  test.setTimeout(600_000);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await ready(page);
+  await directory(page, titles.engineering_lab);
+  await tools(page);
+  await page.getByRole("button", { name: "Follow player", exact: true }).click();
+  const stations = campusDefinition.anchors.filter((anchor) => anchor.kind === "workstation");
+  expect(stations).toHaveLength(16);
+  for (const station of stations) {
+    await walkTo(page, station.point, station.id);
+    await zone(page, "engineering_lab");
+    await interact(page, station.label);
+  }
+  for (const anchor of campusDefinition.anchors.filter((candidate) => candidate.kind !== "workstation")) {
+    await walkTo(page, anchor.point, anchor.id);
+    await zone(page, anchor.zoneId);
+    if (anchor.interaction)
+      await interact(page, anchor.interaction === "teacher" ? "teacher" : anchor.interaction === "board" ? "board" : anchor.label);
+  }
+  await walkTo(page, campusDefinition.spawns.entry, "gate return after station tour");
+  await page.screenshot({ path: "docs/evidence/unified-campus-stations-and-interactions.png" });
+});
+
+test("camera focus, zoom, follow and overview preserve visitor coordinates and actor identity", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
   await ready(page);
   await debug(page);
-  const counts = [];
-  for (let i = 0; i < 4; i++) {
-    await directory(page, "Bilik Cikgu");
-    await tools(page);
-    counts.push(
-      await diagnostic<{ objects: number; staticBodies: number }>(
-        page,
-        "performance",
-      ),
-    );
-    await directory(page, "School gate");
-  }
-  expect(new Set(counts.map((c) => c.objects)).size).toBe(1);
-  expect(new Set(counts.map((c) => c.staticBodies)).size).toBe(1);
+  const visitor = await position(page);
+  await directory(page, titles.cikgu_room);
+  await zone(page, "entrance");
+  expect(await position(page)).toEqual(visitor);
   await tools(page);
-  await page.mouse.move(650, 350);
-  await page.mouse.wheel(0, -10000);
-  await expect
-    .poll(async () =>
-      Number(
-        await page.getByLabel("Camera status").getAttribute("data-camera-zoom"),
-      ),
-    )
-    .toBe(1.8);
-  await page.mouse.wheel(0, 10000);
-  await expect
-    .poll(async () =>
-      Number(
-        await page.getByLabel("Camera status").getAttribute("data-camera-zoom"),
-      ),
-    )
-    .toBe(0.4);
-  await page
-    .getByRole("button", { name: "Follow player", exact: true })
-    .click();
-  await page
-    .getByRole("button", { name: "Navigation controls", exact: true })
-    .click();
+  await page.getByLabel("DEMO population").selectOption("20");
+  const actors = await diagnostic<{ id: string; zoneId: CampusZoneId; position: unknown }[]>(page, "actors");
+  expect(actors).toHaveLength(20);
+  expect(new Set(actors.map((actor) => actor.id)).size).toBe(20);
+  expect(actors.filter((actor) => actor.position)).toHaveLength(20);
+  await page.getByLabel("Follow DEMO actor").selectOption("demo-worker-001");
+  await expect(page.getByLabel("Camera status")).toHaveAttribute("data-camera-mode", "agent");
+  await page.getByRole("button", { name: "Zoom in", exact: true }).click();
+  await page.getByRole("button", { name: "Pan left", exact: true }).click();
+  expect(await position(page)).toEqual(visitor);
+  await page.getByRole("button", { name: "Overview", exact: true }).click();
+  await expect(page.getByLabel("Camera status")).toHaveAttribute("data-camera-mode", "overview");
+  expect(await position(page)).toEqual(visitor);
+  const identity = reserveUnifiedDemoActors(createDemoActors(20)).map((actor) => actor.id);
+  expect(actors.map((actor) => actor.id)).toEqual(identity);
+  await page.getByLabel("DEMO population").selectOption("28");
+  const overflow = await diagnostic<{ position: unknown }[]>(page, "actors");
+  expect(overflow).toHaveLength(28);
+  expect(overflow.filter((actor) => !actor.position)).toHaveLength(8);
+  await page.getByLabel("Follow DEMO actor").selectOption("demo-worker-025");
+  await expect(page.locator(".selected-actor-status")).toContainText("off-seat; no map position");
+  await page.screenshot({ path: "docs/evidence/unified-campus-actor-overview.png" });
+});
+
+test("window blur releases held directional input and leaves the visitor stationary", async ({ page }) => {
+  await page.goto("/");
+  await ready(page);
   await page.locator("canvas").focus();
+  const start = await position(page);
   await page.keyboard.down("ArrowRight");
-  await page.waitForTimeout(200);
+  await expect.poll(async () => position(page)).not.toEqual(start);
   await page.evaluate(() => window.dispatchEvent(new Event("blur")));
-  await page.waitForTimeout(150);
+  await page.evaluate(async () => {
+    for (let frame = 0; frame < 6; frame++)
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  });
   const stopped = await position(page);
-  await page.waitForTimeout(250);
+  await page.waitForTimeout(180);
   expect(await position(page)).toEqual(stopped);
   await page.keyboard.up("ArrowRight");
+});
+
+test("collision overlay records native art texture and a stationary scripted teacher", async ({ page, request }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await ready(page);
+  await debug(page);
+  const body = await diagnostic<Record<string, number>>(page, "body");
+  expect(body.width).toBeCloseTo(14.08, 4);
+  expect(body.height).toBeCloseTo(7.92, 4);
+  const performance = await diagnostic<{ textures: { key: string; width: number; height: number; bytes: number; filter: string }[] }>(page, "performance");
+  const background = performance.textures.find((texture) => texture.key === "campus");
+  expect(background).toMatchObject({ width: 1670, height: 941, bytes: 1670 * 941 * 4, filter: "linear" });
+  const asset = await request.get("/assets/campus-unified.png");
+  expect(asset.ok()).toBe(true);
+  const bytes = await asset.body();
+  const dims = await page.evaluate(async (base64) => {
+    const binary = atob(base64);
+    const data = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+    const bitmap = await createImageBitmap(new Blob([data], { type: "image/png" }));
+    return { width: bitmap.width, height: bitmap.height };
+  }, bytes.toString("base64"));
+  expect(dims).toEqual({ width: 1670, height: 941 });
+  const teacher = await diagnostic<{ x: number; y: number; count: number; frame: number }>(page, "teacher");
+  expect(teacher.count).toBe(1);
+  const nativeTeacher = imagePixelToWorld({ x: 1450, y: 588 });
+  expect(teacher.x).toBeCloseTo(nativeTeacher.x, 0);
+  expect(teacher.y).toBeCloseTo(nativeTeacher.y, 0);
+  writeFileSync("docs/evidence/unified-campus-browser-facts.json", JSON.stringify({ environment: { browser: await page.evaluate(() => navigator.userAgent), platform: process.platform, arch: process.arch, node: process.version, physicalDevice: false, safari: false }, image: { ...dims, bytes: bytes.byteLength }, performance }, null, 2) + "\n");
+  await page.screenshot({ path: "docs/evidence/unified-campus-collision-overview.png" });
 });

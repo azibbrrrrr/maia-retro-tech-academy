@@ -1,30 +1,35 @@
 import { test, expect } from "./helpers/test";
+import { position, ready } from "./helpers/walking";
 
-test("HUD shortcuts travel to rooms and directory pauses movement until Escape", async ({
+test("HUD shortcuts focus campus places without moving the visitor", async ({
   page,
 }) => {
   await page.goto("/");
-  await expect(
-    page.getByRole("button", { name: "Interact", exact: true }),
-  ).toBeEnabled();
+  await ready(page);
+  const visitor = await position(page);
   await page.getByRole("button", { name: "Cikgu ♥", exact: true }).click();
   await expect(page.locator("canvas")).toBeFocused();
   await expect(page.locator("[data-explorer]")).toHaveAttribute(
     "data-scene",
-    "cikgu_room",
+    "entrance",
   );
-  await page.waitForTimeout(350);
+  expect(await position(page)).toEqual(visitor);
+  await expect(page.getByLabel("Camera status")).toHaveAttribute("data-camera-mode", "free");
   await page.getByRole("button", { name: "PR Board", exact: true }).click();
-  await expect(page.locator("canvas")).toBeFocused();
+  const board = page.getByRole("dialog");
+  await expect(board).toBeVisible();
+  await expect(board).toContainText("DEMO DATA");
   await expect(page.locator("[data-explorer]")).toHaveAttribute(
     "data-scene",
-    "high_council",
+    "entrance",
   );
-  await page.waitForTimeout(350);
+  expect(await position(page)).toEqual(visitor);
+  await page.keyboard.press("Escape");
+  await expect(board).not.toBeVisible();
+  await page.locator("canvas").focus();
+  await expect(page.locator("canvas")).toBeFocused();
   await page.keyboard.press("m");
-  await expect(page.getByRole("dialog")).toContainText("Room directory");
-  await page.keyboard.press("m");
-  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Campus directory" })).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(page.locator("canvas")).toBeFocused();
   await page
@@ -32,6 +37,7 @@ test("HUD shortcuts travel to rooms and directory pauses movement until Escape",
     .click();
   await page.getByRole("button", { name: "School gate", exact: true }).click();
   await expect(page.locator("canvas")).toBeFocused();
+  expect(await position(page)).toEqual(visitor);
 });
 
 for (const viewport of [
@@ -46,9 +52,8 @@ for (const viewport of [
   }) => {
     await page.setViewportSize(viewport);
     await page.goto("/");
-    await expect(
-      page.getByRole("button", { name: "Interact", exact: true }),
-    ).toBeEnabled();
+    await ready(page);
+    await expect(page.getByRole("button", { name: "Interact", exact: true })).toBeDisabled();
     const canvas = await page.locator("canvas").boundingBox();
     expect(canvas).toMatchObject({
       x: 0,
@@ -98,10 +103,20 @@ for (const viewport of [
         ).toBe(true);
       }
     }
+    await expect(page.locator(".mini-map")).toBeVisible();
+    const beforeMove = await position(page);
+    const right = page.getByRole("button", { name: "Move right", exact: true });
+    const rightBox = (await right.boundingBox())!;
+    await page.mouse.move(rightBox.x + rightBox.width / 2, rightBox.y + rightBox.height / 2);
+    await page.mouse.down();
+    await expect.poll(async () => (await position(page)).x).toBeGreaterThan(beforeMove.x);
+    await page.mouse.up();
+    await expect(page.locator(".mini-map")).toBeVisible();
     await page
       .getByRole("button", { name: "Room directory", exact: true })
       .click();
     await expect(page.getByRole("dialog")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Campus directory" })).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Close panel" }),
     ).toBeInViewport();
